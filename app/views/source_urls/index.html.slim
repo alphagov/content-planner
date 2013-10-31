@@ -3,6 +3,8 @@
     p
       = link_to "Add a URL", new_source_url_path, class: 'btn'
 
+    = paginate source_urls
+
     table.table
       th URL
       th Needs

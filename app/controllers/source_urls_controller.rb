@@ -1,6 +1,6 @@
 class SourceUrlsController < ApplicationController
   expose(:source_url, attributes: :source_url_params)
-  expose(:source_urls)
+  expose(:source_urls) { SourceUrl.page(params[:page]) }
 
   def create
     if source_url.save
