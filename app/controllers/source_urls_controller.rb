@@ -19,6 +19,6 @@ class SourceUrlsController < ApplicationController
   end
 
   def source_url_params
-    params.require(:source_url).permit(:from_url, :state, :transitioned, :need_id, :department_id, :to_url)
+    params.require(:source_url).permit(:from_url, :transitioned, :archive, :department_id, :to_url)
   end
 end

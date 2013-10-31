@@ -18,14 +18,21 @@ ActiveRecord::Schema.define(version: 20131030172042) do
 
   create_table "source_urls", force: true do |t|
     t.text     "from_url"
-    t.string   "state"
-    t.boolean  "transitioned"
+    t.boolean  "needs_assigned",        default: false
+    t.boolean  "content_plan_assigned", default: false
+    t.boolean  "archive",               default: false
+    t.boolean  "transitioned",          default: false
     t.text     "to_url"
     t.integer  "department_id"
-    t.integer  "need_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "source_urls", ["archive"], name: "index_source_urls_on_archive", using: :btree
+  add_index "source_urls", ["content_plan_assigned"], name: "index_source_urls_on_content_plan_assigned", using: :btree
+  add_index "source_urls", ["department_id"], name: "index_source_urls_on_department_id", using: :btree
+  add_index "source_urls", ["needs_assigned"], name: "index_source_urls_on_needs_assigned", using: :btree
+  add_index "source_urls", ["transitioned"], name: "index_source_urls_on_transitioned", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

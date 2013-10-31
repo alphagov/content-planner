@@ -1,10 +1,9 @@
 .form-margin.well
   = simple_form_for source_url,
                     html: { class: 'form-horizontal form-container' } do |f|
-    = f.input :from_url, as: :string, input_html: {class: "span12"}
-    = f.input :state
-    = f.input :need_id
-    = f.input :to_url, as: :string, input_html: {class: "span12"}
+    = f.input :from_url, as: :string, input_html: {class: "span12"}, label: "Source URL"
+    = f.input :archive, label: "To Archive"
+    = f.input :to_url, as: :string, input_html: {class: "span12"}, label: "Destination URL"
     = f.input :transitioned
 
     .control-group

@@ -7,20 +7,24 @@
       th URL
       th Needs
       th Content Plans
-      th State
-      th Transitioned
       th Tags
+      th State
       - source_urls.each do |source_url|
         tr
           td
-            = link_to source_url.from_url, edit_source_url_path(source_url)
+            pre
+              |From:
+              = link_to source_url.from_url, edit_source_url_path(source_url)
+              - if source_url.to_url.present?
+                br
+                |To  :
+                a href= source_url.to_url
+                  = source_url.to_url
+          td
+            | TODO
           td
             | TODO
           td
             | TODO
           td
             = source_url.state
-          td
-            = source_url.transitioned?
-          td
-           | TODO

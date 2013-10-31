@@ -14,6 +14,8 @@ gem 'puma'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'slim'
 gem 'decent_exposure'
+gem 'active_hash'
+
 
 group :development do
   gem 'better_errors'
