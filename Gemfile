@@ -13,6 +13,8 @@ gem 'pg'
 gem 'puma'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'slim'
+gem 'decent_exposure'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

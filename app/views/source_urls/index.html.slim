@@ -1,0 +1,26 @@
+.row
+  .span12
+    p
+      = link_to "Add a URL", new_source_url_path, class: 'btn'
+
+    table.table
+      th URL
+      th Needs
+      th Content Plans
+      th State
+      th Transitioned
+      th Tags
+      - source_urls.each do |source_url|
+        tr
+          td
+            = link_to source_url.from_url, edit_source_url_path(source_url)
+          td
+            | TODO
+          td
+            | TODO
+          td
+            = source_url.state
+          td
+            = source_url.transitioned?
+          td
+           | TODO

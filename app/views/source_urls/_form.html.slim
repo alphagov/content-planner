@@ -1,0 +1,12 @@
+.form-margin.well
+  = simple_form_for source_url,
+                    html: { class: 'form-horizontal form-container' } do |f|
+    = f.input :from_url, as: :string, input_html: {class: "span12"}
+    = f.input :state
+    = f.input :need_id
+    = f.input :to_url, as: :string, input_html: {class: "span12"}
+    = f.input :transitioned
+
+    .control-group
+      .controls
+        = f.button :submit, class: 'btn-success'
