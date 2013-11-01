@@ -1,5 +1,7 @@
 class SourceUrl < ActiveRecord::Base
 
+  acts_as_taggable
+
   validates :from_url, presence: true, uniqueness: true
   validate :no_to_url_when_to_archive
 

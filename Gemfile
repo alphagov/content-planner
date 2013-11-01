@@ -17,6 +17,7 @@ gem 'decent_exposure'
 gem 'active_hash'
 gem 'kaminari'
 gem 'acts-as-taggable-on'
+gem "select2-rails"
 
 
 group :development do

@@ -3,6 +3,7 @@
                     html: { class: 'form-horizontal form-container' } do |f|
     = f.input :from_url, as: :string, input_html: {class: "span12"}, label: "Source URL"
     = f.input :archive, label: "To Archive"
+    = f.input :tag_list, as: :string, input_html: {class: "select2-tags", style: "width:300px"}
     = f.input :to_url, as: :string, input_html: {class: "span12"}, label: "Destination URL"
     = f.input :transitioned
 

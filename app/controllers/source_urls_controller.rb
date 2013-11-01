@@ -1,6 +1,12 @@
 class SourceUrlsController < ApplicationController
   expose(:source_url, attributes: :source_url_params)
-  expose(:source_urls) { SourceUrl.page(params[:page]) }
+  expose(:source_urls) {
+    if params[:tag].present?
+      SourceUrl.tagged_with(params[:tag]).page(params[:page])
+    else
+      SourceUrl.page(params[:page])
+    end
+  }
 
   def create
     if source_url.save
@@ -19,6 +25,6 @@ class SourceUrlsController < ApplicationController
   end
 
   def source_url_params
-    params.require(:source_url).permit(:from_url, :transitioned, :archive, :department_id, :to_url)
+    params.require(:source_url).permit(:from_url, :transitioned, :archive, :department_id, :to_url, :tag_list)
   end
 end
