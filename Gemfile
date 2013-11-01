@@ -16,6 +16,7 @@ gem 'slim'
 gem 'decent_exposure'
 gem 'active_hash'
 gem 'kaminari'
+gem 'acts-as-taggable-on'
 
 
 group :development do
