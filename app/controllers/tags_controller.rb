@@ -20,7 +20,11 @@ class TagsController < ApplicationController
   end
 
   def create
-    ActsAsTaggableOn::Tag.find_or_create_with_like_by_name(params[:tag][:name])
+    name = params[:tag][:name]
+    if name.present?
+      downcase_name = name.strip.mb_chars.downcase.to_s
+      ActsAsTaggableOn::Tag.find_or_create_with_like_by_name(downcase_name)
+    end
     redirect_to tags_path
   end
 
