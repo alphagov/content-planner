@@ -1,0 +1,13 @@
+.container-fluid
+  .row-fluid
+    .span12
+      h2 New Tag
+      .form-margin.well
+        = simple_form_for @tag, url: tags_path, as: :tag,
+                    html: { class: 'form-horizontal form-container' } do |f|
+          = f.input :name, as: :string, input_html: {class: "span4"}
+          .control-group
+            .controls
+              = f.button :submit, "Create Tag", class: 'btn-success'
+
+

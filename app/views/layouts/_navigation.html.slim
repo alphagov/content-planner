@@ -1,8 +1,12 @@
 = link_to "Transition Review", root_path, :class => 'brand'
 ul.nav
   - if user_signed_in?
-    li class="#{'active' if params[:controller] == 'source_urls'}"
+    li class="#{'active' if current_page?(controller: 'source_urls')}"
       = link_to 'URLs', source_urls_path
+
+    li class="#{'active' if current_page?(controller: 'tags')}"
+      = link_to 'Tags', tags_path
+
     li
       = link_to 'Logout', destroy_user_session_path, :method=>'delete'
   - else
