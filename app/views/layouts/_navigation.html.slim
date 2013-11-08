@@ -7,6 +7,9 @@ ul.nav
     li class="#{'active' if current_page?(controller: 'tags')}"
       = link_to 'Tags', tags_path
 
+    li class="#{'active' if current_page?(controller: 'content_plans')}"
+      = link_to 'Content Plans', content_plans_path
+
     li
       = link_to 'Logout', destroy_user_session_path, method: 'delete'
 
