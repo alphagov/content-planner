@@ -1,0 +1,2 @@
+module ContentPlansHelper
+end

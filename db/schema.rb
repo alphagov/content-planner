@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131101155125) do
+ActiveRecord::Schema.define(version: 20131108164124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "content_plans", force: true do |t|
+    t.string   "type"
+    t.integer  "size"
+    t.string   "status"
+    t.string   "ref_no"
+    t.string   "title"
+    t.text     "details"
+    t.string   "slug"
+    t.text     "content_type"
+    t.text     "sources"
+    t.text     "handover_detailed_guidance"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "source_urls", force: true do |t|
     t.text     "from_url"

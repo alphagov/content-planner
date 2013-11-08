@@ -1,0 +1,2 @@
+class ContentPlansController < ApplicationController
+end
