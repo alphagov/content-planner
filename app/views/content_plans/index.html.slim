@@ -2,3 +2,31 @@
   .span12
     p
       = link_to "Add a Content Plan", new_content_plan_path, class: 'btn'
+
+  table.table
+    th M/S
+    th Size
+    th Reference
+    th Title
+    th User Need
+    th Tags
+    th Slug
+    th Content Type
+    - content_plans.each do |content_plan|
+      tr
+        td
+          = content_plan.type
+        td
+          = content_plan.size
+        td
+          = link_to content_plan.ref_no, content_plan
+        td
+          = link_to content_plan.title, content_plan
+        td
+          TODO
+        td
+          = content_plan.tag_list
+        td
+          = content_plan.slug
+        td
+          = content_plan.content_type
