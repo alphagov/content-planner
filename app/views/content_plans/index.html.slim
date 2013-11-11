@@ -9,10 +9,11 @@
       th M/S
       th Size
       th Name
-      th User Need
+      th User Needs
       th Tags
       th Slug
       th Content Type
+      th Status
       - content_plans.each do |content_plan|
         tr
           td
@@ -29,3 +30,5 @@
             = content_plan.slug
           td
             = content_plan.content_type
+          td
+            = content_plan.status

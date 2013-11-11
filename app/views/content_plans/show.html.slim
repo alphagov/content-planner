@@ -3,3 +3,43 @@
     h2
       = content_plan.name
       = link_to "edit", edit_content_plan_path(content_plan), class: 'btn btn-small pull-right'
+
+    table.table
+      th M/S
+      th Size
+      th User Needs
+      th Tags
+      th Slug
+      th Content Type
+      th Status
+      tr
+        td
+          = content_plan.type
+        td
+          = content_plan.size
+        td
+          TODO
+        td
+          = content_plan_tag_filters content_plan.tag_list
+        td
+          = content_plan.slug
+        td
+          = content_plan.content_type
+        td
+          = content_plan.status
+  .span6
+    h3 Details
+    = content_plan.details
+    h4 URLs
+    ul
+    - content_plan.source_urls.each do |url|
+      li
+        = link_to url.from_url, [:edit, url]
+
+  .span6
+    h4 Sources
+    = content_plan.sources
+    h4 Handovers to detailed guidance / niche mainstream
+    = content_plan.handover_detailed_guidance
+    h4 Notes
+    = content_plan.notes

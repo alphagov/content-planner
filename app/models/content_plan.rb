@@ -3,7 +3,7 @@ class ContentPlan < ActiveRecord::Base
   acts_as_taggable
 
   TYPES = ["Mainstream", 'Specialist']
-  STATUS = ["Not started", "In Progress", "Done"]
+  STATUS = ["Not started", "In Progress", "Completed", "Published"]
 
   validates :title, presence: true
   validates :size, presence: true
