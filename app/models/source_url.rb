@@ -5,6 +5,9 @@ class SourceUrl < ActiveRecord::Base
   validates :from_url, presence: true, uniqueness: true
   validate :no_to_url_when_to_archive
 
+  has_many :source_url_content_plans
+  has_many :content_plans, through: :source_url_content_plans
+
   def state
     if transitioned?
       "Transitioned"

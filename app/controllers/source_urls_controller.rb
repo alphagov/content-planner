@@ -9,7 +9,7 @@ class SourceUrlsController < ApplicationController
   }
 
   def create
-    if source_url.save
+    if source_url._idsave
       redirect_to source_urls_path
     else
       render :new
@@ -25,6 +25,6 @@ class SourceUrlsController < ApplicationController
   end
 
   def source_url_params
-    params.require(:source_url).permit(:from_url, :transitioned, :archive, :department_id, :to_url, :tag_list)
+    params.require(:source_url).permit(:from_url, :transitioned, :archive, :department_id, :to_url, :tag_list, content_plan_ids: [])
   end
 end

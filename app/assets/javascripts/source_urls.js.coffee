@@ -1,8 +1,8 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-select2Tags = ->
-  $("input.select2-tags").select2
+jsTags = ->
+  $("input.js-tags").select2
     tags: true
     initSelection: (element, callback) ->
       data = []
@@ -21,5 +21,14 @@ select2Tags = ->
       results: (data, page) ->
         results: data
 
-$(document).ready select2Tags
-$(document).on "page:load", select2Tags
+
+jsContentPlans = ->
+  console.log($("#source_url_content_plan_ids"))
+  $("#source_url_content_plan_ids").select2();
+
+
+$(document).ready jsTags
+$(document).on "page:load", jsTags
+
+$(document).ready jsContentPlans
+$(document).on "page:load", jsContentPlans

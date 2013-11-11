@@ -11,7 +11,15 @@ class ContentPlansController < ApplicationController
   end
 
   def show
+  end
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: content_plans.map { |cp| { id: cp.id, text: "#{cp.ref_no} - #{cp.title}" } }
+      }
+    end
   end
 
   def content_plan_params
