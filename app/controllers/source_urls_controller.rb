@@ -9,7 +9,7 @@ class SourceUrlsController < ApplicationController
   }
 
   def create
-    if source_url._idsave
+    if source_url.save
       redirect_to source_urls_path
     else
       render :new

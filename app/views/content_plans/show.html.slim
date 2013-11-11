@@ -1,1 +1,5 @@
-show.html.slim
+.row
+  .span12
+    h2
+      = content_plan.name
+      = link_to "edit", edit_content_plan_path(content_plan), class: 'btn btn-small pull-right'
