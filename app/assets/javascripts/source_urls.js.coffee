@@ -23,7 +23,6 @@ jsTags = ->
 
 
 jsContentPlans = ->
-  console.log($("#source_url_content_plan_ids"))
   $("#source_url_content_plan_ids").select2();
 
 

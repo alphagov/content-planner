@@ -1,0 +1,9 @@
+.form-margin.well
+  = simple_form_for [content_plan, task],
+                    html: { class: 'form-horizontal form-container' } do |f|
+    = f.input :title
+    = f.input :content_plan_id, as: :hidden
+
+    .control-group
+      .controls
+        = f.button :submit, class: 'btn-success'

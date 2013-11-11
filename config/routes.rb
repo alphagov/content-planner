@@ -3,7 +3,9 @@ TransitionReview::Application.routes.draw do
 
   devise_for :users, controllers: {registrations: "registrations"}
 
-  resources :content_plans
+  resources :content_plans do
+    resources :tasks
+  end
 
   resources :source_urls
 

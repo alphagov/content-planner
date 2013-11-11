@@ -30,11 +30,23 @@
   .span6
     h3 Details
     = content_plan.details
+    h4
+      | Tasks
+      = link_to "Add task", new_content_plan_task_path(content_plan), class: "btn btn-mini tasks-btn"
+    ul.tasks
+      - content_plan.tasks.each do |task|
+        li
+          = form_for [content_plan, task] do |f|
+            = f.check_box :done, class: 'js-task-checkbox'
+            = f.submit
+          span[class= "#{task.done? ? 'done' : nil}"]
+            = task.title
+
     h4 URLs
     ul
-    - content_plan.source_urls.each do |url|
-      li
-        = link_to url.from_url, [:edit, url]
+      - content_plan.source_urls.each do |url|
+        li
+          = link_to url.from_url, [:edit, url]
 
   .span6
     h4 Sources

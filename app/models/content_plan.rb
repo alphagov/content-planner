@@ -11,6 +11,8 @@ class ContentPlan < ActiveRecord::Base
   has_many :source_url_content_plans
   has_many :source_urls, through: :source_url_content_plans
 
+  has_many :tasks
+
   def name
     "#{ref_no} - #{title}"
   end
