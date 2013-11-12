@@ -1,0 +1,9 @@
+h1
+  =link_to "#{content_plan.title} history", content_plan
+table.table
+  tr
+    th Time
+    th User
+    th Action
+    th Changes
+  = render partial: 'version', collection: content_plan.display_versions, as: :version

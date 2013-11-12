@@ -1,0 +1,15 @@
+tr
+  td.date
+    = version.created_at.to_formatted_s(:long)
+  td
+    = version.user_name
+  td
+    = version.event
+  td.changeset
+    - version.changeset.each do |key, value|
+      section[id="#{key}#{rand(10000)}" class="diff"]
+        = key
+        p.previous-version
+          = value[0]
+        p.current-version
+          = value[1]

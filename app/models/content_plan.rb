@@ -1,5 +1,7 @@
 class ContentPlan < ActiveRecord::Base
+  # TODO Rename Type to publishing platform
   self.inheritance_column = :_type_disabled
+  include Versioning
   acts_as_taggable
 
   TYPES = ["Mainstream", "Whitehall"]

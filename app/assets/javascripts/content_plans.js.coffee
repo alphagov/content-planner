@@ -8,3 +8,9 @@ taskCheckBoxSubmit = ->
 $(document).ready taskCheckBoxSubmit
 $(document).on "page:load", taskCheckBoxSubmit
 
+applyDiff = ->
+  $("section.diff").each (index) ->
+    GOVUK.diff $(this).attr("id")
+
+$(document).ready applyDiff
+$(document).on "page:load", applyDiff

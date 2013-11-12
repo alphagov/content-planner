@@ -5,6 +5,7 @@ TransitionReview::Application.routes.draw do
 
   resources :content_plans do
     resources :tasks
+    get 'versions', on: :member
   end
 
   resources :comments

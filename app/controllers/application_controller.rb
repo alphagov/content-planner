@@ -7,4 +7,7 @@ class ApplicationController < ActionController::Base
     strategy DecentExposure::StrongParametersStrategy
   end
 
+  def info_for_paper_trail
+    { user_name: current_user.name }
+  end
 end

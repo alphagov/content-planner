@@ -19,6 +19,9 @@ class ContentPlansController < ApplicationController
     end
   end
 
+  def versions
+  end
+
   def update
     if content_plan.save
       redirect_to content_plans_path
