@@ -7,7 +7,9 @@ class ContentPlansController < ApplicationController
       ContentPlan.page(params[:page])
     end
   }
-
+  expose(:comment) {
+    current_user.comments.build(content_plan: content_plan)
+  }
 
   def create
     if content_plan.save

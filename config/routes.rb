@@ -7,6 +7,8 @@ TransitionReview::Application.routes.draw do
     resources :tasks
   end
 
+  resources :comments
+
   resources :source_urls
 
   resources :users

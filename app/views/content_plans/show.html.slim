@@ -28,8 +28,40 @@
         td
           = content_plan.status
   .span6
-    h3 Details
+    h4 Details
     = content_plan.details
+    h4 Comments
+    = simple_form_for comment,
+                    html: { class: 'form-container' } do |f|
+      = f.input :message
+      = f.input :content_plan_id, as: :hidden
+      = f.input :user_id, as: :hidden
+
+      .control-group
+        .controls
+          = f.button :submit, class: 'btn-success'
+
+    ul.comments
+      - content_plan.comments.each do |comment|
+        li.comment
+          span.name
+            = comment.user.name
+          span.created_at.clearfix
+            = comment.created_at.to_formatted_s(:long)
+          = simple_format comment.message
+
+  .span6
+    h4 URLs
+    ul
+      - content_plan.source_urls.each do |url|
+        li
+          = link_to url.from_url, [:edit, url]
+    h4 Sources
+    = content_plan.sources
+    h4 Handovers to detailed guidance / niche mainstream
+    = content_plan.handover_detailed_guidance
+    h4 Notes
+    = content_plan.notes
     h4
       | Tasks
       = link_to "Add task", new_content_plan_task_path(content_plan), class: "btn btn-mini tasks-btn"
@@ -42,16 +74,3 @@
           span[class= "#{task.done? ? 'done' : nil}"]
             = task.title
 
-    h4 URLs
-    ul
-      - content_plan.source_urls.each do |url|
-        li
-          = link_to url.from_url, [:edit, url]
-
-  .span6
-    h4 Sources
-    = content_plan.sources
-    h4 Handovers to detailed guidance / niche mainstream
-    = content_plan.handover_detailed_guidance
-    h4 Notes
-    = content_plan.notes
