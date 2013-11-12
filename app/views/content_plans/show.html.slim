@@ -5,7 +5,7 @@
       = link_to "edit", edit_content_plan_path(content_plan), class: 'btn btn-small pull-right'
 
     table.table
-      th M/S
+      th M/W
       th Size
       th User Needs
       th Tags
@@ -46,6 +46,9 @@
         li.comment
           span.name
             = comment.user.name
+            | &nbsp; (
+            = comment.user.email
+            | )
           span.created_at.clearfix
             = comment.created_at.to_formatted_s(:long)
           = simple_format comment.message

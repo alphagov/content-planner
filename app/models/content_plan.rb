@@ -2,7 +2,7 @@ class ContentPlan < ActiveRecord::Base
   self.inheritance_column = :_type_disabled
   acts_as_taggable
 
-  TYPES = ["Mainstream", 'Specialist']
+  TYPES = ["Mainstream", "Whitehall"]
   STATUS = ["Not started", "In Progress", "Completed", "Published"]
 
   validates :title, presence: true
