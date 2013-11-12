@@ -24,6 +24,11 @@ class SourceUrlsController < ApplicationController
     end
   end
 
+  def destroy
+    source_url.destroy
+    redirect_to source_urls_path
+  end
+
   def source_url_params
     params.require(:source_url).permit(:from_url, :transitioned, :archive, :department_id, :to_url, :tag_list, content_plan_ids: [])
   end

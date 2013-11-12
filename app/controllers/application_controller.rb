@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def info_for_paper_trail
-    { user_name: current_user.name }
+    { user_name: current_user.name } if current_user
   end
 end

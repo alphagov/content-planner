@@ -1,5 +1,8 @@
 .container-fluid
   .row-fluid
     .span12
-      h2 Edit Content Plan
+      h2
+        Edit Content Plan
+        = button_to "Delete", content_plan, method: :delete, class: 'btn btn-danger', form_class: 'delete-btn pull-right'
+
       = render "form"

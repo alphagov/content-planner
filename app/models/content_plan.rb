@@ -13,8 +13,8 @@ class ContentPlan < ActiveRecord::Base
   has_many :source_url_content_plans
   has_many :source_urls, through: :source_url_content_plans
 
-  has_many :tasks,    -> { order(created_at: :desc) }
-  has_many :comments, -> { order(created_at: :desc) }
+  has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy
 
   def name
     "#{ref_no} - #{title}"

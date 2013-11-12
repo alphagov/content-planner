@@ -1,5 +1,7 @@
 .container-fluid
   .row-fluid
     .span12
-      h2 Edit URL
+      h2
+        | Edit URL
+        = button_to "Delete", source_url, method: :delete, class: 'btn btn-danger', form_class: 'delete-btn pull-right'
       = render "form"

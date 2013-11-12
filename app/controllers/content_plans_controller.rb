@@ -30,6 +30,11 @@ class ContentPlansController < ApplicationController
     end
   end
 
+  def destroy
+    content_plan.destroy
+    redirect_to content_plans_path
+  end
+
   def content_plan_params
     params.require(:content_plan).permit(:tag_list, :type, :size, :status, :ref_no, :title, :details, :slug, :content_type, :sources, :handover_detailed_guidance, :notes)
   end
