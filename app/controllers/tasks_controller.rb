@@ -25,6 +25,11 @@ class TasksController < ApplicationController
   def edit
   end
 
+  def destroy
+    task.destroy
+    redirect_to content_plan_path(content_plan)
+  end
+
   def task_params
     params.require(:task).permit(:title, :done, :content_plan_id)
   end

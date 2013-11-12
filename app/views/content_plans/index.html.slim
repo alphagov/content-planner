@@ -6,13 +6,12 @@
     = paginate content_plans
 
     table.table
-      th M/S
+      th M/W
       th Size
       th Name
       th User Needs
       th Tags
       th Slug
-      th Content Type
       th Status
       - content_plans.each do |content_plan|
         tr
@@ -28,7 +27,5 @@
             = content_plan_tag_filters content_plan.tag_list
           td
             = content_plan.slug
-          td
-            = content_plan.content_type
           td
             = content_plan.status

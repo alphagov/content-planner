@@ -4,6 +4,18 @@
 ul.tasks{
   list-style: none;
   margin: 0 0 10px 0;
+
+  li{
+    padding-left: 25px;
+    line-height: 25px;
+  }
+
+  li:hover {
+    background: #FDFDF0;
+    .delete{
+      display: block;
+    }
+  }
 }
 
 a.tasks-btn{
@@ -26,4 +38,9 @@ form.edit_task{
     display:none;
   }
 }
-
+.delete{
+  display: none;
+  float: left;
+  margin-left: -40px;
+  position: relative;
+}

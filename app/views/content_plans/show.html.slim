@@ -30,7 +30,7 @@
           = content_plan.status
   .span6
     h4 Details
-    = content_plan.details
+    = simple_format content_plan.details
     h4 Comments
     = simple_form_for comment,
                     html: { class: 'form-container' } do |f|
@@ -61,7 +61,7 @@
         li
           = link_to url.from_url, [:edit, url]
     h4 Sources
-    = content_plan.sources
+    = simple_format content_plan.sources
     h4 Handovers to detailed guidance / niche mainstream
     = content_plan.handover_detailed_guidance
     h4 Notes
@@ -72,6 +72,11 @@
     ul.tasks
       - content_plan.tasks.each do |task|
         li
+          .delete
+            = form_for [content_plan, task], method: :delete do |f|
+              = button_tag type: 'submit', class: 'btn btn-mini' do
+                <i class='icon-trash'></i>
+
           = form_for [content_plan, task] do |f|
             = f.check_box :done, class: 'js-task-checkbox'
             = f.submit
