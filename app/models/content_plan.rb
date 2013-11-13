@@ -9,6 +9,7 @@ class ContentPlan < ActiveRecord::Base
 
   validates :title, presence: true
   validates :size, presence: true
+  validates :ref_no, presence: true
 
   has_many :source_url_content_plans
   has_many :source_urls, through: :source_url_content_plans

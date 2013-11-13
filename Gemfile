@@ -28,11 +28,7 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
-  gem 'haml-rails'
-  gem 'haml2slim'
-  gem 'html2haml'
   gem 'quiet_assets'
-  gem 'rails_layout'
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
@@ -45,5 +41,4 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner', '1.0.1'
-  gem 'email_spec'
 end
