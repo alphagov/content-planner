@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-TransitionReview::Application.config.secret_key_base = '6ad0c025f196e496595177ea53e226c6a022557e1684d4bdb7049a0253f5e4114d2bed7d2ae5659d4e7bd06c6cc7a33c6c24bc73b0fa07afafcd96f27e11d5a0'
+ContentPlanner::Application.config.secret_key_base = '6ad0c025f196e496595177ea53e226c6a022557e1684d4bdb7049a0253f5e4114d2bed7d2ae5659d4e7bd06c6cc7a33c6c24bc73b0fa07afafcd96f27e11d5a0'

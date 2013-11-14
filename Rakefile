@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-TransitionReview::Application.load_tasks
+ContentPlanner::Application.load_tasks
