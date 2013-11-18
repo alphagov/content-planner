@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_filter :authenticate_user!
+  include GDS::SSO::ControllerMethods
+
+  prepend_before_filter :authenticate_user!
+  before_filter :require_signin_permission!
+  before_filter :skip_slimmer
 
   protect_from_forgery with: :exception
 

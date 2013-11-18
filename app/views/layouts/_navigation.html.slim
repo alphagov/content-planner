@@ -11,10 +11,4 @@ ul.nav
       = link_to 'Content Plans', content_plans_path
 
     li
-      = link_to 'Logout', destroy_user_session_path, method: 'delete'
-
-  - else
-    li
-      = link_to 'Login', new_user_session_path
-    li
-      = link_to 'Sign up', new_user_registration_path
+      = link_to 'Sign out', gds_sign_out_path

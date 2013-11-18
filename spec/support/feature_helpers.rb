@@ -1,13 +1,17 @@
-include Warden::Test::Helpers
-
-module FeatureHelpers
-  def login
-    user = FactoryGirl.create(:user)
-    login_as user, scope: :user
-    user
+module FeaturesHelpers
+  def verify(call)
+    expect(call).to be_true
   end
-end
 
-RSpec.configure do |config|
-  config.include FeatureHelpers, type: :feature
+  def refute(call)
+    expect(call).to be_false
+  end
+
+  def dom_id_for(*args)
+    ActionView::RecordIdentifier.dom_id(*args)
+  end
+
+  def dom_id_selector(*args)
+    "##{dom_id_for(*args)}"
+  end
 end
