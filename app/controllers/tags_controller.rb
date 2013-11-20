@@ -1,4 +1,8 @@
 class TagsController < ApplicationController
+
+  skip_before_filter :authenticate_user!, only: :index
+  skip_filter :require_signin_permission!, only: :index
+
   def index
     page = params[:page] || 1
     if params[:q].present?

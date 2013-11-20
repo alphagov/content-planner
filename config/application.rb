@@ -8,6 +8,7 @@ Bundler.require(:default, Rails.env)
 
 module ContentPlanner
   class Application < Rails::Application
+    require 'content_planner'
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|

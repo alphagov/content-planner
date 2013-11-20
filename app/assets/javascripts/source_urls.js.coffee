@@ -21,13 +21,11 @@ jsTags = ->
       results: (data, page) ->
         results: data
 
+$(document).ready jsTags
+$(document).on "page:load", jsTags
 
 jsContentPlans = ->
   $("#source_url_content_plan_ids").select2();
-
-
-$(document).ready jsTags
-$(document).on "page:load", jsTags
 
 $(document).ready jsContentPlans
 $(document).on "page:load", jsContentPlans
