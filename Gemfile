@@ -22,6 +22,7 @@ gem 'searchlight'
 gem 'paper_trail', '>= 3.0.0.rc1'
 gem 'plek', '>= 1.0.0'
 gem 'gds-sso', '7.0.0', github: 'alphagov/gds-sso'
+gem 'gds-api-adapters', '7.20.0'
 
 group :development do
   gem 'better_errors'
