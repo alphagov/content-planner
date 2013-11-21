@@ -12,7 +12,7 @@ class TagsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
+      format.html { authenticate_user! }
       format.json {
         render json: @tags.map { |t| { id: t.name, text: t.name } }
       }
