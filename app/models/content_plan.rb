@@ -17,7 +17,15 @@ class ContentPlan < ActiveRecord::Base
   has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy
 
+  has_many :content_plan_needs
+
+  attr_accessor :maslow_need_ids
+
   def name
     "#{ref_no} - #{title}"
+  end
+
+  def maslow_need_ids
+    content_plan_needs.any? ? content_plan_needs.map(&:need_id).join(",") : nil
   end
 end

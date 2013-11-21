@@ -14,4 +14,6 @@ ContentPlanner::Application.routes.draw do
 
   resources :tags
 
+  get "needs", to: "needs#index"
+
 end

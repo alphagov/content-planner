@@ -4,4 +4,11 @@ module ContentPlansHelper
       link_to(t, content_plans_path(tag: t), class: 'label label-success tag')
     end.join.html_safe
   end
+
+  def user_needs_links(ids)
+    ids.split(',').map do |id|
+      maslow = Plek.current.find("maslow")
+      link_to(id, maslow+"/needs/#{id}", target: "_blank")
+    end.join(", ").html_safe
+  end
 end
