@@ -3,7 +3,6 @@
                     html: { class: 'form-horizontal form-container' } do |f|
     = f.input :title
     = f.input :ref_no
-    = f.input :slug
     = f.input :type, as: :select, collection: ContentPlan::TYPES, include_blank: false
     = f.input :size
     = f.input :status, as: :select, collection: ContentPlan::STATUS, include_blank: false

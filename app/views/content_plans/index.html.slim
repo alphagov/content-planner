@@ -11,7 +11,6 @@
       th Name
       th User Needs
       th Tags
-      th Slug
       th Status
       - content_plans.each do |content_plan|
         tr
@@ -25,7 +24,5 @@
             = user_needs_links content_plan.maslow_need_ids
           td
             = content_plan_tag_filters content_plan.tag_list
-          td
-            = content_plan.slug
           td
             = content_plan.status
