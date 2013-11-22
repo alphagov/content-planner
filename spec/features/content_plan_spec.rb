@@ -3,7 +3,7 @@ require "spec_helper"
 feature "Content Plan management" do
 
   before do
-    login
+    create(:user)
   end
 
   scenario "creating a Content Plan" do

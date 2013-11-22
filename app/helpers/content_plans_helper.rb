@@ -6,6 +6,7 @@ module ContentPlansHelper
   end
 
   def user_needs_links(ids)
+    return if ids.blank?
     ids.map do |id|
       maslow = Plek.current.find("maslow")
       link_to(id, maslow+"/needs/#{id}", target: "_blank")
