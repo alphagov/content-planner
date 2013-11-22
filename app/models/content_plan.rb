@@ -28,4 +28,8 @@ class ContentPlan < ActiveRecord::Base
   def maslow_need_ids
     content_plan_needs.any? ? content_plan_needs.map(&:need_id).join(",") : nil
   end
+
+  def need_ids
+    content_plan_needs.any? ? content_plan_needs.map(&:need_id) : nil
+  end
 end

@@ -29,4 +29,8 @@ class SourceUrl < ActiveRecord::Base
       true
     end
   end
+
+  def need_ids
+    content_plans.map(&:need_ids).uniq.flatten
+  end
 end
