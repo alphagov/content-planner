@@ -3,4 +3,6 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+require 'ci/reporter/rake/rspec' if Rails.env.development? or Rails.env.test?
+
 ContentPlanner::Application.load_tasks
