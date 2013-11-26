@@ -21,8 +21,16 @@ class Need
     @data.id
   end
 
+  def org_names
+    @data.organisations.map(&:name)
+  end
+
+  def data
+    @data
+  end
+
   def to_s
-    "[#{@data.organisations.join(',')}] As a #{@data.role} I want to #{@data.goal} so that #{@data.benefit}"
+    "[#{org_names.join(',')}] As a #{data.role} I want to #{data.goal} so that #{data.benefit}"
   end
 
   def persisted?
