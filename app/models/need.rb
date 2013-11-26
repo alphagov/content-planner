@@ -30,7 +30,7 @@ class Need
   end
 
   def to_s
-    "[#{org_names.join(',')}] As a #{data.role} I want to #{data.goal} so that #{data.benefit}"
+    "[#{org_names.join(', ')}] As a #{data.role} I want to #{data.goal} so that #{data.benefit}"
   end
 
   def persisted?
