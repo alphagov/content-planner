@@ -1,10 +1,10 @@
 .form-margin.well
   = simple_form_for content_plan,
                     html: { class: 'form-horizontal form-container' } do |f|
-    = f.input :title
     = f.input :ref_no
-    = f.input :type, as: :select, collection: ContentPlan::TYPES, include_blank: false
+    = f.input :title
     = f.input :size
+    = f.input :type, as: :select, collection: ContentPlan::TYPES, include_blank: false
     = f.input :status, as: :select, collection: ContentPlan::STATUS, include_blank: false
     = f.input :tag_list, as: :string, input_html: {class: "js-tags", style: "width:300px"}
     = f.input :maslow_need_ids, as: :string, input_html: {class: "js-needs", style: "width:300px"}
