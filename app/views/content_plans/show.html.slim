@@ -41,8 +41,8 @@
 
   .span6
     h4
-    | Tasks
-    = link_to "Add task", new_content_plan_task_path(content_plan), class: "btn btn-mini tasks-btn"
+      | Tasks
+      = link_to "Add task", new_content_plan_task_path(content_plan), class: "btn btn-mini tasks-btn"
 
     ul.tasks
       - content_plan.tasks.each do |task|
