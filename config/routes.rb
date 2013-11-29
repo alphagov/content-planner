@@ -1,4 +1,6 @@
 ContentPlanner::Application.routes.draw do
+  resources :contents
+
   root to: "home#index"
 
   resources :content_plans do

@@ -3,6 +3,9 @@ ul.nav
   - if user_signed_in?
     li class="#{'active' if current_page?(controller: 'content_plans')}"
       = link_to 'Content Plans', content_plans_path
+ 
+    li class="#{'active' if current_page?(controller: 'contents')}"
+      = link_to 'Content', contents_path
 
     li class="#{'active' if current_page?(controller: 'tags')}"
       = link_to 'Tags', tags_path
