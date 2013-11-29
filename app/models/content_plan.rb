@@ -1,11 +1,6 @@
 class ContentPlan < ActiveRecord::Base
-  # TODO Rename Type to publishing platform
-  self.inheritance_column = :_type_disabled
   include Versioning
   acts_as_taggable
-
-  TYPES = ["Mainstream", "Whitehall"]
-  STATUS = ["Not started", "In Progress", "Completed", "Published"]
 
   validates :title, presence: true
   validates :size, presence: true
@@ -19,6 +14,9 @@ class ContentPlan < ActiveRecord::Base
 
   has_many :content_plan_needs
 
+  has_many :content_plan_contents, dependent: :destroy
+  has_many :contents, through: :content_plan_contents
+
   attr_accessor :maslow_need_ids
 
   def name
@@ -31,5 +29,13 @@ class ContentPlan < ActiveRecord::Base
 
   def need_ids
     content_plan_needs.any? ? content_plan_needs.map(&:need_id) : nil
+  end
+
+  def status
+    contents_status = contents.map(&:status).uniq
+    i = contents_status.map do |st|
+      Content::STATUS.index(st)
+    end.max
+    i.nil? ? Content::STATUS.first : Content::STATUS[i]
   end
 end

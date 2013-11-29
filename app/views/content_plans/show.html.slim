@@ -7,23 +7,17 @@
 
     table.table
       tr
-        th M/W
         th Size
         th User Needs
         th Tags
-        th Content Type
         th Status
       tr
-        td
-          = content_plan.type
         td
           = content_plan.size
         td
           = user_needs_links content_plan.maslow_need_ids
         td
           = content_plan_tag_filters content_plan.tag_list
-        td
-          = content_plan.content_type
         td
           = content_plan.status
   .span6
@@ -34,6 +28,13 @@
       - content_plan.source_urls.each do |url|
         li
           = link_to url.from_url, [:edit, url]
+    h4 Content
+    ul
+      - content_plan.contents.each do |content|
+        li
+          = link_to content.url, [:edit, content]
+          | &nbsp;
+          = "[#{content.status}]"
     h4 Handovers to detailed guidance / niche mainstream
     = content_plan.handover_detailed_guidance
     h4 Notes

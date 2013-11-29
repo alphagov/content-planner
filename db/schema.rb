@@ -11,12 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127134440) do
+ActiveRecord::Schema.define(version: 20131129174344) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "content_plan_id"
     t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "content_needs", force: true do |t|
+    t.integer "content_id"
+    t.integer "need_id"
+  end
+
+  add_index "content_needs", ["content_id", "need_id"], name: "index_content_needs_on_content_id_and_need_id", using: :btree
+
+  create_table "content_plan_contents", force: true do |t|
+    t.integer  "content_plan_id"
+    t.integer  "content_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,17 +43,23 @@ ActiveRecord::Schema.define(version: 20131127134440) do
   add_index "content_plan_needs", ["content_plan_id", "need_id"], name: "index_content_plan_needs_on_content_plan_id_and_need_id", using: :btree
 
   create_table "content_plans", force: true do |t|
-    t.string   "type"
     t.integer  "size"
-    t.string   "status"
     t.string   "ref_no"
     t.string   "title"
     t.text     "details"
-    t.text     "content_type"
     t.text     "handover_detailed_guidance"
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "contents", force: true do |t|
+    t.text     "url"
+    t.string   "content_type"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "platform"
   end
 
   create_table "source_url_content_plans", force: true do |t|

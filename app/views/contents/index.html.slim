@@ -1,0 +1,25 @@
+.row
+  .span12
+    p
+      = link_to "Add a Content", new_content_path, class: 'btn'
+
+    = paginate contents
+
+    table.table
+      th URL
+      th Status
+      th User Needs
+      th Tags
+      th Content Plans
+      - contents.each do |content|
+        tr
+          td
+            = content.url
+          td
+            = content.status
+          td
+            = user_needs_links content.need_ids
+          td
+            = content_tag_filters content.tag_list
+          td
+            = conent_plan_links content.content_plans

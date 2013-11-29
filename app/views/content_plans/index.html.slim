@@ -6,7 +6,6 @@
     = paginate content_plans
 
     table.table
-      th M/W
       th Size
       th Name
       th User Needs
@@ -14,8 +13,6 @@
       th Status
       - content_plans.each do |content_plan|
         tr
-          td
-            = content_plan.type
           td
             = content_plan.size
           td

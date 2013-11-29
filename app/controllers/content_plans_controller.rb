@@ -11,6 +11,15 @@ class ContentPlansController < ApplicationController
     current_user.comments.build(content_plan: content_plan)
   }
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: content_plans.map { |cp| { id: cp.id, text: cp.name } }
+      }
+    end
+  end
+
   def create
     if content_plan.save
       if params[:content_plan][:maslow_need_ids].present?
@@ -51,15 +60,12 @@ class ContentPlansController < ApplicationController
 
   def content_plan_params
     params.require(:content_plan).permit(:tag_list,
-      :type,
       :size,
       :status,
       :ref_no,
       :title,
       :details,
       :slug,
-      :content_type,
-      :sources,
       :handover_detailed_guidance,
       :notes,
       :maslow_need_ids
