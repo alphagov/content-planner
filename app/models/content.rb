@@ -2,9 +2,9 @@ class Content < ActiveRecord::Base
 
   acts_as_taggable
 
-  PLATFORM = ["Mainstream", "Whitehall"]
+  PLATFORMS = ["Mainstream", "Whitehall"]
 
-  STATUS = ["Not started", "In Progress", "Completed", "Published"]
+  STATUS = ["Not started", "In progress", "Completed", "Published"]
 
   has_many :content_plan_contents, dependent: :destroy
   has_many :content_plans, through: :content_plan_contents, source: :content_plan
