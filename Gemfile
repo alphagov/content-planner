@@ -26,6 +26,7 @@ gem 'gds-api-adapters', '7.20.0'
 
 gem 'aws-ses', require: 'aws/ses' # Needed by exception_notification
 gem 'exception_notification'
+gem 'highcharts-rails', '~> 3.0.0'
 
 
 group :development do
