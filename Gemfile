@@ -31,6 +31,7 @@ gem 'highcharts-rails', '~> 3.0.0'
 
 group :development do
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'quiet_assets'
   gem 'capistrano'
 end
