@@ -18,6 +18,8 @@ ContentPlanner::Application.routes.draw do
 
   get "needs", to: "needs#index"
 
+  get "dashboard_data", to: "home#dashboard_data"
+
   get "/healthcheck" => proc { [200, {}, ["OK"]] }
 
 end
