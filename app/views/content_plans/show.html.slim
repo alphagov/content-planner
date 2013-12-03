@@ -34,6 +34,8 @@
         li
           = link_to content.url, [:edit, content]
           | &nbsp;
+          = "(#{content.size})"
+          | &nbsp;
           = "[#{content.status}]"
     h4 Handovers to detailed guidance / niche mainstream
     = content_plan.handover_detailed_guidance

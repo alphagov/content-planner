@@ -7,6 +7,7 @@
 
     table.table
       th URL
+      th Size
       th Platform
       th Status
       th User Needs
@@ -16,6 +17,8 @@
         tr
           td
             = link_to content.url, edit_content_path(content)
+          td
+            = content.size    
           td
             = content.platform          
           td

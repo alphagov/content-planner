@@ -46,6 +46,7 @@ class ContentsController < ApplicationController
   def content_params
     params.require(:content).permit(:url,
       :status,
+      :size,
       :content_type,
       :platform,
       :tag_list,

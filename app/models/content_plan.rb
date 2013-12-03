@@ -3,7 +3,6 @@ class ContentPlan < ActiveRecord::Base
   acts_as_taggable
 
   validates :title, presence: true
-  validates :size, presence: true
   validates :ref_no, presence: true
 
   has_many :source_url_content_plans
@@ -37,5 +36,9 @@ class ContentPlan < ActiveRecord::Base
       Content::STATUS.index(st)
     end.max
     i.nil? ? Content::STATUS.first : Content::STATUS[i]
+  end
+
+  def size
+    contents.map(&:size).sum
   end
 end
