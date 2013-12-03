@@ -13,8 +13,8 @@ module ApplicationHelper
   end
   
   def user_needs_links(ids)
+    maslow = Plek.current.find("maslow")
     Array.wrap(ids).map do |id|
-      maslow = Plek.current.find("maslow")
       link_to(id, maslow+"/needs/#{id}", target: "_blank")
     end.join(", ").html_safe
   end
