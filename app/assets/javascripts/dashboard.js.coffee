@@ -1,4 +1,3 @@
-
 dashboardChart = ->
   defaults =
     chart:
@@ -27,10 +26,10 @@ dashboardChart = ->
         stacking: "normal"
 
     series: [{}]
-
-  $.getJSON "/dashboard_data", (data) ->
-    settings = $.extend({}, defaults, data)
-    new Highcharts.Chart(settings)
+  if $("#chart-container").length is 1
+    $.getJSON "/dashboard_data", (data) ->
+      settings = $.extend({}, defaults, data)
+      new Highcharts.Chart(settings)
 
 $(document).ready dashboardChart
 $(document).on "page:load", dashboardChart
