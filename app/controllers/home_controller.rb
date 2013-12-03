@@ -13,17 +13,17 @@ class HomeController < ApplicationController
 
       #mainstream published
       categories << "#{tag.name} (M)"
-      series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Mainstream").count
-      series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Mainstream").count
-      series[2][:data] << Content.tagged_with(tag.name).where(status: "In progress", platform: "Mainstream").count
-      series[3][:data] << Content.tagged_with(tag.name).where(status: "Not started", platform: "Mainstream").count
+      series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Mainstream").sum("size")
+      series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Mainstream").sum("size")
+      series[2][:data] << Content.tagged_with(tag.name).where(status: "In progress", platform: "Mainstream").sum("size")
+      series[3][:data] << Content.tagged_with(tag.name).where(status: "Not started", platform: "Mainstream").sum("size")
 
       #Whitehall published
       categories << "#{tag.name} (W)"
-      series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Whitehall").count
-      series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Whitehall").count
-      series[2][:data] << Content.tagged_with(tag.name).where(status: "In progress", platform: "Whitehall").count
-      series[3][:data] << Content.tagged_with(tag.name).where(status: "Not started", platform: "Whitehall").count
+      series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Whitehall").sum("size")
+      series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Whitehall").sum("size")
+      series[2][:data] << Content.tagged_with(tag.name).where(status: "In progress", platform: "Whitehall").sum("size")
+      series[3][:data] << Content.tagged_with(tag.name).where(status: "Not started", platform: "Whitehall").sum("size")
     end
 
     resp = { 
