@@ -1,17 +1,14 @@
 class ContentPlansController < ApplicationController
   expose(:content_plan, attributes: :content_plan_params)
   expose(:content_plans) {
-    if params[:tag].present?
-      ContentPlan.tagged_with(params[:tag]).page(params[:page])
-    else
-      ContentPlan.page(params[:page])
-    end
+    ContentPlanSearch.new(params[:search]).results.page(params[:page])
   }
   expose(:comment) {
     current_user.comments.build(content_plan: content_plan)
   }
 
   def index
+    @search = ContentPlanSearch.new(params[:search])
     respond_to do |format|
       format.html
       format.json {
