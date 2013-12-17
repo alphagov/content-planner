@@ -1,7 +1,13 @@
 .row
   .span12
-    p
-      = link_to "Add a Content", new_content_path, class: 'btn'
+    = link_to "Add Content", new_content_path, class: 'btn pull-right'
+
+    = form_for(@search, url: contents_path, method: :get, html: { class: 'form-inline search-form' }) do |f|
+      = f.select :content_plan_ids, options_for_select(ContentPlan.all.map{|x| [x.name,x.id]}, @search.content_plan_ids), {}, style: "width:200px"
+      = f.text_field :need_id, placeholder: "User Need ID", class: "js-needs", style: "width:200px"
+      = f.text_field :tag, placeholder: "Tag", class: "js-tags", style: "width:200px"
+      = f.select :status, options_for_select(Content::STATUS.map{|x| [x,x]}, @search.status), include_blank: true
+      = f.submit "Search", class: 'btn'
 
     = paginate contents
 

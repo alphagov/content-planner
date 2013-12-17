@@ -6,7 +6,7 @@
       = f.text_field :ref_no, placeholder: "Ref No.", class: "input-small"
       = f.text_field :need_id, placeholder: "User Need ID", class: "js-needs", style: "width:250px"
       = f.text_field :tag, placeholder: "Tag", class: "js-tags", style: "width:250px"
-      = f.select :status, options_for_select(Content::STATUS.map{|x| [x,x]}, ), include_blank: true
+      = f.select :status, options_for_select(Content::STATUS.map{|x| [x,x]}, @search.status), include_blank: true
       = f.submit "Search", class: 'btn'
 
 

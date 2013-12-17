@@ -1,12 +1,12 @@
 class ContentsController < ApplicationController
   expose(:content, attributes: :content_params)
   expose(:contents) {
-    if params[:tag].present?
-      Content.tagged_with(params[:tag]).page(params[:page])
-    else
-      Content.page(params[:page])
-    end
+    ContentSearch.new(params[:search]).results.page(params[:page])
   }
+
+  def index
+    @search = ContentSearch.new(params[:search])
+  end
 
   def create
     if content.save
