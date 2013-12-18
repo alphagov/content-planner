@@ -3,7 +3,9 @@ require "spec_helper"
 feature "Content Plan management" do
 
   before do
-    create(:user)
+    user = build(:user)
+    user.permissions = [User::Permissions::SIGNIN, User::Permissions::GDS_EDITOR]
+    user.save
   end
 
   scenario "creating a Content Plan" do

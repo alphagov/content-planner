@@ -7,6 +7,8 @@ class ContentPlansController < ApplicationController
     current_user.comments.build(content_plan: content_plan)
   }
 
+  before_filter :authorize_user, only: [:create, :update, :destroy, :new, :edit]
+
   def index
     @search = ContentPlanSearch.new(params[:search])
     respond_to do |format|
@@ -66,5 +68,10 @@ class ContentPlansController < ApplicationController
       :notes,
       :maslow_need_ids
     )
+  end
+
+
+  def authorize_user
+    authorize content_plan
   end
 end

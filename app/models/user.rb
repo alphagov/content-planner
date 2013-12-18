@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
 
   has_many :comments
 
+  module Permissions
+    SIGNIN = 'signin'
+    GDS_EDITOR = 'GDS Editor'
+  end
+
 
   # GDS::SSO::User overwrites for Rails 4
   def self.find_for_gds_oauth(auth_hash)
@@ -20,5 +25,9 @@ class User < ActiveRecord::Base
     else # Create a new user.
       create!(user_params)
     end
+  end
+
+  def gds_editor?
+    has_permission?(Permissions::GDS_EDITOR)
   end
 end
