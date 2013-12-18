@@ -8,6 +8,8 @@ class SourceUrlsController < ApplicationController
     end
   }
 
+  before_filter :authorize_user
+
   def create
     if source_url.save
       redirect_to source_urls_path
@@ -31,5 +33,9 @@ class SourceUrlsController < ApplicationController
 
   def source_url_params
     params.require(:source_url).permit(:from_url, :transitioned, :archive, :department_id, :to_url, :tag_list, content_plan_ids: [])
+  end
+
+  def authorize_user
+    authorize source_url
   end
 end

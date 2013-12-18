@@ -1,7 +1,13 @@
 class TagsController < ApplicationController
 
-  skip_before_filter :authenticate_user!, only: :index
-  skip_filter :require_signin_permission!, only: :index
+  ## Rails skip_filter with if condition, seems to not work - have to remove add and then re-add.
+  skip_before_filter :authenticate_user!,  only: :index
+  skip_before_filter :require_signin_permission!, only: :index
+  before_filter :authenticate_user!, only: :index, :unless => lambda {request.xhr?}
+  before_filter :require_signin_permission!, only: :index, :unless => lambda {request.xhr?}
+    
+  before_filter :authorize_user, only: :index, :unless => lambda {request.xhr?}
+  before_filter :authorize_user, only: [:new, :create, :destroy]
 
   def index
     page = params[:page] || 1
@@ -12,7 +18,7 @@ class TagsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { authenticate_user! }
+      format.html {}
       format.json {
         render json: @tags.map { |t| { id: t.name, text: t.name } }
       }
@@ -35,5 +41,9 @@ class TagsController < ApplicationController
   def destroy
     ActsAsTaggableOn::Tag.destroy(params[:id])
     redirect_to tags_path
+  end
+
+  def authorize_user
+    authorize self
   end
 end

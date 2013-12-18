@@ -23,6 +23,7 @@ gem 'paper_trail', '>= 3.0.0.rc1'
 gem 'plek', '>= 1.0.0'
 gem 'gds-sso', '7.0.0', github: 'alphagov/gds-sso'
 gem 'gds-api-adapters', '7.20.0'
+gem 'pundit'
 
 gem 'aws-ses', require: 'aws/ses' # Needed by exception_notification
 gem 'exception_notification'

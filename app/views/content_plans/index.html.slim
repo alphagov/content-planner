@@ -1,6 +1,7 @@
 .row
   .span12
-    = link_to "Add a Content Plan", new_content_plan_path, class: 'btn pull-right'
+    - if policy(ContentPlan).create?
+      = link_to "Add a Content Plan", new_content_plan_path, class: 'btn pull-right'
     
     = form_for(@search, url: content_plans_path, method: :get, html: { class: 'form-inline search-form' }) do |f|
       = f.text_field :ref_no, placeholder: "Ref No.", class: "input-small"

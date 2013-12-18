@@ -1,7 +1,7 @@
 .row
   .span12
-    p
-      = link_to "Add a URL", new_source_url_path, class: 'btn'
+    - if policy(SourceUrl).create?
+      = link_to "Add a URL", new_source_url_path, class: 'btn pull-right'
 
     = paginate source_urls
 
@@ -16,11 +16,14 @@
           td
             pre
               |From:
-              = link_to source_url.from_url, edit_source_url_path(source_url)
+              - if policy(SourceUrl).edit?
+                = link_to source_url.from_url, [:edit, source_url]
+              - else
+                = source_url.from_url
               - if source_url.to_url.present?
                 br
                 |To  :
-                a href= source_url.to_url
+                a target='blank' href= source_url.to_url
                   = source_url.to_url
           td
             = user_needs_links source_url.need_ids

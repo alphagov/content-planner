@@ -4,6 +4,8 @@ class ContentsController < ApplicationController
     ContentSearch.new(params[:search]).results.page(params[:page])
   }
 
+  before_filter :authorize_user
+
   def index
     @search = ContentSearch.new(params[:search])
   end
@@ -53,5 +55,9 @@ class ContentsController < ApplicationController
       :maslow_need_ids,
       content_plan_ids: []
     )
+  end
+
+  def authorize_user
+    authorize content
   end
 end

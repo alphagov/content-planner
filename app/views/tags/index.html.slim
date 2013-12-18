@@ -1,7 +1,6 @@
 .row
   .span12
-    p
-      = link_to "Add a Tag", new_tag_path, class: 'btn'
+    = link_to "Add a Tag", new_tag_path, class: 'btn pull-right'
 
     = paginate @tags
 
