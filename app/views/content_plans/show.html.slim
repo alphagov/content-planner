@@ -3,8 +3,8 @@
     h2
       = content_plan.name
       - if policy(content_plan).create?
-        = link_to "edit", edit_content_plan_path(content_plan), class: 'btn btn-small pull-right'
-      = link_to "history", versions_content_plan_path(content_plan), class: 'btn btn-small pull-right history-btn'
+        = link_to "edit", [:edit, content_plan], class: 'btn btn-small pull-right'
+      = link_to "history", [:versions, content_plan], class: 'btn btn-small pull-right history-btn'
 
     table.table
       tr
@@ -33,7 +33,10 @@
     ul
       - content_plan.contents.each do |content|
         li
-          = link_to content.url, [:edit, content]
+          - if policy(Content).edit?
+            = link_to content.url, [:edit, content]
+          - else
+            = content.url
           | &nbsp;
           = "(#{content.size})"
           | &nbsp;

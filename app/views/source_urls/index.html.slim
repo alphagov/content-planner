@@ -16,7 +16,7 @@
           td
             pre
               |From:
-              = link_to source_url.from_url, edit_source_url_path(source_url)
+              = link_to source_url.from_url, [:edit, source_url]
               - if source_url.to_url.present?
                 br
                 |To  :
