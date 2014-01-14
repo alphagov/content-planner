@@ -119,6 +119,9 @@ GEM
     kgio (2.8.1)
     link_header (0.0.7)
     lockfile (2.1.0)
+    logstash-event (1.1.5)
+    logstasher (0.4.1)
+      logstash-event (~> 1.1.0)
     lrucache (0.1.4)
       PriorityQueue (~> 0.1.2)
     mail (2.5.4)
@@ -281,6 +284,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
+  logstasher (= 0.4.1)
   mysql2
   paper_trail (>= 3.0.0.rc1)
   plek (>= 1.0.0)
