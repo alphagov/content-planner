@@ -8,6 +8,10 @@ class ContentPlanPolicy < Struct.new(:user, :content_plan)
     true
   end
 
+  def versions?
+    true
+  end
+
   def create?
     user.gds_editor?
   end
