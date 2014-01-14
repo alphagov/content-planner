@@ -22,7 +22,7 @@ class Need
   end
 
   def org_names
-    @data.organisations.map(&:name)
+    @data.organisations.map(&:abbreviation)
   end
 
   def data
@@ -30,7 +30,7 @@ class Need
   end
 
   def to_s
-    "[#{org_names.join(', ')}] As a #{data.role} I want to #{data.goal} so that #{data.benefit}"
+    "[#{id}](#{org_names.join(', ')}) As a #{data.role} I want to #{data.goal} so that #{data.benefit}"
   end
 
   def persisted?
