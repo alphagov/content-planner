@@ -13,6 +13,7 @@ ul.nav
     li class="#{'active' if current_page?(controller: 'source_urls')}"
       = link_to 'URLs', source_urls_path
 
-    li class="divider-vertical"
-    li class='pull-right'
-      = link_to "Sign out #{current_user.name}", gds_sign_out_path
+p class='nav navbar-text pull-right'
+  = current_user.name
+  | &nbsp;
+  = link_to "Sign out", gds_sign_out_path
