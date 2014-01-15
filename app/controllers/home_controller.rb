@@ -12,7 +12,7 @@ class HomeController < ApplicationController
       # split platforms
 
       #mainstream published
-      if Content.tagged_with(tag.name).where(platform: "Mainstream")
+      if Content.tagged_with(tag.name).where(platform: "Mainstream").any?
         categories << "#{tag.name} (M)"
         series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Mainstream").sum("size")
         series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Mainstream").sum("size")
@@ -21,7 +21,7 @@ class HomeController < ApplicationController
       end
 
       #Whitehall published
-      if Content.tagged_with(tag.name).where(platform: "Whitehall")
+      if Content.tagged_with(tag.name).where(platform: "Whitehall").any?
         categories << "#{tag.name} (W)"
         series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Whitehall").sum("size")
         series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Whitehall").sum("size")
