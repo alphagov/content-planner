@@ -37,10 +37,13 @@
             = link_to content.url, [:edit, content]
           - else
             = content.url
-          | &nbsp;
+          | 
           = "(#{content.size})"
-          | &nbsp;
+          | 
           = "[#{content.status}]"
+          | 
+          = link_to "[#{content.platform}]", content.url, rel: "external", target: "_blank"
+
     h4 Handovers to detailed guidance / niche mainstream
     = content_plan.handover_detailed_guidance
     h4 Notes
