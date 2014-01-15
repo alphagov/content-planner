@@ -1,4 +1,4 @@
-= link_to "Content Planner", root_path, :class => 'brand'
+= link_to "GOV.UK Content Planner", root_path, :class => 'navbar-brand'
 ul.nav
   - if user_signed_in?
     li class="#{'active' if current_page?(controller: 'content_plans')}"
@@ -15,5 +15,5 @@ ul.nav
 
 p class='nav navbar-text pull-right'
   = current_user.name
-  | &nbsp;
+  | &nbsp;|&nbsp;
   = link_to "Sign out", gds_sign_out_path
