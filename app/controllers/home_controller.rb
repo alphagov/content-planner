@@ -12,18 +12,22 @@ class HomeController < ApplicationController
       # split platforms
 
       #mainstream published
-      categories << "#{tag.name} (M)"
-      series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Mainstream").sum("size")
-      series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Mainstream").sum("size")
-      series[2][:data] << Content.tagged_with(tag.name).where(status: "In progress", platform: "Mainstream").sum("size")
-      series[3][:data] << Content.tagged_with(tag.name).where(status: "Not started", platform: "Mainstream").sum("size")
+      if Content.tagged_with(tag.name).where(platform: "Mainstream")
+        categories << "#{tag.name} (M)"
+        series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Mainstream").sum("size")
+        series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Mainstream").sum("size")
+        series[2][:data] << Content.tagged_with(tag.name).where(status: "In progress", platform: "Mainstream").sum("size")
+        series[3][:data] << Content.tagged_with(tag.name).where(status: "Not started", platform: "Mainstream").sum("size")
+      end
 
       #Whitehall published
-      categories << "#{tag.name} (W)"
-      series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Whitehall").sum("size")
-      series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Whitehall").sum("size")
-      series[2][:data] << Content.tagged_with(tag.name).where(status: "In progress", platform: "Whitehall").sum("size")
-      series[3][:data] << Content.tagged_with(tag.name).where(status: "Not started", platform: "Whitehall").sum("size")
+      if Content.tagged_with(tag.name).where(platform: "Whitehall")
+        categories << "#{tag.name} (W)"
+        series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Whitehall").sum("size")
+        series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Whitehall").sum("size")
+        series[2][:data] << Content.tagged_with(tag.name).where(status: "In progress", platform: "Whitehall").sum("size")
+        series[3][:data] << Content.tagged_with(tag.name).where(status: "Not started", platform: "Whitehall").sum("size")
+      end
     end
 
     resp = { 
