@@ -5,7 +5,7 @@ body { padding-top: 30px; }
 $gill-sans-font-stack: "GillSans", "Gill Sans", "Helvetica Neue", Arial, sans-serif;
 
 .navbar .container .navbar-brand {
-  background: url("/assets/header-crown.png") 0 0.3em no-repeat;
+  background: asset-url("header-crown.png") 0 0.3em no-repeat;
   color: #fff;
   font-family: $gill-sans-font-stack;
   font-size: 20px;
