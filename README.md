@@ -5,8 +5,15 @@ A tool to help with the HMRC Content transition and URL analysis.
 
 This application requires:
 
-* Ruby version 1.9.3
-* Rails version 4.0.0
+* Ruby version 2.0.0-p353
+* Rails version 4.0.2
+
+And depends on or uses the following parts of the GOV.UK stack:
+
+* https://github.com/alphagov/govuk_need_api
+* https://github.com/alphagov/maslow
+* https://github.com/alphagov/transition
+
 
 Development
 -----------
