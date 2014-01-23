@@ -1,6 +1,8 @@
 .form-margin.well
   = simple_form_for content,
                     html: { class: 'form-horizontal form-container' } do |f|
+    = f.input :title
+    = f.input :description
     = f.input :url, as: :string
     = f.input :platform, as: :select, collection: Content::PLATFORMS, include_blank: false
     = f.input :size

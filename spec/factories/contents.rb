@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :content do
+    title "Content Title"
     url "MyText"
     content_type "MyString"
     status "MyString"
