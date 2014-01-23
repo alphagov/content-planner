@@ -1,3 +1,5 @@
+= breadcrumb "Contents"
+
 .row
   .span12
     - if policy(Content).create?
@@ -28,9 +30,9 @@
             - else
               = content.url
           td
-            = content.size    
+            = content.size
           td
-            = content.platform          
+            = content.platform
           td
             = content.status
           td

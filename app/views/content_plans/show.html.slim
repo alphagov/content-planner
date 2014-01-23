@@ -1,3 +1,5 @@
+= breadcrumb ["Content Plans", content_plans_path], content_plan.name
+
 .row
   .span12
     h2
@@ -37,11 +39,11 @@
             = link_to content.url, [:edit, content]
           - else
             = content.url
-          | 
+          |
           = "(#{content.size})"
-          | 
+          |
           = "[#{content.status}]"
-          | 
+          |
           = link_to "[#{content.platform}]", content.url, rel: "external", target: "_blank"
 
     h4 Handovers to detailed guidance / niche mainstream

@@ -25,8 +25,20 @@ module ApplicationHelper
     end.join(", ").html_safe
   end
 
-  # From Lupin V2
-  #
+  def breadcrumb(*links)
+    content_tag :ul, class: "breadcrumb" do
+      raw(links.map { |link|
+        content_tag :li, class: "active" do
+          if link.class == String
+            link
+          else
+            link_to(link.first, link.last) + content_tag(:span, "/", class: "divider")
+          end
+        end
+      }.join)
+    end
+  end
+
   # Highlight the nav item if current page matching controllers_options
   #
   # Examples
