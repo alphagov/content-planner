@@ -1,17 +1,10 @@
 = link_to "GOV.UK Content Planner", root_path, :class => 'navbar-brand'
 ul.nav
   - if user_signed_in?
-    li class="#{'active' if current_page?(controller: 'content_plans')}"
-      = link_to 'Content Plans', content_plans_path
- 
-    li class="#{'active' if current_page?(controller: 'contents')}"
-      = link_to 'Content', contents_path
-    - if policy(TagsController).index?
-      li class="#{'active' if current_page?(controller: 'tags')}"
-        = link_to 'Tags', tags_path
-
-    li class="#{'active' if current_page?(controller: 'source_urls')}"
-      = link_to 'URLs', source_urls_path
+    = nav_item "Content Plans", content_plans_path, "content_plans"
+    = nav_item "Content", contents_path, "contents"
+    = nav_item "Tags", tags_path, "tags"
+    = nav_item "URLs", source_urls_path, "source_urls"
 
 p class='nav navbar-text pull-right'
   = current_user.name
