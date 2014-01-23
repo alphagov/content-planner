@@ -13,6 +13,8 @@ class Content < ActiveRecord::Base
 
   attr_accessor :maslow_need_ids
 
+  validates :title, presence: true
+
   def maslow_need_ids
     content_needs.any? ? content_needs.map(&:need_id).join(",") : nil
   end

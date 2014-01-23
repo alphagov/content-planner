@@ -13,6 +13,8 @@
     = paginate contents
 
     table.table
+      th title
+      th description
       th URL
       th Size
       th Platform
@@ -23,14 +25,18 @@
       - contents.each do |content|
         tr
           td
+            = content.title
+          td
+            = content.description
+          td
             - if policy(Content).edit?
               = link_to content.url, [:edit, content]
             - else
               = content.url
           td
-            = content.size    
+            = content.size
           td
-            = content.platform          
+            = content.platform
           td
             = content.status
           td
