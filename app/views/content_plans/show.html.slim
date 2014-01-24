@@ -31,7 +31,9 @@
       - content_plan.source_urls.each do |url|
         li
           = link_to url.from_url, [:edit, url]
-    h4 Content
+    h4
+      | Content
+      = link_to "Add content", new_content_path(content_plan_id: content_plan.id), class: "btn btn-mini contents-btn"
     ul
       - content_plan.contents.each do |content|
         li
