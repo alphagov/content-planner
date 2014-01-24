@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123155211) do
+ActiveRecord::Schema.define(version: 20140124133809) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20140123155211) do
     t.string   "ref_no"
     t.string   "title"
     t.text     "details"
-    t.text     "handover_detailed_guidance"
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"

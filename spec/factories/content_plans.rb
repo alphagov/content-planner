@@ -5,7 +5,6 @@ FactoryGirl.define do
     ref_no "MyString"
     title "MyString"
     details "MyText"
-    handover_detailed_guidance "MyText"
     notes "MyText"
   end
 end
