@@ -26,11 +26,6 @@
   .span6
     h4 Details
     = simple_format content_plan.details
-    h4 Source URLs
-    ul
-      - content_plan.source_urls.each do |url|
-        li
-          = link_to url.from_url, [:edit, url]
     h4
       | Content
       = link_to "Add content", new_content_path(content_plan_id: content_plan.id), class: "btn btn-mini contents-btn"
