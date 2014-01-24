@@ -1,6 +1,6 @@
 class ContentPlansController < ApplicationController
-  expose(:content_plan, attributes: :content_plan_params)
-  expose(:content_plans) {
+  expose_decorated(:content_plan, attributes: :content_plan_params)
+  expose_decorated(:content_plans) {
     ContentPlanSearch.new(params[:search]).results.page(params[:page])
   }
   expose(:comment) {

@@ -14,6 +14,7 @@
         th User Needs
         th Tags
         th Status
+        th Due
       tr
         td
           = content_plan.size
@@ -23,6 +24,8 @@
           = content_plan_tag_filters content_plan.tag_list
         td
           = content_plan.status
+        td
+          = content_plan.due_date
   .span6
     h4 Organisations
     ul

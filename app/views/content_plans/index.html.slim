@@ -23,6 +23,7 @@
       th User Needs
       th Tags
       th Status
+      th Due
       - content_plans.each do |content_plan|
         tr
           td
@@ -37,3 +38,5 @@
             = content_plan_tag_filters content_plan.tag_list
           td
             = content_plan.status
+          td
+            = content_plan.due_date
