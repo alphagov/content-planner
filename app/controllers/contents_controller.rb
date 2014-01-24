@@ -3,6 +3,9 @@ class ContentsController < ApplicationController
   expose(:contents) {
     ContentSearch.new(params[:search]).results.page(params[:page])
   }
+  expose(:comment) {
+    current_user.comments.build(commentable: content)
+  }
 
   before_filter :authorize_user
 

@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     if comment.save(comment_params)
-      redirect_to content_plan_path(comment.content_plan)
+      redirect_to comment.commentable
     else
       render :new
     end
@@ -12,13 +12,13 @@ class CommentsController < ApplicationController
 
   def update
     if comment.update(comment_params)
-      redirect_to content_plan_path(comment.content_plan)
+      redirect_to comment.commentable
     else
       render :edit
     end
   end
 
   def comment_params
-    params.require(:comment).permit(:message, :user_id, :content_plan_id)
+    params.require(:comment).permit(:message, :user_id, :commentable_id, :commentable_type)
   end
 end

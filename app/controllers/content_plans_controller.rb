@@ -4,7 +4,7 @@ class ContentPlansController < ApplicationController
     ContentPlanSearch.new(params[:search]).results.page(params[:page])
   }
   expose(:comment) {
-    current_user.comments.build(content_plan: content_plan)
+    current_user.comments.build(commentable: content_plan)
   }
 
   before_filter :authorize_user
