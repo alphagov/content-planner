@@ -27,14 +27,11 @@
       - contents.each do |content|
         tr
           td
-            = content.title
+            = link_to content.title, content
           td
             = content.description
           td
-            - if policy(Content).edit?
-              = link_to content.url, [:edit, content]
-            - else
-              = content.url
+            = content.url
           td
             = content.size
           td

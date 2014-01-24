@@ -19,7 +19,7 @@ class ContentsController < ApplicationController
           ContentNeed.find_or_create_by!(content_id: content.id, need_id: nid)
         end
       end
-      redirect_to contents_path, notice: 'Content was successfully created.'
+      redirect_to content_path(content), notice: 'Content was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class ContentsController < ApplicationController
           ContentNeed.find_or_create_by!(content_id: content.id, need_id: nid)
         end
       end
-      redirect_to contents_path
+      redirect_to content_path(content)
     else
       render :edit
     end

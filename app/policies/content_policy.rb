@@ -4,6 +4,10 @@ class ContentPolicy < Struct.new(:user, :content)
     true
   end
 
+  def show?
+    true
+  end
+
   def create?
     user.gds_editor?
   end

@@ -1,0 +1,38 @@
+= breadcrumb ["Contents", contents_path], content.title
+
+.row
+  .span12
+    h2
+      = content.title
+      - if policy(content).create?
+        = link_to "edit", [:edit, content], class: "btn btn-small pull-right"
+
+  .span12
+    = content.description
+
+  .span6
+    h4 Url
+    = content.url
+    h4 Platform
+    = content.platform
+    h4 Size
+    = content.size
+    h4 Content type
+    = content.content_type
+    h4 Status
+    = content.status
+
+  .span6
+    h4 Content plans
+    ul
+      - content.content_plans.each do |content_plan|
+        li
+          = link_to content_plan.name, content_plan
+    h4 Maslow need ids
+    = content.maslow_need_ids
+    h4 Tags
+    ul
+      - content.tags.each do |tag|
+        li
+          = tag.name
+
