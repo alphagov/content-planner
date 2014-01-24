@@ -11,6 +11,8 @@ class Content < ActiveRecord::Base
 
   has_many :content_needs
 
+  has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
+
   attr_accessor :maslow_need_ids
 
   validates :title, presence: true
