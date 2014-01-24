@@ -13,7 +13,9 @@ gem 'mysql2'
 gem 'unicorn'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'slim'
+gem "draper"
 gem 'decent_exposure'
+gem "decent_decoration"
 gem 'active_hash'
 gem 'kaminari'
 gem 'acts-as-taggable-on'
