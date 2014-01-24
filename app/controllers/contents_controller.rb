@@ -10,6 +10,10 @@ class ContentsController < ApplicationController
     @search = ContentSearch.new(params[:search])
   end
 
+  def new
+    content.content_plans << ContentPlan.find(params[:content_plan_id]) if params[:content_plan_id]
+  end
+
   def create
     if content.save
       if params[:content][:maslow_need_ids].present?
