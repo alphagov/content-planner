@@ -71,24 +71,8 @@
             = task.title
 
     h4 Comments
-    = simple_form_for comment,
-                    html: { class: 'form-container' } do |f|
-      = f.input :message
-      = f.input :content_plan_id, as: :hidden
-      = f.input :user_id, as: :hidden
-
-      .control-group
-        .controls
-          = f.button :submit, class: 'btn-success'
+    = render "comments/form"
 
     ul.comments
       - content_plan.comments.each do |comment|
-        li.comment
-          span.name
-            = comment.user.name
-            | &nbsp; (
-            = comment.user.email
-            | )
-          span.created_at.clearfix
-            = comment.created_at.to_formatted_s(:long)
-          = simple_format comment.message
+        = render comment

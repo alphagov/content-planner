@@ -35,4 +35,9 @@
       - content.tags.each do |tag|
         li
           = tag.name
+    h4 Comments
+    = render "comments/form", comment: comment
+    ul.comments
+      - content.comments.each do |comment|
+        = render comment
 

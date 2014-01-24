@@ -1,0 +1,10 @@
+= simple_form_for comment,
+                html: { class: 'form-container' } do |f|
+  = f.input :message
+  = f.input :commentable_id, as: :hidden
+  = f.input :commentable_type, as: :hidden
+  = f.input :user_id, as: :hidden
+
+  .control-group
+    .controls
+      = f.button :submit, class: 'btn-success'
