@@ -5,6 +5,7 @@ class ContentPlan < ActiveRecord::Base
   acts_as_taggable
 
   QUARTERS = 1..4
+  YEARS = Time.now.year..(Time.now + 2.years).year
 
   validates :title, presence: true
   validates :ref_no, presence: true

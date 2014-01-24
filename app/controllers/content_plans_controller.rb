@@ -59,7 +59,6 @@ class ContentPlansController < ApplicationController
       :maslow_need_ids,
       :due_quarter,
       :due_year,
-      :maslow_need_ids,
       :joined_organisation_ids
     )
   end

@@ -11,6 +11,8 @@
       = f.text_field :need_id, placeholder: "User Need ID", class: "js-needs", style: "width:250px"
       = f.text_field :tag, placeholder: "Tag", class: "js-tags", style: "width:250px"
       = f.select :status, options_for_select(Content::STATUS.map{|x| [x,x]}, @search.status), include_blank: true
+      = f.select :due_quarter, options_for_select(ContentPlan::QUARTERS.map{|x| ["Quarter #{x}", x]}, @search.due_quarter), include_blank: true
+      = f.select :due_year, options_for_select(ContentPlan::YEARS, @search.due_year), placeholder: "Due Year", include_blank: true
       = f.submit "Search", class: 'btn'
 
 
