@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20140128040652) do
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "due_quarter"
+    t.integer  "due_year"
   end
 
   create_table "content_users", force: true do |t|

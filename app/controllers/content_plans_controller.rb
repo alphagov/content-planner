@@ -57,6 +57,9 @@ class ContentPlansController < ApplicationController
       :handover_detailed_guidance,
       :notes,
       :maslow_need_ids,
+      :due_quarter,
+      :due_year,
+      :maslow_need_ids,
       :joined_organisation_ids
     )
   end

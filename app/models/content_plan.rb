@@ -4,6 +4,8 @@ class ContentPlan < ActiveRecord::Base
 
   acts_as_taggable
 
+  QUARTERS = 1..4
+
   validates :title, presence: true
   validates :ref_no, presence: true
 
