@@ -4,7 +4,8 @@
     = f.input :title
     = f.input :description
     = f.input :url, as: :string
-    = f.input :platform, as: :select, collection: Content::PLATFORMS, include_blank: false
+    - if current_user.gds_editor?
+      = f.input :platform, as: :select, collection: Content::PLATFORMS, include_blank: false
     = f.input :size
     = f.input :content_type
     = f.input :status, as: :select, collection: Content::STATUS, include_blank: false
