@@ -19,10 +19,24 @@ module ApplicationHelper
     end.join(", ").html_safe
   end
 
+  def collection_links(coll, f_name, f_link, separator = ', ')
+    coll.map do |item|
+      link_to f_name.call(item),
+              f_link.call(item)
+    end.join(separator)
+       .html_safe
+  end
+
   def conent_plan_links(content_plans)
-    content_plans.map do |cp|
-      link_to(cp.ref_no, content_plan_path(cp))
-    end.join(", ").html_safe
+    collection_links content_plans,
+                     ->(content_plan) { content_plan.name              },
+                     ->(content_plan) { content_plan_path content_plan }
+  end
+
+  def conent_user_links(users)
+    collection_links users,
+                     ->(user) { user.name      },
+                     ->(user) { user_path user }
   end
 
   def breadcrumb(*links)

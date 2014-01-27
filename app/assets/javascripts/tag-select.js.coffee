@@ -25,9 +25,9 @@ $(document).ready jsTags
 $(document).on "page:load", jsTags
 
 jsContentPlans = ->
-  $("#source_url_content_plan_ids").select2();
-  $("#content_content_plan_ids").select2();
-  $("#search_content_plan_ids").select2();
+  $("#source_url_content_plan_ids").select2()
+  $("#content_content_plan_ids").select2()
+  $("#search_content_plan_ids").select2()
 
 $(document).ready jsContentPlans
 $(document).on "page:load", jsContentPlans
@@ -54,3 +54,9 @@ jsNeeds = ->
 
 $(document).ready jsNeeds
 $(document).on "page:load", jsNeeds
+
+jsContents = ->
+  $('#content_user_ids').select2()
+
+$(document).ready jsContents
+$(document).on "page:load", jsContents

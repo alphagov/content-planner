@@ -21,6 +21,8 @@
     = content.content_type
     h4 Status
     = content.status
+    h4 Users
+    = conent_user_links content.users
 
   .span6
     h4 Content plans
@@ -35,9 +37,9 @@
       - content.tags.each do |tag|
         li
           = tag.name
+
     h4 Comments
     = render "comments/form", comment: comment
     ul.comments
       - content.comments.each do |comment|
         = render comment
-

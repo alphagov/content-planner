@@ -65,6 +65,7 @@ class ContentsController < ApplicationController
         :platform,
         :tag_list,
         :maslow_need_ids,
+        user_ids: [],
         content_plan_ids: []
       )
 
@@ -79,6 +80,7 @@ class ContentsController < ApplicationController
         :content_type,
         :tag_list,
         :maslow_need_ids,
+        user_ids: [],
         content_plan_ids: []
       )
     end
