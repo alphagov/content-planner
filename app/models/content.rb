@@ -20,6 +20,8 @@ class Content < ActiveRecord::Base
 
   validates :title, presence: true
 
+  before_save :track_status_transitions
+
   def maslow_need_ids
     content_needs.any? ? content_needs.map(&:need_id).join(",") : nil
   end
@@ -30,6 +32,14 @@ class Content < ActiveRecord::Base
 
   def whitehall?
     platform == "Whitehall"
+  end
+
+  def track_status_transitions
+    # TODO
+  end
+
+  def status_transitions
+    []
   end
 
 end

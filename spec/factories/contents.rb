@@ -5,6 +5,6 @@ FactoryGirl.define do
     title "Content Title"
     url "MyText"
     content_type "MyString"
-    status "MyString"
+    status_id ContentStatus::NOT_STARTED.id
   end
 end
