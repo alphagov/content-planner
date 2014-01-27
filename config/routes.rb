@@ -10,8 +10,6 @@ ContentPlanner::Application.routes.draw do
 
   resources :comments
 
-  resources :source_urls
-
   resources :users
 
   resources :tags

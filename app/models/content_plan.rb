@@ -5,9 +5,6 @@ class ContentPlan < ActiveRecord::Base
   validates :title, presence: true
   validates :ref_no, presence: true
 
-  has_many :source_url_content_plans
-  has_many :source_urls, through: :source_url_content_plans
-
   has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 
