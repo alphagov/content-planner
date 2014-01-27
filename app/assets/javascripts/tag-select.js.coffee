@@ -54,3 +54,9 @@ jsNeeds = ->
 
 $(document).ready jsNeeds
 $(document).on "page:load", jsNeeds
+
+jsContents = ->
+  $('.content_users').select2()
+
+$(document).ready jsContents
+$(document).on "page:load", jsContents
