@@ -18,4 +18,9 @@ class ContentStatus < ActiveHash::Base
   def <=>(another)
     self.class.all.index(self) <=> self.class.all.index(another)
   end
+
+
+  def to_s
+    name
+  end
 end

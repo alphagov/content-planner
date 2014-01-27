@@ -1,10 +1,9 @@
 class Content < ActiveRecord::Base
+  extend ActiveHash::Associations::ActiveRecordExtensions
 
   acts_as_taggable
 
   PLATFORMS = ["Mainstream", "Whitehall"]
-
-  STATUS = ["Not started", "In progress", "Completed", "Published"]
 
   has_many :content_plan_contents, dependent: :destroy
   has_many :content_plans, through: :content_plan_contents, source: :content_plan
@@ -14,6 +13,8 @@ class Content < ActiveRecord::Base
   has_many :users, through: :content_users
 
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
+
+  belongs_to :status, class_name: 'ContentStatus'
 
   attr_accessor :maslow_need_ids
 
