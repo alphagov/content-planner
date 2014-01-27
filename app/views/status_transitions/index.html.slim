@@ -9,10 +9,10 @@ h1 Velocity
                method: :get,
                html: { class: 'form-inline search-form' } do |f|
 
-      = f.text_field :started_from, placeholder: "Start from"
-      = f.text_field :ended_at,     placeholder: "End at"
+      = f.text_field :started_from, class: 'date', placeholder: 'Start from'
+      = f.text_field :ended_at,     class: 'date', placeholder: 'End at'
 
-      = f.submit "Search", class: 'btn'
+      = f.submit 'Search', class: 'btn'
 
   .span6
     h3 Mainstream
