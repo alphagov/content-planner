@@ -9,7 +9,7 @@ class ContentPlan < ActiveRecord::Base
   has_many :source_urls, through: :source_url_content_plans
 
   has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy
-  has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 
   has_many :content_plan_needs
 
