@@ -12,10 +12,10 @@
     = f.association :content_plans, include_blank: false, input_html: {class: "js-content-plans", style: "width:300px"}
     = f.input :maslow_need_ids, as: :string, input_html: {class: "js-needs", style: "width:300px"}
     = f.input :tag_list, as: :string, input_html: {class: "js-tags", style: "width:300px"}
-    = f.association :content_users,
+    = f.association :users,
                     collection: User.all,
                     label: 'Users',
-                    input_html: { class: 'content_users', style: "width:300px" }
+                    input_html: { style: "width:300px" }
     .control-group
       .controls
         = f.button :submit, class: 'btn-success'
