@@ -25,4 +25,8 @@ class Content < ActiveRecord::Base
     content_needs.any? ? content_needs.map(&:need_id) : nil
   end
 
+  def whitehall?
+    platform == "Whitehall"
+  end
+
 end
