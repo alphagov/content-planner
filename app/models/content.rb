@@ -10,6 +10,7 @@ class Content < ActiveRecord::Base
   has_many :content_plans, through: :content_plan_contents, source: :content_plan
 
   has_many :content_needs
+  has_many :content_users
 
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 
