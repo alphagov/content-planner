@@ -48,16 +48,4 @@
     .span12
       h4 Velocity
 
-      table.table.table-bordered
-        thead
-          tr
-            th From
-            th To
-            th When
-
-        tbody
-          - content.status_transitions.each do |st|
-            tr
-              td = st.from
-              td = st.to
-              td = l st.occurred_at
+      = render 'status_transitions', status_transitions: content.status_transitions
