@@ -25,6 +25,9 @@ class Content < ActiveRecord::Base
 
   before_save :track_status_transitions
 
+  scope :mainstream, -> { where platform: 'Mainstream' }
+  scope :whitehall,  -> { where platform: 'Whitehall'  }
+
   def maslow_need_ids
     content_needs.any? ? content_needs.map(&:need_id).join(",") : nil
   end

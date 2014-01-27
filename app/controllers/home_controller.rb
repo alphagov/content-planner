@@ -12,21 +12,21 @@ class HomeController < ApplicationController
       # split platforms
 
       #mainstream published
-      if Content.tagged_with(tag.name).where(platform: "Mainstream").any?
+      if Content.tagged_with(tag.name).mainstream.any?
         categories << "#{tag.name} (M)"
-        series[0][:data] << Content.tagged_with(tag.name).where(status_id: ContentStatus::PUBLISHED.id, platform: "Mainstream").sum("size")
-        series[1][:data] << Content.tagged_with(tag.name).where(status_id: ContentStatus::COMPLETED.id, platform: "Mainstream").sum("size")
-        series[2][:data] << Content.tagged_with(tag.name).where(status_id: ContentStatus::IN_PROGRESS.id, platform: "Mainstream").sum("size")
-        series[3][:data] << Content.tagged_with(tag.name).where(status_id: ContentStatus::NOT_STARTED.id, platform: "Mainstream").sum("size")
+        series[0][:data] << Content.tagged_with(tag.name).mainstream.where(status_id: ContentStatus::PUBLISHED.id).sum("size")
+        series[1][:data] << Content.tagged_with(tag.name).mainstream.where(status_id: ContentStatus::COMPLETED.id).sum("size")
+        series[2][:data] << Content.tagged_with(tag.name).mainstream.where(status_id: ContentStatus::IN_PROGRESS.id).sum("size")
+        series[3][:data] << Content.tagged_with(tag.name).mainstream.where(status_id: ContentStatus::NOT_STARTED.id).sum("size")
       end
 
       #Whitehall published
-      if Content.tagged_with(tag.name).where(platform: "Whitehall").any?
+      if Content.tagged_with(tag.name).whitehall.any?
         categories << "#{tag.name} (W)"
-        series[0][:data] << Content.tagged_with(tag.name).where(status_id: ContentStatus::PUBLISHED.id, platform: "Whitehall").sum("size")
-        series[1][:data] << Content.tagged_with(tag.name).where(status_id: ContentStatus::COMPLETED.id, platform: "Whitehall").sum("size")
-        series[2][:data] << Content.tagged_with(tag.name).where(status_id: ContentStatus::IN_PROGRESS.id, platform: "Whitehall").sum("size")
-        series[3][:data] << Content.tagged_with(tag.name).where(status_id: ContentStatus::NOT_STARTED.id, platform: "Whitehall").sum("size")
+        series[0][:data] << Content.tagged_with(tag.name).whitehall.where(status_id: ContentStatus::PUBLISHED.id).sum("size")
+        series[1][:data] << Content.tagged_with(tag.name).whitehall.where(status_id: ContentStatus::COMPLETED.id).sum("size")
+        series[2][:data] << Content.tagged_with(tag.name).whitehall.where(status_id: ContentStatus::IN_PROGRESS.id).sum("size")
+        series[3][:data] << Content.tagged_with(tag.name).whitehall.where(status_id: ContentStatus::NOT_STARTED.id).sum("size")
       end
     end
 
