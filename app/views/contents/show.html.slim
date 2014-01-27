@@ -43,3 +43,21 @@
     ul.comments
       - content.comments.each do |comment|
         = render comment
+
+  - if content.status_transitions.present?
+    .span12
+      h4 Velocity
+
+      table.table.table-bordered
+        thead
+          tr
+            th From
+            th To
+            th When
+
+        tbody
+          - content.status_transitions.each do |st|
+            tr
+              td = st.from
+              td = st.to
+              td = l st.occurred_at
