@@ -2,6 +2,18 @@ h1 Velocity
 
 
 .row
+  .span12
+    = form_for search,
+               as: :search,
+               url: status_transitions_path,
+               method: :get,
+               html: { class: 'form-inline search-form' } do |f|
+
+      = f.text_field :started_from, placeholder: "Start from"
+      = f.text_field :ended_at,     placeholder: "End at"
+
+      = f.submit "Search", class: 'btn'
+
   .span6
     h3 Mainstream
 

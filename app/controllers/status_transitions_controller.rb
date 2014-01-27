@@ -10,4 +10,9 @@ class StatusTransitionsController < ApplicationController
                     .order_by_occurred_at_desc
                     .includes(:content)
   end
+
+  expose :search do
+    StatusTransitionSearch.new(params[:search])
+  end
+
 end
