@@ -59,7 +59,6 @@ class ContentPlansController < ApplicationController
 
   def content_plan_params
     params.require(:content_plan).permit(:tag_list,
-      :status,
       :ref_no,
       :title,
       :details,
