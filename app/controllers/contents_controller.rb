@@ -53,9 +53,35 @@ class ContentsController < ApplicationController
   end
 
   def content_params
-    permitted_attributes = [:title, :description, :url, :status, :size, :content_type, :tag_list, :maslow_need_ids, :content_plan_ids]
-    permitted_attributes << :platform if current_user.gds_editor?
-    params.require(:content).permit permitted_attributes
+    if current_user.gds_editor?
+      params.require(:content)
+            .permit(
+        :title,
+        :description,
+        :url,
+        :status,
+        :size,
+        :content_type,
+        :platform,
+        :tag_list,
+        :maslow_need_ids,
+        content_plan_ids: []
+      )
+
+    else
+      params.require(:content)
+            .permit(
+        :title,
+        :description,
+        :url,
+        :status,
+        :size,
+        :content_type,
+        :tag_list,
+        :maslow_need_ids,
+        content_plan_ids: []
+      )
+    end
   end
 
   def authorize_user
