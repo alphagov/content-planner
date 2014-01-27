@@ -14,19 +14,19 @@ class HomeController < ApplicationController
       #mainstream published
       if Content.tagged_with(tag.name).mainstream.any?
         categories << "#{tag.name} (M)"
-        series[0][:data] << Content.tagged_with(tag.name).mainstream.where(status_id: ContentStatus::PUBLISHED.id).sum("size")
-        series[1][:data] << Content.tagged_with(tag.name).mainstream.where(status_id: ContentStatus::COMPLETED.id).sum("size")
-        series[2][:data] << Content.tagged_with(tag.name).mainstream.where(status_id: ContentStatus::IN_PROGRESS.id).sum("size")
-        series[3][:data] << Content.tagged_with(tag.name).mainstream.where(status_id: ContentStatus::NOT_STARTED.id).sum("size")
+        series[0][:data] << Content.tagged_with(tag.name).mainstream.published.sum("size")
+        series[1][:data] << Content.tagged_with(tag.name).mainstream.completed.sum("size")
+        series[2][:data] << Content.tagged_with(tag.name).mainstream.in_progress.sum("size")
+        series[3][:data] << Content.tagged_with(tag.name).mainstream.not_started.sum("size")
       end
 
       #Whitehall published
       if Content.tagged_with(tag.name).whitehall.any?
         categories << "#{tag.name} (W)"
-        series[0][:data] << Content.tagged_with(tag.name).whitehall.where(status_id: ContentStatus::PUBLISHED.id).sum("size")
-        series[1][:data] << Content.tagged_with(tag.name).whitehall.where(status_id: ContentStatus::COMPLETED.id).sum("size")
-        series[2][:data] << Content.tagged_with(tag.name).whitehall.where(status_id: ContentStatus::IN_PROGRESS.id).sum("size")
-        series[3][:data] << Content.tagged_with(tag.name).whitehall.where(status_id: ContentStatus::NOT_STARTED.id).sum("size")
+        series[0][:data] << Content.tagged_with(tag.name).whitehall.published.sum("size")
+        series[1][:data] << Content.tagged_with(tag.name).whitehall.completed.sum("size")
+        series[2][:data] << Content.tagged_with(tag.name).whitehall.in_progress.sum("size")
+        series[3][:data] << Content.tagged_with(tag.name).whitehall.not_started.sum("size")
       end
     end
 

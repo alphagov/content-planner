@@ -28,6 +28,11 @@ class Content < ActiveRecord::Base
   scope :mainstream, -> { where platform: 'Mainstream' }
   scope :whitehall,  -> { where platform: 'Whitehall'  }
 
+  scope :published,   -> { where status_id: ContentStatus::PUBLISHED.id   }
+  scope :completed,   -> { where status_id: ContentStatus::COMPLETED.id   }
+  scope :in_progress, -> { where status_id: ContentStatus::IN_PROGRESS.id }
+  scope :not_started, -> { where status_id: ContentStatus::NOT_STARTED.id }
+
   def maslow_need_ids
     content_needs.any? ? content_needs.map(&:need_id).join(",") : nil
   end
