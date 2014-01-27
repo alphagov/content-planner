@@ -12,16 +12,16 @@ describe Content do
   end
 
   it '#track_status_transitions' do
-    content = FactoryGirl.build :content, ContentStatus::NOT_STARTED.id
+    content = FactoryGirl.build :content, status_id: ContentStatus::NOT_STARTED.id
 
     content.save!
 
-    expect(contet.status_transitions).to be_blank
+    expect(content.status_transitions).to be_blank
 
     content.status_id = ContentStatus::PUBLISHED.id
 
     content.save!
 
-    expect(contet.reload.status_transitions).to have(1).item
+    expect(content.reload.status_transitions).to have(1).item
   end
 end
