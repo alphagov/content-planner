@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127054747) do
+ActiveRecord::Schema.define(version: 20140127072312) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -64,13 +64,13 @@ ActiveRecord::Schema.define(version: 20140127054747) do
   create_table "contents", force: true do |t|
     t.text     "url"
     t.string   "content_type"
-    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "platform"
     t.integer  "size"
-    t.string   "title",        null: false
+    t.string   "title",                                null: false
     t.text     "description"
+    t.string   "status_id",    default: "not_started"
   end
 
   create_table "taggings", force: true do |t|
