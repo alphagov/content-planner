@@ -36,6 +36,6 @@ class ContentPlan < ActiveRecord::Base
   end
 
   def size
-    contents.map(&:size).sum
+    contents.sum(:size)
   end
 end

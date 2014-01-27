@@ -1,2 +1,14 @@
-<div id="chart-container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
+.row
+  .span12
+    = link_to "View as chart", chart_path, class: 'btn pull-right'
+  .span12
+    - @tags.each do |tag|
+      .tag-box.span3
+        h4
+          = link_to tag, content_plans_path(search: {tag: tag.name})
+        - %w(Mainstream Whitehall).each do |platform|
+          .platform
+            = platform
+            .progress
+              - Content.percentages_for(tag: tag, platform: platform).each do |status, percentage|
+                div[class="#{progress_bar_class_for status}" style="width: #{percentage}%" title="#{status}: #{percentage}%" data-tooltip=true data-placement="bottom"]
