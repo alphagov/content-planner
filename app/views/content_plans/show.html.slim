@@ -37,7 +37,7 @@
     ul
       - content_plan.contents.each do |content|
         li
-          - if policy(Content).edit?
+          - if policy(content).edit?
             = link_to content.url, [:edit, content]
           - else
             = content.url
