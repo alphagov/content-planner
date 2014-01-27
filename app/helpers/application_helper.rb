@@ -25,6 +25,12 @@ module ApplicationHelper
     end.join(", ").html_safe
   end
 
+  def conent_user_links(users)
+    users.map do |user|
+      link_to(user.name, user_path(user))
+    end.join(", ").html_safe
+  end
+
   def breadcrumb(*links)
     content_tag :ul, class: "breadcrumb" do
       raw(links.map { |link|

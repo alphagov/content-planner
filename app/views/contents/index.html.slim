@@ -24,6 +24,7 @@
       th User Needs
       th Tags
       th Content Plans
+      th Content Users
       - contents.each do |content|
         tr
           td
@@ -44,3 +45,5 @@
             = content_tag_filters content.tag_list
           td
             = conent_plan_links content.content_plans
+          td
+            = conent_user_links content.users
