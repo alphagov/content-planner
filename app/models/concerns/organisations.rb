@@ -3,7 +3,6 @@ module Organisations
 
   included do
     has_many :organisationables, as: :organisationable
-    attr_accessor :joined_organisation_ids
   end
 
   def organisation_ids
@@ -16,5 +15,11 @@ module Organisations
 
   def joined_organisation_ids
     organisation_ids.join ", "
+  end
+  def joined_organisation_ids=(ids)
+    organisationables.destroy_all
+    ids.split(",").each do |oid|
+      Organisationable.find_or_create_by!(organisationable: self, organisation_id: oid)
+    end
   end
 end

@@ -20,7 +20,6 @@ class ContentsController < ApplicationController
   def create
     if content.save
       update_maslow_need_ids!
-      update_organisation_ids!
       redirect_to content_path(content), notice: 'Content was successfully created.'
     else
       render :new
@@ -30,7 +29,6 @@ class ContentsController < ApplicationController
   def update
     if content.save
       update_maslow_need_ids!
-      update_organisation_ids!
       redirect_to content_path(content)
     else
       render :edit
@@ -91,13 +89,6 @@ class ContentsController < ApplicationController
       need_ids.each do |nid|
         ContentNeed.find_or_create_by!(content_id: content.id, need_id: nid)
       end
-    end
-  end
-
-  def update_organisation_ids!
-    content.organisationables.destroy_all
-    content_params[:joined_organisation_ids].split(",").each do |oid|
-      Organisationable.find_or_create_by!(organisationable: content, organisation_id: oid)
     end
   end
 end
