@@ -1,6 +1,10 @@
 .row
   .span12
     = link_to "View as chart", chart_path, class: 'btn pull-right'
+    = form_tag root_path, method: :get, class: "form-inline search-form" do
+      = select_tag :q, options_for_select(ContentPlan::QUARTERS.map {|x| ["Quarter #{x}", x]}, params[:q]), prompt: "Quarter"
+      = select_tag :year, options_for_select(ContentPlan::YEARS, params[:year]), prompt: "Year"
+      = submit_tag "Filter", class: "btn"
   .span12
     - @tags.each do |tag|
       .tag-box.span3
@@ -10,5 +14,5 @@
           .platform
             = platform
             .progress
-              - Content.percentages_for(tag: tag, platform: platform).each do |status, percentage|
+              - Content.percentages_for(tag: tag, platform: platform, contents: @contents).each do |status, percentage|
                 div[class="#{progress_bar_class_for status}" style="width: #{percentage}%" title="#{status}: #{percentage}%" data-tooltip=true data-placement="bottom"]
