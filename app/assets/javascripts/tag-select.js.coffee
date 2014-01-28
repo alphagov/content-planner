@@ -33,24 +33,7 @@ $(document).ready jsContentPlans
 $(document).on "page:load", jsContentPlans
 
 jsNeeds = ->
-  $("input.js-needs").select2
-    tags: true
-    initSelection: (element, callback) ->
-      data = []
-      $(element.val().split(",")).each ->
-        data.push
-          id: $.trim(this)
-          text: $.trim(this)
-      callback data
-    ajax:
-      url: "/needs"
-      dataType: "json"
-      data: (term, page) ->
-        q: term
-        page: page
-
-      results: (data, page) ->
-        results: data
+  $(".js-needs").select2()
 
 $(document).ready jsNeeds
 $(document).on "page:load", jsNeeds
@@ -62,24 +45,7 @@ $(document).ready jsContents
 $(document).on "page:load", jsContents
 
 jsOrganisations = ->
-  $("input.js-organisations").select2
-    tags: true
-    initSelection: (element, callback) ->
-      data = []
-      $(element.val().split(",")).each ->
-        data.push
-          id: $.trim(this)
-          text: $.trim(this)
-      callback data
-    ajax:
-      url: "/organisations"
-      dataType: "json"
-      data: (term, page) ->
-        q: term
-        page: page
-
-      results: (data, page) ->
-        results: data
+  $(".js-organisations").select2()
 
 $(document).ready jsOrganisations
 $(document).on "page:load", jsOrganisations

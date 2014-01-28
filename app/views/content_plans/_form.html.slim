@@ -4,13 +4,17 @@
     = f.input :ref_no
     = f.input :title
     = f.input :tag_list, as: :string, input_html: {class: "js-tags", style: "width:300px"}
-    = f.input :maslow_need_ids, as: :string, input_html: {class: "js-needs", style: "width:300px"}
+    = f.input :maslow_need_ids,
+              as: :select,
+              collection: Need.all,
+              input_html: {class: "js-needs", style: "width:300px", multiple: true}
     = f.input :details, input_html: {class: 'span12'}
     = f.input :notes, input_html: {class: 'span12'}
-    = f.input :joined_organisation_ids,
-              as: :string,
+    = f.input :organisation_ids,
               label: "Organisations",
-              input_html: {class: "js-organisations", style: "width:300px"}
+              as: :select,
+              collection: Organisation.all,
+              input_html: {class: "js-organisations", style: "width:300px", multiple: true}
     legend Due
     = f.input :due_quarter, label: "Quarter", as: :select, collection: ContentPlan::QUARTERS, include_blank: false
     = f.input :due_year, label: "Year", as: :select, collection: ContentPlan::YEARS, include_blank: false
