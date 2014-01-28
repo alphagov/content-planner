@@ -11,6 +11,10 @@
     = content.description
 
   .span6
+    h4 Organisations
+    ul
+      - content.organisations.each do |organisation|
+        li = organisation.name_with_abbreviation
     h4 Url
     = content.url
     h4 Platform

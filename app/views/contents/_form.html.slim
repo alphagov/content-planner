@@ -16,6 +16,10 @@
                     collection: User.all,
                     label: 'Users',
                     input_html: { style: "width:300px" }
+    = f.input :joined_organisation_ids,
+              as: :string,
+              label: "Organisations",
+              input_html: {class: "js-organisations", style: "width:300px"}
     .control-group
       .controls
         = f.button :submit, class: 'btn-success'
