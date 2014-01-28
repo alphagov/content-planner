@@ -21,7 +21,6 @@ class ContentPlansController < ApplicationController
 
   def create
     if content_plan.save
-      update_maslow_need_ids!
       redirect_to content_plans_path, notice: 'Content plan was successfully created.'
     else
       render :new
@@ -33,7 +32,6 @@ class ContentPlansController < ApplicationController
 
   def update
     if content_plan.save
-      update_maslow_need_ids!
       redirect_to content_plans_path
     else
       render :edit
@@ -56,21 +54,11 @@ class ContentPlansController < ApplicationController
       :slug,
       :handover_detailed_guidance,
       :notes,
-      :maslow_need_ids,
       :due_quarter,
       :due_year,
-      :joined_organisation_ids
+      maslow_need_ids: [],
+      organisation_ids: []
     )
-  end
-
-  def update_maslow_need_ids!
-    if content_plan_params[:maslow_need_ids].present?
-      ContentPlanNeed.where(content_plan_id: content_plan.id).destroy_all
-      need_ids = content_plan_params[:maslow_need_ids].split(",")
-      need_ids.each do |nid|
-        ContentPlanNeed.find_or_create_by!(content_plan_id: content_plan.id, need_id: nid)
-      end
-    end
   end
 
   def authorize_user

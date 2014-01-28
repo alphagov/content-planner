@@ -36,15 +36,20 @@ class Content < ActiveRecord::Base
 
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 
-  attr_accessor :maslow_need_ids
-
   validates :title, presence: true
 
   scope :mainstream, -> { where platform: 'Mainstream' }
   scope :whitehall,  -> { where platform: 'Whitehall'  }
 
   def maslow_need_ids
-    content_needs.any? ? content_needs.map(&:need_id).join(",") : nil
+    content_needs.map(&:need_id)
+  end
+
+  def maslow_need_ids=(ids)
+    content_needs.destroy_all
+    ids.reject(&:blank?).each do |nid|
+      ContentNeed.find_or_create_by!(content: self, need_id: nid)
+    end
   end
 
   def need_ids
