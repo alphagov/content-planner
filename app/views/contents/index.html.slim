@@ -1,14 +1,14 @@
+- if policy(Content).create?
+  = link_to "Add Content", new_content_path, class: 'btn pull-right'
 = breadcrumb "Contents"
 
 .row
   .span12
-    - if policy(Content).create?
-      = link_to "Add Content", new_content_path, class: 'btn pull-right'
 
     = form_for(@search, url: contents_path, method: :get, html: { class: 'form-inline search-form' }) do |f|
-      = f.text_field :organisation_ids, placeholder: "Organisations", class: "js-organisations", style: "width:210px"
-      = f.select :content_plan_ids, options_for_select(ContentPlan.all.map{|x| [x.name,x.id]}, @search.content_plan_ids), {}, style: "width:210px"
-      = f.text_field :need_id, placeholder: "User Need ID", class: "js-needs", style: "width:210px"
+      = f.text_field :organisation_ids, placeholder: "Organisations", class: "js-organisations", style: "width:205px"
+      = f.select :content_plan_ids, options_for_select(ContentPlan.all.map{|x| [x.name,x.id]}, @search.content_plan_ids), {}, style: "width:200px"
+      = f.text_field :need_id, placeholder: "User Need ID", class: "js-needs", style: "width:220px"
       = f.text_field :tag, placeholder: "Tag", class: "js-tags", style: "width:210px"
       = f.select :status, options_for_select(Content::STATUS.map{|x| [x,x]}, @search.status), include_blank: true
       = f.submit "Search", class: 'btn'
@@ -16,10 +16,9 @@
     = paginate contents
 
     table.table
-      th Organisations
-      th title
-      th description
-      th URL
+      th Org
+      th Title
+      th Description
       th Size
       th Platform
       th Status
@@ -35,8 +34,6 @@
             = link_to content.title, content
           td
             = content.description
-          td
-            = content.url
           td
             = content.size
           td
