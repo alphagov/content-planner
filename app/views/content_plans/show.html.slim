@@ -24,6 +24,10 @@
         td
           = content_plan.status
   .span6
+    h4 Organisations
+    ul
+      - content_plan.organisations.each do |organisation|
+        li = organisation.name_with_abbreviation
     h4 Details
     = simple_format content_plan.details
     h4

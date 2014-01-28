@@ -1,8 +1,8 @@
 class ContentPlanSearch < Searchlight::Search
 
-  search_on ContentPlan.includes([:content_plan_needs, :contents])
+  search_on ContentPlan.includes([:content_plan_needs, :contents, :organisationables])
 
-  searches :ref_no, :status, :need_id, :tag
+  searches :ref_no, :status, :need_id, :tag, :organisation_ids
 
   def search_ref_no
     search.where(ref_no: ref_no)
@@ -18,6 +18,10 @@ class ContentPlanSearch < Searchlight::Search
 
   def search_tag
     search.tagged_with(tag)
+  end
+
+  def search_organisation_ids
+    search.where('`organisationables`.`organisation_id` = ?', organisation_ids)
   end
 
 end

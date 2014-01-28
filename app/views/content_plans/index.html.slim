@@ -7,6 +7,7 @@
 
     = form_for(@search, url: content_plans_path, method: :get, html: { class: 'form-inline search-form' }) do |f|
       = f.text_field :ref_no, placeholder: "Ref No.", class: "input-small"
+      = f.text_field :organisation_ids, placeholder: "Organisations", class: "js-organisations", style: "width:250px"
       = f.text_field :need_id, placeholder: "User Need ID", class: "js-needs", style: "width:250px"
       = f.text_field :tag, placeholder: "Tag", class: "js-tags", style: "width:250px"
       = f.select :status, options_for_select(Content::STATUS.map{|x| [x,x]}, @search.status), include_blank: true
@@ -17,6 +18,7 @@
 
     table.table
       th Size
+      th Organisations
       th Name
       th User Needs
       th Tags
@@ -25,6 +27,8 @@
         tr
           td
             = content_plan.size
+          td
+            = content_organisations content_plan.organisations
           td
             = link_to content_plan.name, content_plan
           td
