@@ -43,3 +43,9 @@
     ul.comments
       - content.comments.each do |comment|
         = render comment
+
+  - if content.status_transitions.present?
+    .span12
+      h4 Velocity
+
+      = render 'status_transitions', status_transitions: content.status_transitions

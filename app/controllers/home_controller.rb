@@ -7,30 +7,30 @@ class HomeController < ApplicationController
 
   def dashboard_data
     categories = []
-    series = [{ name: "Published", data: [] }, { name: "Completed", data: [] }, { name: "In progress", data: [] }, { name: "Not started", data: []}] 
+    series = [{ name: "Published", data: [] }, { name: "Completed", data: [] }, { name: "In progress", data: [] }, { name: "Not started", data: []}]
     Content.tag_counts_on(:tags).to_a.sort{|a,b| a.name <=> b.name}.each do |tag|
       # split platforms
 
       #mainstream published
-      if Content.tagged_with(tag.name).where(platform: "Mainstream").any?
+      if Content.tagged_with(tag.name).mainstream.any?
         categories << "#{tag.name} (M)"
-        series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Mainstream").sum("size")
-        series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Mainstream").sum("size")
-        series[2][:data] << Content.tagged_with(tag.name).where(status: "In progress", platform: "Mainstream").sum("size")
-        series[3][:data] << Content.tagged_with(tag.name).where(status: "Not started", platform: "Mainstream").sum("size")
+        series[0][:data] << Content.tagged_with(tag.name).mainstream.published.sum("size")
+        series[1][:data] << Content.tagged_with(tag.name).mainstream.completed.sum("size")
+        series[2][:data] << Content.tagged_with(tag.name).mainstream.in_progress.sum("size")
+        series[3][:data] << Content.tagged_with(tag.name).mainstream.not_started.sum("size")
       end
 
       #Whitehall published
-      if Content.tagged_with(tag.name).where(platform: "Whitehall").any?
+      if Content.tagged_with(tag.name).whitehall.any?
         categories << "#{tag.name} (W)"
-        series[0][:data] << Content.tagged_with(tag.name).where(status: "Published", platform: "Whitehall").sum("size")
-        series[1][:data] << Content.tagged_with(tag.name).where(status: "Completed", platform: "Whitehall").sum("size")
-        series[2][:data] << Content.tagged_with(tag.name).where(status: "In progress", platform: "Whitehall").sum("size")
-        series[3][:data] << Content.tagged_with(tag.name).where(status: "Not started", platform: "Whitehall").sum("size")
+        series[0][:data] << Content.tagged_with(tag.name).whitehall.published.sum("size")
+        series[1][:data] << Content.tagged_with(tag.name).whitehall.completed.sum("size")
+        series[2][:data] << Content.tagged_with(tag.name).whitehall.in_progress.sum("size")
+        series[3][:data] << Content.tagged_with(tag.name).whitehall.not_started.sum("size")
       end
     end
 
-    resp = { 
+    resp = {
       xAxis: { categories: categories },
       series: series
     }

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require bootstrap
 //= require turbolinks
 //= require select2
@@ -19,3 +20,8 @@
 //= require highcharts
 //= require highcharts/highcharts-more
 //= require_tree .
+
+
+jQuery(function() {
+  $('input.date').datepicker();
+});

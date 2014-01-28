@@ -1,0 +1,25 @@
+h1 Velocity
+
+
+.row
+  .span12
+    = form_for search,
+               as: :search,
+               url: status_transitions_path,
+               method: :get,
+               html: { class: 'form-inline search-form' } do |f|
+
+      = f.text_field :started_from, class: 'date', placeholder: 'Start from'
+      = f.text_field :ended_at,     class: 'date', placeholder: 'End at'
+
+      = f.submit 'Search', class: 'btn'
+
+  .span6
+    h3 Mainstream
+
+    = render 'status_transitions', status_transitions: mainstream_status_transitions
+
+  .span6
+    h3 White hall
+
+    = render 'status_transitions', status_transitions: whitehall_status_transitions

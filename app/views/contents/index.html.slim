@@ -9,7 +9,7 @@
       = f.select :content_plan_ids, options_for_select(ContentPlan.all.map{|x| [x.name,x.id]}, @search.content_plan_ids), {}, style: "width:210px"
       = f.text_field :need_id, placeholder: "User Need ID", class: "js-needs", style: "width:210px"
       = f.text_field :tag, placeholder: "Tag", class: "js-tags", style: "width:210px"
-      = f.select :status, options_for_select(Content::STATUS.map{|x| [x,x]}, @search.status), include_blank: true
+      = f.collection_select :status_id, ContentStatus.all, :id, :name, include_blank: true
       = f.submit "Search", class: 'btn'
 
     = paginate contents

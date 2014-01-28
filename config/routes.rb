@@ -3,8 +3,11 @@ ContentPlanner::Application.routes.draw do
 
   root to: "home#index"
 
+  resources :status_transitions, path: 'velocity'
+
   resources :content_plans do
     resources :tasks
+
     get 'versions', on: :member
   end
 

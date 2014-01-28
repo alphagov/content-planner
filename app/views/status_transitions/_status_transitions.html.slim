@@ -1,0 +1,15 @@
+table.table.table-bordered
+  thead
+    tr
+      th Content
+      th From
+      th To
+      th When
+
+  tbody
+    - status_transitions.each do |st|
+      tr
+        td = link_to st.content.title, content_path(st.content)
+        td = st.from
+        td = st.to
+        td = l st.occurred_at

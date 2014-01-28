@@ -1,0 +1,13 @@
+table.table.table-bordered
+  thead
+    tr
+      th From
+      th To
+      th When
+
+  tbody
+    - status_transitions.each do |st|
+      tr
+        td = st.from
+        td = st.to
+        td = l st.occurred_at

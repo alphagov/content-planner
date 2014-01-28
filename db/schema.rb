@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127054747) do
+ActiveRecord::Schema.define(version: 20140127080654) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -64,14 +64,23 @@ ActiveRecord::Schema.define(version: 20140127054747) do
   create_table "contents", force: true do |t|
     t.text     "url"
     t.string   "content_type"
-    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "platform"
     t.integer  "size"
-    t.string   "title",        null: false
+    t.string   "title",                                null: false
     t.text     "description"
+    t.string   "status_id",    default: "not_started"
   end
+
+  create_table "status_transitions", force: true do |t|
+    t.string   "from_id"
+    t.string   "to_id"
+    t.datetime "occurred_at"
+    t.integer  "content_id"
+  end
+
+  add_index "status_transitions", ["content_id"], name: "index_status_transitions_on_content_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
