@@ -7,6 +7,10 @@
     = f.input :maslow_need_ids, as: :string, input_html: {class: "js-needs", style: "width:300px"}
     = f.input :details, input_html: {class: 'span12'}
     = f.input :notes, input_html: {class: 'span12'}
+    = f.input :joined_organisation_ids,
+              as: :string,
+              label: "Organisations",
+              input_html: {class: "js-organisations", style: "width:300px"}
     .control-group
       .controls
         = f.button :submit, class: 'btn-success'

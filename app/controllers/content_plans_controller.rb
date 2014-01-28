@@ -21,13 +21,7 @@ class ContentPlansController < ApplicationController
 
   def create
     if content_plan.save
-      if params[:content_plan][:maslow_need_ids].present?
-        ContentPlanNeed.where(content_plan_id: content_plan.id).destroy_all
-        need_ids = params[:content_plan][:maslow_need_ids].split(",")
-        need_ids.each do |nid|
-          ContentPlanNeed.find_or_create_by!(content_plan_id: content_plan.id, need_id: nid)
-        end
-      end
+      update_maslow_need_ids!
       redirect_to content_plans_path, notice: 'Content plan was successfully created.'
     else
       render :new
@@ -39,13 +33,7 @@ class ContentPlansController < ApplicationController
 
   def update
     if content_plan.save
-      if params[:content_plan][:maslow_need_ids].present?
-        ContentPlanNeed.where(content_plan_id: content_plan.id).destroy_all
-        need_ids = params[:content_plan][:maslow_need_ids].split(",")
-        need_ids.each do |nid|
-          ContentPlanNeed.find_or_create_by!(content_plan_id: content_plan.id, need_id: nid)
-        end
-      end
+      update_maslow_need_ids!
       redirect_to content_plans_path
     else
       render :edit
@@ -57,6 +45,8 @@ class ContentPlansController < ApplicationController
     redirect_to content_plans_path
   end
 
+  private
+
   def content_plan_params
     params.require(:content_plan).permit(:tag_list,
       :status,
@@ -66,10 +56,20 @@ class ContentPlansController < ApplicationController
       :slug,
       :handover_detailed_guidance,
       :notes,
-      :maslow_need_ids
+      :maslow_need_ids,
+      :joined_organisation_ids
     )
   end
 
+  def update_maslow_need_ids!
+    if content_plan_params[:maslow_need_ids].present?
+      ContentPlanNeed.where(content_plan_id: content_plan.id).destroy_all
+      need_ids = content_plan_params[:maslow_need_ids].split(",")
+      need_ids.each do |nid|
+        ContentPlanNeed.find_or_create_by!(content_plan_id: content_plan.id, need_id: nid)
+      end
+    end
+  end
 
   def authorize_user
     authorize content_plan
