@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127054747) do
+ActiveRecord::Schema.define(version: 20140128040652) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -72,6 +72,17 @@ ActiveRecord::Schema.define(version: 20140127054747) do
     t.string   "title",        null: false
     t.text     "description"
   end
+
+  create_table "organisationables", force: true do |t|
+    t.string   "organisation_id"
+    t.integer  "organisationable_id"
+    t.string   "organisationable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organisationables", ["organisation_id"], name: "index_organisationables_on_organisation_id", using: :btree
+  add_index "organisationables", ["organisationable_id", "organisationable_type"], name: "organisationables", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
