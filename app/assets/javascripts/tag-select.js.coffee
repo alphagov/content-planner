@@ -60,3 +60,26 @@ jsContents = ->
 
 $(document).ready jsContents
 $(document).on "page:load", jsContents
+
+jsOrganisations = ->
+  $("input.js-organisations").select2
+    tags: true
+    initSelection: (element, callback) ->
+      data = []
+      $(element.val().split(",")).each ->
+        data.push
+          id: $.trim(this)
+          text: $.trim(this)
+      callback data
+    ajax:
+      url: "/organisations"
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page: page
+
+      results: (data, page) ->
+        results: data
+
+$(document).ready jsOrganisations
+$(document).on "page:load", jsOrganisations

@@ -1,4 +1,5 @@
 class Content < ActiveRecord::Base
+  include Organisations
 
   acts_as_taggable
 

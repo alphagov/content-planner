@@ -1,5 +1,7 @@
 class ContentPlan < ActiveRecord::Base
   include Versioning
+  include Organisations
+
   acts_as_taggable
 
   validates :title, presence: true

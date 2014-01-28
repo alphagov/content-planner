@@ -1,8 +1,8 @@
 class ContentSearch < Searchlight::Search
 
-  search_on Content.includes([:content_needs, :content_plans])
+  search_on Content.includes([:content_needs, :content_plans, :organisationables])
 
-  searches :content_plan_ids, :status, :need_id, :tag
+  searches :content_plan_ids, :status, :need_id, :tag, :organisation_ids
 
   def search_content_plan_ids
     search.where('`content_plan_contents`.`content_plan_id` IN (?)', content_plan_ids)
@@ -18,6 +18,10 @@ class ContentSearch < Searchlight::Search
 
   def search_tag
     search.tagged_with(tag)
+  end
+
+  def search_organisation_ids
+    search.where('`organisationables`.`organisation_id` = ?', organisation_ids)
   end
 
 end
