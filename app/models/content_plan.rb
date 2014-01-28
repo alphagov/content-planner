@@ -10,6 +10,16 @@ class ContentPlan < ActiveRecord::Base
   validates :title, presence: true
   validates :ref_no, presence: true
 
+  scope :due_date, ->(quarter, year) {
+    scope = all
+    scope = scope.where(due_quarter: quarter) if quarter.present?
+    scope = scope.where(due_year: year) if year.present?
+    scope
+  }
+  scope :contents, -> {
+    Content.where id: all.map(&:content_plan_contents).flatten.map(&:content_id).uniq
+  }
+
   has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 

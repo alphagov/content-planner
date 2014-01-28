@@ -3,7 +3,8 @@ class HomeController < ApplicationController
   skip_before_filter :require_signin_permission!, only: :dashboard_data
 
   def index
-    @tags = Content.tag_counts_on(:tags).to_a.sort{|a,b| a.name <=> b.name}
+    @contents = ContentPlan.due_date(params[:q], params[:year]).contents
+    @tags = @contents.tag_counts_on(:tags).to_a.sort{|a,b| a.name <=> b.name}
   end
 
   def chart
