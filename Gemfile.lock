@@ -77,9 +77,15 @@ GEM
     coffee-script-source (1.6.3)
     database_cleaner (1.0.1)
     debug_inspector (0.0.2)
+    decent_decoration (0.0.5)
+      decent_exposure (> 0)
     decent_exposure (2.3.0)
     diff-lcs (1.2.5)
     docile (1.1.0)
+    draper (1.2.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0.3)
     erubis (2.7.0)
     exception_notification (4.0.1)
       actionmailer (>= 3.0.4)
@@ -184,6 +190,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.12.0)
     rake (10.1.0)
+    request_store (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec-core (2.14.7)
@@ -275,7 +282,9 @@ DEPENDENCIES
   ci_reporter
   coffee-rails (~> 4.0.0)
   database_cleaner (= 1.0.1)
+  decent_decoration
   decent_exposure
+  draper
   exception_notification
   factory_girl_rails
   gds-api-adapters (= 7.20.0)

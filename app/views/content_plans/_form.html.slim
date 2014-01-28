@@ -11,6 +11,9 @@
               as: :string,
               label: "Organisations",
               input_html: {class: "js-organisations", style: "width:300px"}
+    legend Due
+    = f.input :due_quarter, label: "Quarter", as: :select, collection: ContentPlan::QUARTERS, include_blank: false
+    = f.input :due_year, label: "Year", as: :select, collection: ContentPlan::YEARS, include_blank: false
     .control-group
       .controls
         = f.button :submit, class: 'btn-success'

@@ -2,7 +2,7 @@ class ContentPlanSearch < Searchlight::Search
 
   search_on ContentPlan.includes([:content_plan_needs, :contents, :organisationables])
 
-  searches :ref_no, :status, :need_id, :tag, :organisation_ids
+  searches :ref_no, :status, :need_id, :tag, :due_quarter, :due_year, :organisation_ids
 
   def search_ref_no
     search.where(ref_no: ref_no)
