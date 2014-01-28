@@ -35,7 +35,7 @@
         li
           = link_to content_plan.name, content_plan
     h4 Maslow need ids
-    = content.maslow_need_ids
+    = content.maslow_need_ids.join(", ")
     h4 Tags
     ul
       - content.tags.each do |tag|

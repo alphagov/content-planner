@@ -19,7 +19,6 @@ class ContentsController < ApplicationController
 
   def create
     if content.save
-      update_maslow_need_ids!
       redirect_to content_path(content), notice: 'Content was successfully created.'
     else
       render :new
@@ -28,7 +27,6 @@ class ContentsController < ApplicationController
 
   def update
     if content.save
-      update_maslow_need_ids!
       redirect_to content_path(content)
     else
       render :edit
@@ -54,8 +52,8 @@ class ContentsController < ApplicationController
         :content_type,
         :platform,
         :tag_list,
-        :maslow_need_ids,
-        :joined_organisation_ids,
+        organisation_ids: [],
+        maslow_need_ids: [],
         user_ids: [],
         content_plan_ids: []
       )
@@ -70,8 +68,8 @@ class ContentsController < ApplicationController
         :size,
         :content_type,
         :tag_list,
-        :maslow_need_ids,
-        :joined_organisation_ids,
+        organisation_ids: [],
+        maslow_need_ids: [],
         user_ids: [],
         content_plan_ids: []
       )
@@ -80,15 +78,5 @@ class ContentsController < ApplicationController
 
   def authorize_user
     authorize content
-  end
-
-  def update_maslow_need_ids!
-    if content_params[:maslow_need_ids].present?
-      ContentNeed.where(content_id: content.id).destroy_all
-      need_ids = params[:content][:maslow_need_ids].split(",")
-      need_ids.each do |nid|
-        ContentNeed.find_or_create_by!(content_id: content.id, need_id: nid)
-      end
-    end
   end
 end

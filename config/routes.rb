@@ -14,10 +14,6 @@ ContentPlanner::Application.routes.draw do
 
   resources :tags
 
-  resources :organisations
-
-  get "needs", to: "needs#index"
-
   get "dashboard_data", to: "home#dashboard_data"
   get "chart", to: "home#chart"
 

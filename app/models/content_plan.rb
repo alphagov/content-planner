@@ -28,14 +28,19 @@ class ContentPlan < ActiveRecord::Base
   has_many :content_plan_contents, dependent: :destroy
   has_many :contents, through: :content_plan_contents
 
-  attr_accessor :maslow_need_ids
-
   def name
     "#{ref_no} - #{title}"
   end
 
   def maslow_need_ids
-    content_plan_needs.any? ? content_plan_needs.map(&:need_id).join(",") : nil
+    content_plan_needs.map(&:need_id)
+  end
+
+  def maslow_need_ids=(ids)
+    content_plan_needs.destroy_all
+    ids.reject(&:blank?).each do |nid|
+      ContentPlanNeed.find_or_create_by!(content_plan: self, need_id: nid)
+    end
   end
 
   def need_ids

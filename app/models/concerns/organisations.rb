@@ -13,12 +13,9 @@ module Organisations
     organisation_ids.map { |organisation_id| Organisation.find organisation_id }
   end
 
-  def joined_organisation_ids
-    organisation_ids.join ", "
-  end
-  def joined_organisation_ids=(ids)
+  def organisation_ids=(ids)
     organisationables.destroy_all
-    ids.split(",").each do |oid|
+    ids.reject(&:blank?).each do |oid|
       Organisationable.find_or_create_by!(organisationable: self, organisation_id: oid)
     end
   end
