@@ -1,13 +1,13 @@
+- if policy(content_plan).create?
+  = link_to "edit", [:edit, content_plan], class: 'btn pull-right'
+= link_to "history", [:versions, content_plan], class: 'btn pull-right history-btn'
+
 = breadcrumb ["Content Plans", content_plans_path], content_plan.name
 
 .row
   .span12
     h2
       = content_plan.name
-      - if policy(content_plan).create?
-        = link_to "edit", [:edit, content_plan], class: 'btn btn-small pull-right'
-      = link_to "history", [:versions, content_plan], class: 'btn btn-small pull-right history-btn'
-
     table.table
       tr
         th Size

@@ -1,11 +1,11 @@
+- if policy(content).edit?
+  = link_to "edit", [:edit, content], class: "btn pull-right"
 = breadcrumb ["Contents", contents_path], content.title
 
 .row
   .span12
     h2
       = content.title
-      - if policy(content).edit?
-        = link_to "edit", [:edit, content], class: "btn btn-small pull-right"
 
   .span12
     = content.description
