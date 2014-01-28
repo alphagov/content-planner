@@ -1,12 +1,18 @@
 class Organisation
   cattr_writer :organisations
 
-  attr_reader :id, :name, :abbreviation
+  attr_reader :id, :name, :abbreviation, :parent_ids, :govuk_status
 
   def initialize(attrs)
     @id = attrs[:id]
     @name = attrs[:name]
     @abbreviation = attrs[:abbreviation]
+    @parent_ids = attrs[:parent_ids]
+    @govuk_status = attrs[:govuk_status]
+  end
+
+  def exempt?
+    @govuk_status == "exempt"
   end
 
   def name_with_abbreviation
@@ -32,7 +38,7 @@ class Organisation
   def self.load_organisations
     (need_api.organisations || []).map {|attrs|
       self.new(attrs.symbolize_keys)
-    }
+    }.reject { |org| org.exempt? }.sort { |a,b| a.parent_ids.count <=> b.parent_ids.count }
   end
 
   def self.need_api
