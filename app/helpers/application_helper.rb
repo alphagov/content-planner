@@ -19,6 +19,10 @@ module ApplicationHelper
     end.join(", ").html_safe
   end
 
+  def content_organisations(organisations)
+    organisations.map(&:name_with_abbreviation).join ", "
+  end
+
   def collection_links(coll, f_name, f_link, separator = ', ')
     coll.map do |item|
       link_to f_name.call(item),
