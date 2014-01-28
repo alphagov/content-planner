@@ -13,7 +13,7 @@
     = f.input :maslow_need_ids,
               as: :select,
               collection: Need.all,
-              input_html: {class: "js-needs", style: "width:300px", multiple: true}
+              input_html: {class: "js-needs", multiple: true}
     = f.input :tag_list, as: :string, input_html: {class: "js-tags", style: "width:300px"}
     = f.association :users,
                     collection: User.all,
