@@ -4,6 +4,11 @@
     = form_tag root_path, method: :get, class: "form-inline search-form" do
       = select_tag :q, options_for_select(ContentPlan::QUARTERS.map {|x| ["Quarter #{x}", x]}, params[:q]), prompt: "Quarter"
       = select_tag :year, options_for_select(ContentPlan::YEARS, params[:year]), prompt: "Year"
+      = select_tag :organisation,
+                   options_for_select( Organisation.all.map {|o| [o.name_with_abbreviation, o.id]}, params[:organisation] ),
+                   prompt: "Organisation",
+                   class: "js-organisations",
+                   style: "width:220px"
       = submit_tag "Filter", class: "btn"
   .span12
     - @tags.each do |tag|

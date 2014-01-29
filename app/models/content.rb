@@ -40,6 +40,9 @@ class Content < ActiveRecord::Base
 
   scope :mainstream, -> { where platform: 'Mainstream' }
   scope :whitehall,  -> { where platform: 'Whitehall'  }
+  scope :organisation, ->(organisation_id) {
+    where id: Organisationable.for_content.where(organisation_id: organisation_id).pluck(:organisationable_id) if organisation_id.present?
+  }
 
   def maslow_need_ids
     content_needs.map(&:need_id)
