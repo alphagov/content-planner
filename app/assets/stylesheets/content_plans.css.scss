@@ -18,12 +18,41 @@
   border-radius: 3px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
   padding: 10px;
+  margin: 0.5em;
   background: #ffffff;
 
   .platform {
     border-bottom: 1px solid #eee;
     padding: 0.5em 0 1em 0;
     margin: 0.5em 0;
+    .status {
+      height: 100%;
+      display: inline-block;
+    }
+    .status-not-started {
+      background-color: #F2B701;
+    }
+    .status-drafting {
+      background-color: #E57D04;
+    }
+    .status-2i {
+      background-color: #DC0030;
+    }
+    .status-gds-2i {
+      background-color: #B10058;
+    }
+    .status-amends {
+      background-color: #7C378A;
+    }
+    .status-factcheck {
+      background-color: #3465AA;
+    }
+    .status-ready-for-publish {
+      background-color: #09A275;
+    }
+    .status-live {
+      background-color: #7CB854;
+    }
   }
   .platform:last-child {
     border-bottom: 0;

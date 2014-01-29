@@ -15,4 +15,4 @@
             = platform
             .progress
               - Content.percentages_for(tag: tag, platform: platform, contents: @contents).each do |status, percentage|
-                div[class="#{progress_bar_class_for status}" style="width: #{percentage}%" title="#{status}: #{percentage}%" data-tooltip=true data-placement="bottom"]
+                div[class="status status-#{status.parameterize}" style="width: #{percentage}%" title="#{status}: #{percentage}%" data-tooltip=true data-placement="bottom"]
