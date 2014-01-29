@@ -39,6 +39,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.before(:suite) do
+    ContentPlanner.needs_api = MockNeedsApi.new
     DatabaseCleaner.strategy = :truncation
   end
   config.before(:each) do
