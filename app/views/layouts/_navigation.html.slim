@@ -1,6 +1,10 @@
 = link_to "GOV.UK Content Planner", root_path, :class => 'navbar-brand'
 ul.nav
   - if user_signed_in?
+    li
+      = link_to "User Needs", Plek.current.find('maslow'), target: "_blank"
+    li
+      = link_to "Transition", Plek.current.find('transition'), target: "_blank"
     = nav_item "Content Plans", content_plans_path, "content_plans"
     = nav_item "Content", contents_path, "contents"
     = nav_item "Tags", tags_path, "tags"
