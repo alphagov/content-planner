@@ -8,12 +8,23 @@
 
     = form_for(@search, url: content_plans_path, method: :get, html: { class: 'form-inline search-form' }) do |f|
       = f.text_field :ref_no, placeholder: "Ref No.", class: "input-small"
-      = f.text_field :organisation_ids, placeholder: "Organisations", class: "js-organisations", style: "width:220px"
-      = f.text_field :need_id, placeholder: "User Need ID", class: "js-needs", style: "width:230px"
+      = f.select :organisation_ids,
+                 options_for_select( organisations_options_for_select, @search.organisation_ids ),
+                 { include_blank: true },
+                 { class: "js-organisations", style: "width:220px" }
+      = f.select :need_id,
+                 options_for_select( needs_options_for_select, @search.need_id ),
+                 { include_blank: true },
+                 { class: "js-needs", style: "width:230px"}
       = f.text_field :tag, placeholder: "Tag", class: "js-tags", style: "width:220px"
-      = f.select :status, options_for_select(Content::STATUS.map{|x| [x,x]}, @search.status), include_blank: true
-      = f.select :due_quarter, options_for_select(ContentPlan::QUARTERS.map{|x| ["Quarter #{x}", x]}, @search.due_quarter), include_blank: true
-      = f.select :due_year, options_for_select(ContentPlan::YEARS, @search.due_year), placeholder: "Due Year", include_blank: true
+      = f.select :status,
+                 options_for_select(Content::STATUS, @search.status),
+                 { include_blank: true },
+                 { class: "select2", placeholder: "Status" }
+      = f.select :due_date,
+                 options_for_select(due_date_options_for_select, @search.due_date),
+                 { include_blank: true },
+                 { class: "select2", placeholder: "Due Date" }
       = f.submit "Search", class: 'btn'
 
     = paginate content_plans

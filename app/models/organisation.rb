@@ -29,6 +29,7 @@ class Organisation
       name
     end
   end
+  alias_method :to_s, :name_with_abbreviation
 
   def self.all
     @@organisations ||= self.load_organisations
