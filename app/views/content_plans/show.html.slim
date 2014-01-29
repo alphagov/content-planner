@@ -31,18 +31,17 @@
     ul
       - content_plan.organisations.each do |organisation|
         li = organisation.name_with_abbreviation
+    
     h4 Details
-    = simple_format content_plan.details
+    = govspeak content_plan.details
+
     h4
       | Content
       = link_to "Add content", new_content_path(content_plan_id: content_plan.id), class: "btn btn-mini contents-btn"
     ul
       - content_plan.contents.each do |content|
         li
-          - if policy(content).edit?
-            = link_to content.url, [:edit, content]
-          - else
-            = content.url
+          = link_to content.title, content
           |
           = "(#{content.size})"
           |
@@ -51,7 +50,7 @@
           = link_to "[#{content.platform}]", content.url, rel: "external", target: "_blank"
 
     h4 Notes
-    = content_plan.notes
+    = govspeak content_plan.notes
 
   .span6
     h4
