@@ -104,10 +104,15 @@ GEM
       null_logger
       plek
       rest-client (~> 1.6.3)
+    govspeak (1.2.5)
+      htmlentities (~> 4)
+      kramdown (~> 0.13.3)
+      sanitize (~> 2.0.3)
     hashie (2.0.5)
     highcharts-rails (3.0.7)
       railties (>= 3.1)
     hike (1.2.3)
+    htmlentities (4.3.1)
     httpauth (0.2.0)
     i18n (0.6.9)
     jbuilder (1.5.2)
@@ -123,6 +128,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.8.1)
+    kramdown (0.13.8)
     link_header (0.0.7)
     lockfile (2.1.0)
     logstash-event (1.1.5)
@@ -204,6 +210,8 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    sanitize (2.0.6)
+      nokogiri (>= 1.4.4)
     sass (3.2.12)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -289,6 +297,7 @@ DEPENDENCIES
   factory_girl_rails
   gds-api-adapters (= 7.20.0)
   gds-sso (= 7.0.0)!
+  govspeak
   highcharts-rails (~> 3.0.0)
   jbuilder (~> 1.2)
   jquery-rails

@@ -12,6 +12,10 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def govspeak(text)
+    Govspeak::Document.new(text).to_sanitized_html.html_safe if text
+  end
+
   def user_needs_links(ids)
     maslow = Plek.current.find("maslow")
     Array.wrap(ids).map do |id|
