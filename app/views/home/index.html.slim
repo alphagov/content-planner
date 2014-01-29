@@ -2,13 +2,15 @@
   .span12
     = link_to "View as chart", chart_path, class: 'btn pull-right'
     = form_tag root_path, method: :get, class: "form-inline search-form" do
-      = select_tag :q, options_for_select(ContentPlan::QUARTERS.map {|x| ["Quarter #{x}", x]}, params[:q]), prompt: "Quarter"
-      = select_tag :year, options_for_select(ContentPlan::YEARS, params[:year]), prompt: "Year"
+      = select_tag :q,
+                   options_for_select( ContentPlan::QUARTERS.map {|x| ["Quarter #{x}", x]}, params[:q] ),
+                   include_blank: true, placeholder: "Quarter", class: "select2"
+      = select_tag :year,
+                   options_for_select( ContentPlan::YEARS, params[:year] ),
+                   include_blank: true, placeholder: "Year", class: "select2"
       = select_tag :organisation,
-                   options_for_select( Organisation.all.map {|o| [o.name_with_abbreviation, o.id]}, params[:organisation] ),
-                   prompt: "Organisation",
-                   class: "js-organisations",
-                   style: "width:220px"
+                   options_for_select( organisations_options_for_select, params[:organisation] ),
+                   include_blank: true, placeholder: "Organisation", class: "js-organisations"
       = submit_tag "Filter", class: "btn"
   .span12
     - @tags.each do |tag|

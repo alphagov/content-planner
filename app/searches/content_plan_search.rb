@@ -2,7 +2,7 @@ class ContentPlanSearch < Searchlight::Search
 
   search_on ContentPlan.includes([:content_plan_needs, :contents, :organisationables])
 
-  searches :ref_no, :status, :need_id, :tag, :due_quarter, :due_year, :organisation_ids
+  searches :ref_no, :status, :need_id, :tag, :organisation_ids, :due_date
 
   def search_ref_no
     search.where(ref_no: ref_no)
@@ -22,6 +22,11 @@ class ContentPlanSearch < Searchlight::Search
 
   def search_organisation_ids
     search.where('`organisationables`.`organisation_id` = ?', organisation_ids)
+  end
+
+  def search_due_date
+    quarter, year = due_date.split " "
+    search.where(due_quarter: quarter.delete("q").to_i, due_year: year)
   end
 
 end

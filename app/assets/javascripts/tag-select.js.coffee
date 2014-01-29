@@ -27,13 +27,16 @@ $(document).on "page:load", jsTags
 jsContentPlans = ->
   $("#source_url_content_plan_ids").select2()
   $("#content_content_plan_ids").select2()
-  $("#search_content_plan_ids").select2()
+  $("#search_content_plan_ids").select2
+    allowClear: true
 
 $(document).ready jsContentPlans
 $(document).on "page:load", jsContentPlans
 
 jsNeeds = ->
-  $(".js-needs").select2()
+  $(".js-needs").select2
+    placeholder: "User needs"
+    allowClear: true
 
 $(document).ready jsNeeds
 $(document).on "page:load", jsNeeds
@@ -45,7 +48,16 @@ $(document).ready jsContents
 $(document).on "page:load", jsContents
 
 jsOrganisations = ->
-  $(".js-organisations").select2()
+  $(".js-organisations").select2
+    placeholder: "Organisation"
+    allowClear: true
 
 $(document).ready jsOrganisations
 $(document).on "page:load", jsOrganisations
+
+select2Default = ->
+  $(".select2").select2
+    allowClear: true
+
+$(document).ready select2Default
+$(document).on "page:load", select2Default

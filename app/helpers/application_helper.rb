@@ -88,4 +88,16 @@ module ApplicationHelper
       link_to text, url
     end
   end
+
+  def organisations_options_for_select
+    Organisation.all.map do |organisation|
+      [organisation.to_s, organisation.id]
+    end
+  end
+
+  def needs_options_for_select
+    Need.all.map do |need|
+      [need.to_s, need.id]
+    end
+  end
 end

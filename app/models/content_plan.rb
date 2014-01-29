@@ -31,6 +31,7 @@ class ContentPlan < ActiveRecord::Base
   def name
     "#{ref_no} - #{title}"
   end
+  alias_method :to_s, :name
 
   def maslow_need_ids
     content_plan_needs.map(&:need_id)
