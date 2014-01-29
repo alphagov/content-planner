@@ -74,7 +74,7 @@ class Content < ActiveRecord::Base
       hash.tap do |hash|
         hash[status] = if total > 0
           sum = scope.where(status: status).sum(:size)
-          ((sum / total.to_f) * 100.0).round
+          ((sum / total.to_f) * 100.0).round(3)
         else
           0
         end
