@@ -26,4 +26,11 @@ ContentPlanner::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # deliver to mailcatcher
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: "localhost", port: 1025 }
+
+  # mailer default url options
+  config.action_mailer.default_url_options = { host: "http://10.1.1.254:3058/" }
 end

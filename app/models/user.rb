@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
     GDS_EDITOR = 'GDS Editor'
   end
 
+  def to_s
+    name
+  end
 
   # GDS::SSO::User overwrites for Rails 4
   def self.find_for_gds_oauth(auth_hash)

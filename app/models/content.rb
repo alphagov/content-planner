@@ -62,6 +62,10 @@ class Content < ActiveRecord::Base
     platform == "Whitehall"
   end
 
+  def to_s
+    title
+  end
+
   def self.percentages_for(options)
     tag = options.fetch(:tag) { raise ArgumentError.new("#percentages_for expects tag: as part of options hash") }
     platform = options.fetch(:platform) { raise ArgumentError.new("#percentages_for expects platform: as part of options hash") }

@@ -37,4 +37,7 @@ ContentPlanner::Application.configure do
   config.after_initialize do
     PaperTrail.enabled = false
   end
+
+  # mailer default url options
+  config.action_mailer.default_url_options = { host: "http://10.1.1.254:3058/" }
 end
