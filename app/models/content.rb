@@ -20,7 +20,6 @@ class Content < ActiveRecord::Base
       "GDS 2i",
       "Amends",
       "Factcheck",
-      "Amends",
       "Ready for publish",
       "Live"
     ]
