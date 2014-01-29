@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def content_organisations(organisations)
-    organisations.map(&:name_with_abbreviation).join ", "
+    organisations.map(&:abbreviation_or_name).join ", "
   end
 
   def collection_links(coll, f_name, f_link, separator = ', ')

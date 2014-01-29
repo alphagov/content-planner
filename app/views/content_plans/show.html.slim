@@ -30,7 +30,7 @@
     h4 Organisations
     ul
       - content_plan.organisations.each do |organisation|
-        li = organisation.name_with_abbreviation
+        li = organisation.abbreviation_or_name
     
     h4 Details
     = govspeak content_plan.details

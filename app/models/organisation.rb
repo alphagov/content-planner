@@ -15,6 +15,10 @@ class Organisation
     @govuk_status == "exempt"
   end
 
+  def abbreviation_or_name
+    abbreviation || name
+  end
+
   def name_with_abbreviation
     if abbreviation.present? && abbreviation != name
       # Use square brackets around the abbreviation
