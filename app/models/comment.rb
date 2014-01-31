@@ -4,4 +4,10 @@ class Comment < ActiveRecord::Base
 
   validates :commentable_id, presence: true
   validates :commentable_type, presence: true
+
+  after_create :notify_users
+
+  def notify_users
+    CommentNotifier.new(self)
+  end
 end

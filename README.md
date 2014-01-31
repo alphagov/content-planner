@@ -36,3 +36,14 @@ Setup for development
 
   ./startup.sh
   ```
+
+Emails on development
+---------------------
+
+It delivers emails to [mailcatcher](http://mailcatcher.me/) when in development.
+
+1. Install mailcatcher: `gem install mailcatcher`
+
+2. Inside VM: `mailcatcher --http-ip 10.1.1.254`
+
+3. From your host machine go to http://10.1.1.254:1080
