@@ -1,9 +1,6 @@
 li.comment
   span.name
-    = comment.user.name
-    | &nbsp; (
-    = comment.user.email
-    | )
+    = comment.user
   span.created_at.clearfix
     = comment.created_at.to_formatted_s(:long)
   = govspeak comment.message
