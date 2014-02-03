@@ -8,6 +8,16 @@ GIT
       rails (>= 3.0.0)
       warden (~> 1.2)
 
+GIT
+  remote: git://github.com/bitzesty/govspeak.git
+  revision: e70f8ba8fe598a4b7ccfbc1b14ac4565e848e202
+  branch: master
+  specs:
+    govspeak (1.2.5)
+      htmlentities (~> 4)
+      kramdown (~> 0.13.3)
+      sanitize (~> 2.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -104,10 +114,6 @@ GEM
       null_logger
       plek
       rest-client (~> 1.6.3)
-    govspeak (1.2.5)
-      htmlentities (~> 4)
-      kramdown (~> 0.13.3)
-      sanitize (~> 2.0.3)
     hashie (2.0.5)
     highcharts-rails (3.0.7)
       railties (>= 3.1)
@@ -297,7 +303,7 @@ DEPENDENCIES
   factory_girl_rails
   gds-api-adapters (= 7.20.0)
   gds-sso (= 7.0.0)!
-  govspeak
+  govspeak!
   highcharts-rails (~> 3.0.0)
   jbuilder (~> 1.2)
   jquery-rails
