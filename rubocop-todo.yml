@@ -169,7 +169,7 @@ SpaceInsideHashLiteralBraces:
 # Offence count: 2
 # Cop supports --auto-correct.
 SpaceInsideParens:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 259
 # Cop supports --auto-correct.
