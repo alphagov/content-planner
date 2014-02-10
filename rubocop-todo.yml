@@ -72,7 +72,7 @@ EndAlignment:
 # Offence count: 10
 # Cop supports --auto-correct.
 FinalNewline:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 19
 # Cop supports --auto-correct.
