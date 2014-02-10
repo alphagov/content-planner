@@ -182,7 +182,7 @@ StringLiterals:
 
 # Offence count: 1
 Tab:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 3
 # Cop supports --auto-correct.
