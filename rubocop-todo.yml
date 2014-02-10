@@ -187,7 +187,7 @@ Tab:
 # Offence count: 3
 # Cop supports --auto-correct.
 TrailingBlankLines:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 3
 # Cop supports --auto-correct.

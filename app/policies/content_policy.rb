@@ -27,4 +27,3 @@ class ContentPolicy < Struct.new(:user, :content)
     user.gds_editor?
   end
 end
-

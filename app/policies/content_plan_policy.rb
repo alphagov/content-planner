@@ -31,4 +31,3 @@ class ContentPlanPolicy < Struct.new(:user, :content_plan)
     user.gds_editor?
   end
 end
-
