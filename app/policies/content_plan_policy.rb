@@ -1,5 +1,4 @@
 class ContentPlanPolicy < Struct.new(:user, :content_plan)
-
   def index?
     true
   end

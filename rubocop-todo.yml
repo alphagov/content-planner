@@ -62,7 +62,7 @@ EmptyLinesAroundAccessModifier:
 # Offence count: 11
 # Cop supports --auto-correct.
 EmptyLinesAroundBody:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 2
 # Configuration parameters: AlignWith, SupportedStyles.

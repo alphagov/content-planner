@@ -1,5 +1,4 @@
 class ContentSearch < Searchlight::Search
-
   search_on Content.includes([:content_needs, :content_plans, :content_plan_contents, :organisationables])
 
   searches :content_plan_ids, :status, :need_id, :tag, :organisation_ids
@@ -23,5 +22,4 @@ class ContentSearch < Searchlight::Search
   def search_organisation_ids
     search.where('`organisationables`.`organisation_id` = ?', organisation_ids)
   end
-
 end
