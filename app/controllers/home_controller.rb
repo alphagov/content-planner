@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def index
     @contents = ContentPlan.due_date(params[:q], params[:year]).contents.organisation(params[:organisation])
-    @tags = @contents.tag_counts_on(:tags).to_a.sort{|a,b| a.name <=> b.name}
+    @tags = @contents.tag_counts_on(:tags).to_a.sort{|a, b| a.name <=> b.name}
   end
 
   def chart
@@ -13,7 +13,7 @@ class HomeController < ApplicationController
   def dashboard_data
     categories = []
     series = Content::STATUS.map {|status| {name: status, data: []} }
-    Content.tag_counts_on(:tags).to_a.sort{|a,b| a.name <=> b.name}.each do |tag|
+    Content.tag_counts_on(:tags).to_a.sort{|a, b| a.name <=> b.name}.each do |tag|
       # split platforms
 
       tag_scope = Content.tagged_with(tag.name)

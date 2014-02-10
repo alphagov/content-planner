@@ -142,7 +142,7 @@ SignalException:
 # Offence count: 5
 # Cop supports --auto-correct.
 SpaceAfterComma:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 15
 # Cop supports --auto-correct.
