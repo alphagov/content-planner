@@ -48,7 +48,7 @@ Documentation:
 # Offence count: 6
 # Configuration parameters: AllowAdjacentOneLineDefs.
 EmptyLineBetweenDefs:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 3
 # Cop supports --auto-correct.

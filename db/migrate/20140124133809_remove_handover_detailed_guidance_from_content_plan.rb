@@ -5,6 +5,7 @@ class RemoveHandoverDetailedGuidanceFromContentPlan < ActiveRecord::Migration
     end
     remove_column :content_plans, :handover_detailed_guidance, :text
   end
+  
   def down
     add_column :content_plans, :handover_detailed_guidance, :text
   end
