@@ -116,7 +116,7 @@ MultilineBlockChain:
 # Offence count: 1
 # Cop supports --auto-correct.
 NumericLiterals:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 3
 # Configuration parameters: SupportedStyles.
@@ -126,7 +126,7 @@ RaiseArgs:
 # Offence count: 3
 # Cop supports --auto-correct.
 RedundantSelf:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 1
 ShadowingOuterLocalVariable:

@@ -32,7 +32,7 @@ class Organisation
   alias_method :to_s, :name_with_abbreviation
 
   def self.all
-    @@organisations ||= self.load_organisations
+    @@organisations ||= load_organisations
   end
 
   def self.find(id)
@@ -42,7 +42,7 @@ class Organisation
   private
   
   def self.load_organisations
-    all_orgs = (need_api.organisations || []).map {|attrs| self.new(attrs.symbolize_keys) }
+    all_orgs = (need_api.organisations || []).map {|attrs| new(attrs.symbolize_keys) }
     all_orgs.reject { |org| org.exempt? }
   end
 
