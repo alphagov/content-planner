@@ -197,7 +197,7 @@ TrailingWhitespace:
 # Offence count: 1
 # Configuration parameters: ExactNameMatch, AllowPredicates, Whitelist.
 TrivialAccessors:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 9
 # Cop supports --auto-correct.
