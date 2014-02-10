@@ -19,7 +19,7 @@ AlignParameters:
 # Offence count: 4
 # Cop supports --auto-correct.
 AndOr:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 1
 # Configuration parameters: AllowSafeAssignment.

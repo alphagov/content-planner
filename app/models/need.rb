@@ -14,7 +14,7 @@ class Need
   end
 
   def ==(other)
-    other.is_a?(self.class) and other.id == self.id
+    other.is_a?(self.class) && other.id == self.id
   end
 
   def id

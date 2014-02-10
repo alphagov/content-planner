@@ -17,7 +17,7 @@ class ContentPolicy < Struct.new(:user, :content)
   end
 
   def update?
-    content.whitehall? or user.gds_editor?
+    content.whitehall? || user.gds_editor?
   end
 
   def edit?

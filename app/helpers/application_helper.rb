@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def display_base_errors resource
-    return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
+    return '' if (resource.errors.empty?) || (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
     html = <<-HTML
     <div class="alert alert-error alert-block">
@@ -75,7 +75,7 @@ module ApplicationHelper
 
     options = controllers_options.extract_options!
 
-    wrapper_options = if controller_name.in?(controllers_options) or
+    wrapper_options = if controller_name.in?(controllers_options) ||
                          [ * options[controller_name.to_sym] ].include?(action_name)
                         {class: 'active'}
                       end
