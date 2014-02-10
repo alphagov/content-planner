@@ -8,5 +8,4 @@ def create_users
   }.save
 end
 
-
 create_users

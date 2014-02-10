@@ -53,7 +53,7 @@ EmptyLineBetweenDefs:
 # Offence count: 3
 # Cop supports --auto-correct.
 EmptyLines:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 1
 EmptyLinesAroundAccessModifier:
