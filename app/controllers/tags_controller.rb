@@ -4,7 +4,7 @@ class TagsController < ApplicationController
   skip_before_filter :require_signin_permission!, only: :index
   before_filter :authenticate_user!, only: :index, unless: -> { request.xhr? }
   before_filter :require_signin_permission!, only: :index, unless: -> { request.xhr? }
-    
+
   before_filter :authorize_user, only: :index, unless: -> { request.xhr? }
   before_filter :authorize_user, only: [:new, :create, :destroy]
 

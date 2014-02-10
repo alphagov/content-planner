@@ -192,7 +192,7 @@ TrailingBlankLines:
 # Offence count: 3
 # Cop supports --auto-correct.
 TrailingWhitespace:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 1
 # Configuration parameters: ExactNameMatch, AllowPredicates, Whitelist.

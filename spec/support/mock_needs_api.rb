@@ -12,7 +12,7 @@ class MockNeedsApi
   def with_subsequent_pages
     []
   end
-  
+
   def organisations
     []
   end
