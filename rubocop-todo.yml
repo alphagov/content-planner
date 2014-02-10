@@ -24,7 +24,7 @@ AndOr:
 # Offence count: 1
 # Configuration parameters: AllowSafeAssignment.
 AssignmentInCondition:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 11
 # Cop supports --auto-correct.
