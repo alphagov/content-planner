@@ -92,7 +92,7 @@ Lambda:
 # Offence count: 2
 # Cop supports --auto-correct.
 LeadingCommentSpace:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 105
 LineLength:

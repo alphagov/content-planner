@@ -20,7 +20,7 @@ class HomeController < ApplicationController
       whitehall_scope = tag_scope.whitehall
       mainstream_scope = tag_scope.mainstream
 
-      #mainstream published
+      # Mainstream published
       if mainstream_scope.any?
         categories << "#{tag.name} (Mainstream)"
         series.each_with_index do |serie, index|
@@ -28,7 +28,7 @@ class HomeController < ApplicationController
         end
       end
 
-      #Whitehall published
+      # Whitehall published
       if whitehall_scope.any?
         categories << "#{tag.name} (Whitehall)"
         series.each_with_index do |serie, index|
