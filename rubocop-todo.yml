@@ -67,7 +67,7 @@ EmptyLinesAroundBody:
 # Offence count: 2
 # Configuration parameters: AlignWith, SupportedStyles.
 EndAlignment:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 10
 # Cop supports --auto-correct.
