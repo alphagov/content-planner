@@ -14,7 +14,7 @@ AlignHash:
 # Offence count: 10
 # Cop supports --auto-correct.
 AlignParameters:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 4
 # Cop supports --auto-correct.
