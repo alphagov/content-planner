@@ -78,7 +78,7 @@ FinalNewline:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 HashSyntax:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 4
 IndentationWidth:
