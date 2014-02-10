@@ -148,7 +148,7 @@ SpaceAfterComma:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
 SpaceAroundBlockBraces:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 1
 # Cop supports --auto-correct.

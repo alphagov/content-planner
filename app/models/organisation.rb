@@ -42,7 +42,7 @@ class Organisation
   private
   
   def self.load_organisations
-    all_orgs = (need_api.organisations || []).map {|attrs| new(attrs.symbolize_keys) }
+    all_orgs = (need_api.organisations || []).map { |attrs| new(attrs.symbolize_keys) }
     all_orgs.reject { |org| org.exempt? }
   end
 
