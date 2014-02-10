@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
     { user_name: current_user.name } if current_user
   end
 
-  
   rescue_from Pundit::NotAuthorizedError do |e|
     # Layout and view comes from GDS::SSO::ControllerMethods
     render "authorisations/unauthorised", layout: "unauthorised", status: :forbidden, locals: { message: e.message }

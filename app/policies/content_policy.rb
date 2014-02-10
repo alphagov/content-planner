@@ -1,5 +1,4 @@
 class ContentPolicy < Struct.new(:user, :content)
-
   def index?
     true
   end
@@ -17,7 +16,7 @@ class ContentPolicy < Struct.new(:user, :content)
   end
 
   def update?
-    content.whitehall? or user.gds_editor?
+    content.whitehall? || user.gds_editor?
   end
 
   def edit?
@@ -28,4 +27,3 @@ class ContentPolicy < Struct.new(:user, :content)
     user.gds_editor?
   end
 end
-

@@ -37,8 +37,8 @@ class Content < ActiveRecord::Base
 
   validates :title, presence: true
 
-  scope :mainstream, -> { where platform: 'Mainstream' }
-  scope :whitehall,  -> { where platform: 'Whitehall'  }
+  scope :mainstream, -> { where platform: "Mainstream" }
+  scope :whitehall,  -> { where platform: "Whitehall"  }
   scope :organisation, ->(organisation_id) {
     where id: Organisationable.for_content.where(organisation_id: organisation_id).pluck(:organisationable_id) if organisation_id.present?
   }
@@ -74,12 +74,12 @@ class Content < ActiveRecord::Base
     scope = contents.where(platform: platform).tagged_with(tag.name)
     total = scope.sum(:size)
     STATUSES[platform].inject({}) do |hash, status|
-      hash.tap do |hash|
-        hash[status] = if total > 0
+      hash.tap do |new_hash|
+        if total > 0
           sum = scope.where(status: status).sum(:size)
-          ((sum / total.to_f) * 100.0).round(3)
+          new_hash[status] = ((sum / total.to_f) * 100.0).round(3)
         else
-          0
+          new_hash[status] = 0
         end
       end
     end

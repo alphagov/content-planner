@@ -1,4 +1,6 @@
 class Need
+  attr_accessor :data
+
   def self.all
     ContentPlanner.needs_api.needs.with_subsequent_pages.map do |n|
       new(n)
@@ -14,7 +16,7 @@ class Need
   end
 
   def ==(other)
-    other.is_a?(self.class) and other.id == self.id
+    other.is_a?(self.class) && other.id == id
   end
 
   def id
@@ -23,10 +25,6 @@ class Need
 
   def org_names
     @data.organisations.map(&:abbreviation)
-  end
-
-  def data
-    @data
   end
 
   def to_s

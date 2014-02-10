@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   has_many :comments
 
   module Permissions
-    SIGNIN = 'signin'
-    GDS_EDITOR = 'GDS Editor'
+    SIGNIN = "signin"
+    GDS_EDITOR = "GDS Editor"
   end
 
   def to_s
@@ -22,7 +22,8 @@ class User < ActiveRecord::Base
     user_params = GDS::SSO::User.user_params_from_auth_hash(auth_hash.to_hash)
 
     # update details of existing user
-    if user = where(uid: auth_hash["uid"]).first
+    user = where(uid: auth_hash["uid"]).first
+    if user
       user.update_attributes(user_params)
       user
     else # Create a new user.

@@ -68,8 +68,8 @@ ContentPlanner::Application.configure do
 
   # mailer default url options
   config.action_mailer.default_url_options = {
-    :host => URI.parse(Plek.current.find('content-planner')).host,
-    :protocol => 'https'
+    host: URI.parse(Plek.current.find('content-planner')).host,
+    protocol: 'https'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

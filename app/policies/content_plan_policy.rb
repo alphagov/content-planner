@@ -1,5 +1,4 @@
 class ContentPlanPolicy < Struct.new(:user, :content_plan)
-
   def index?
     true
   end
@@ -32,4 +31,3 @@ class ContentPlanPolicy < Struct.new(:user, :content_plan)
     user.gds_editor?
   end
 end
-

@@ -1,7 +1,6 @@
 module ApplicationHelper
-
-  def display_base_errors resource
-    return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
+  def display_base_errors(resource)
+    return "" if (resource.errors.empty?) || (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
     html = <<-HTML
     <div class="alert alert-error alert-block">
@@ -19,7 +18,7 @@ module ApplicationHelper
   def user_needs_links(ids)
     maslow = Plek.current.find("maslow")
     Array.wrap(ids).map do |id|
-      link_to(id, maslow+"/needs/#{id}", target: "_blank")
+      link_to(id, maslow + "/needs/#{id}", target: "_blank")
     end.join(", ").html_safe
   end
 
@@ -27,7 +26,7 @@ module ApplicationHelper
     organisations.map(&:abbreviation_or_name).join ", "
   end
 
-  def collection_links(coll, f_name, f_link, separator = ', ')
+  def collection_links(coll, f_name, f_link, separator = ", ")
     coll.map do |item|
       link_to f_name.call(item),
               f_link.call(item)
@@ -75,9 +74,9 @@ module ApplicationHelper
 
     options = controllers_options.extract_options!
 
-    wrapper_options = if controller_name.in?(controllers_options) or
-                         [ * options[controller_name.to_sym] ].include?(action_name)
-                        {class: 'active'}
+    wrapper_options = if controller_name.in?(controllers_options) ||
+                         [* options[controller_name.to_sym]].include?(action_name)
+                        { class: "active" }
                       end
 
     nav_element(text, url, wrapper_options)

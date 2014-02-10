@@ -21,7 +21,7 @@ class ContentPlansController < ApplicationController
 
   def create
     if content_plan.save
-      redirect_to content_plans_path, notice: 'Content plan was successfully created.'
+      redirect_to content_plans_path, notice: "Content plan was successfully created."
     else
       render :new
     end
@@ -47,17 +47,17 @@ class ContentPlansController < ApplicationController
 
   def content_plan_params
     params.require(:content_plan).permit(:tag_list,
-      :status,
-      :ref_no,
-      :title,
-      :details,
-      :slug,
-      :handover_detailed_guidance,
-      :notes,
-      :due_quarter,
-      :due_year,
-      maslow_need_ids: [],
-      organisation_ids: []
+                                         :status,
+                                         :ref_no,
+                                         :title,
+                                         :details,
+                                         :slug,
+                                         :handover_detailed_guidance,
+                                         :notes,
+                                         :due_quarter,
+                                         :due_year,
+                                         maslow_need_ids: [],
+                                         organisation_ids: []
     )
   end
 

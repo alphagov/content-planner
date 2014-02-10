@@ -1,12 +1,11 @@
 class TagsController < ApplicationController
-
   ## Rails skip_filter with if condition, seems to not work - have to remove add and then re-add.
   skip_before_filter :authenticate_user!,  only: :index
   skip_before_filter :require_signin_permission!, only: :index
-  before_filter :authenticate_user!, only: :index, :unless => lambda {request.xhr?}
-  before_filter :require_signin_permission!, only: :index, :unless => lambda {request.xhr?}
-    
-  before_filter :authorize_user, only: :index, :unless => lambda {request.xhr?}
+  before_filter :authenticate_user!, only: :index, unless: -> { request.xhr? }
+  before_filter :require_signin_permission!, only: :index, unless: -> { request.xhr? }
+
+  before_filter :authorize_user, only: :index, unless: -> { request.xhr? }
   before_filter :authorize_user, only: [:new, :create, :destroy]
 
   def index

@@ -10,6 +10,7 @@ class MakeCommentRelationshipPolymorphic < ActiveRecord::Migration
 
     Comment.update_all commentable_type: "ContentPlan"        # all current comments belong to ContentPlans
   end
+  
   def down
     remove_index :comments, [:commentable_id, :commentable_type]
 
