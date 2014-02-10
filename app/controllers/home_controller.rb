@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
   def dashboard_data
     categories = []
-    series = Content::STATUS.map { |status| {name: status, data: []} }
+    series = Content::STATUS.map { |status| { name: status, data: [] } }
     Content.tag_counts_on(:tags).to_a.sort { |a, b| a.name <=> b.name }.each do |tag|
       # split platforms
 

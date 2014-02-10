@@ -164,7 +164,7 @@ SpaceInsideBrackets:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
 SpaceInsideHashLiteralBraces:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 2
 # Cop supports --auto-correct.

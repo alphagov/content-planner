@@ -76,7 +76,7 @@ module ApplicationHelper
 
     wrapper_options = if controller_name.in?(controllers_options) ||
                          [* options[controller_name.to_sym]].include?(action_name)
-                        {class: 'active'}
+                        { class: 'active' }
                       end
 
     nav_element(text, url, wrapper_options)
