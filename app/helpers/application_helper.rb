@@ -1,6 +1,6 @@
 module ApplicationHelper
   def display_base_errors(resource)
-    return '' if (resource.errors.empty?) || (resource.errors[:base].empty?)
+    return "" if (resource.errors.empty?) || (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
     html = <<-HTML
     <div class="alert alert-error alert-block">
@@ -26,7 +26,7 @@ module ApplicationHelper
     organisations.map(&:abbreviation_or_name).join ", "
   end
 
-  def collection_links(coll, f_name, f_link, separator = ', ')
+  def collection_links(coll, f_name, f_link, separator = ", ")
     coll.map do |item|
       link_to f_name.call(item),
               f_link.call(item)
@@ -76,7 +76,7 @@ module ApplicationHelper
 
     wrapper_options = if controller_name.in?(controllers_options) ||
                          [* options[controller_name.to_sym]].include?(action_name)
-                        { class: 'active' }
+                        { class: "active" }
                       end
 
     nav_element(text, url, wrapper_options)

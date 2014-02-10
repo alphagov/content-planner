@@ -37,8 +37,8 @@ class Content < ActiveRecord::Base
 
   validates :title, presence: true
 
-  scope :mainstream, -> { where platform: 'Mainstream' }
-  scope :whitehall,  -> { where platform: 'Whitehall'  }
+  scope :mainstream, -> { where platform: "Mainstream" }
+  scope :whitehall,  -> { where platform: "Whitehall"  }
   scope :organisation, ->(organisation_id) {
     where id: Organisationable.for_content.where(organisation_id: organisation_id).pluck(:organisationable_id) if organisation_id.present?
   }

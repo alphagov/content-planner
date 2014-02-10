@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   has_many :comments
 
   module Permissions
-    SIGNIN = 'signin'
-    GDS_EDITOR = 'GDS Editor'
+    SIGNIN = "signin"
+    GDS_EDITOR = "GDS Editor"
   end
 
   def to_s

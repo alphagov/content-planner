@@ -1,7 +1,9 @@
 AllCops:
   Includes:
     - config.ru
+    - Gemfile
   Excludes:
+    - bin/**
     - db/**
     - config/**
     - script/**
@@ -175,7 +177,8 @@ SpaceInsideParens:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 StringLiterals:
-  Enabled: false
+  Enabled: true
+  EnforcedStyle: double_quotes
 
 # Offence count: 1
 Tab:
