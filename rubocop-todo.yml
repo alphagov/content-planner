@@ -86,7 +86,8 @@ IndentationWidth:
 
 # Offence count: 6
 Lambda:
-  Enabled: false
+  Enabled: true
+  Severity: convention
 
 # Offence count: 2
 # Cop supports --auto-correct.
