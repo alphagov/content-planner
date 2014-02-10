@@ -158,7 +158,7 @@ SpaceAroundOperators:
 # Offence count: 3
 # Cop supports --auto-correct.
 SpaceInsideBrackets:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 9
 # Cop supports --auto-correct.

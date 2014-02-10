@@ -75,7 +75,7 @@ module ApplicationHelper
     options = controllers_options.extract_options!
 
     wrapper_options = if controller_name.in?(controllers_options) ||
-                         [ * options[controller_name.to_sym] ].include?(action_name)
+                         [* options[controller_name.to_sym]].include?(action_name)
                         {class: 'active'}
                       end
 

@@ -3,9 +3,9 @@ require "spec_helper"
 describe CommentMailer do
   describe "deliveries" do
     before do
-      @users = [ create(:user),
-                 create(:user),
-                 create(:user)]
+      @users = [create(:user),
+                create(:user),
+                create(:user)]
     end
     it "should deliver a notification to all users that belong to a content except the user that commented" do
       content = create :content
