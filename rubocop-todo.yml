@@ -111,7 +111,7 @@ MethodLength:
 
 # Offence count: 2
 MultilineBlockChain:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 1
 # Cop supports --auto-correct.

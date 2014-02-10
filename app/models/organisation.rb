@@ -42,9 +42,8 @@ class Organisation
   private
   
   def self.load_organisations
-    (need_api.organisations || []).map {|attrs|
-      self.new(attrs.symbolize_keys)
-    }.reject { |org| org.exempt? }.sort { |a,b| a.parent_ids.count <=> b.parent_ids.count }
+    all_orgs = (need_api.organisations || []).map {|attrs| self.new(attrs.symbolize_keys) }
+    all_orgs.reject { |org| org.exempt? }
   end
 
   def self.need_api
