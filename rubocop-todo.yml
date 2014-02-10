@@ -82,7 +82,7 @@ HashSyntax:
 
 # Offence count: 4
 IndentationWidth:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 6
 Lambda:

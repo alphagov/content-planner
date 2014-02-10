@@ -75,11 +75,11 @@ class Content < ActiveRecord::Base
     total = scope.sum(:size)
     STATUSES[platform].inject({}) do |hash, status|
       hash.tap do |hash|
-        hash[status] = if total > 0
+        if total > 0
           sum = scope.where(status: status).sum(:size)
-          ((sum / total.to_f) * 100.0).round(3)
+          hash[status] = ((sum / total.to_f) * 100.0).round(3)
         else
-          0
+          hash[status] = 0
         end
       end
     end
