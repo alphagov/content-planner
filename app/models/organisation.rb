@@ -40,6 +40,7 @@ class Organisation
   end
 
   private
+  
   def self.load_organisations
     (need_api.organisations || []).map {|attrs|
       self.new(attrs.symbolize_keys)

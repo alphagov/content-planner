@@ -57,7 +57,7 @@ EmptyLines:
 
 # Offence count: 1
 EmptyLinesAroundAccessModifier:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 11
 # Cop supports --auto-correct.
