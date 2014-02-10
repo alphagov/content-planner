@@ -130,7 +130,7 @@ RedundantSelf:
 
 # Offence count: 1
 ShadowingOuterLocalVariable:
-  Enabled: false
+  Enabled: true
 
 # Offence count: 4
 # Cop supports --auto-correct.
