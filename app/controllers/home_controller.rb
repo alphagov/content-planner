@@ -17,7 +17,7 @@ class HomeController < ApplicationController
       # split platforms
 
       tag_scope = Content.tagged_with(tag.name)
-      whitehall_scope = tag_scope.whitehall
+      specialist_scope = tag_scope.specialist
       mainstream_scope = tag_scope.mainstream
 
       # Mainstream published
@@ -28,11 +28,11 @@ class HomeController < ApplicationController
         end
       end
 
-      # Whitehall published
-      if whitehall_scope.any?
-        categories << "#{tag.name} (Whitehall)"
+      # Specialist published
+      if specialist_scope.any?
+        categories << "#{tag.name} (Specialist)"
         series.each_with_index do |serie, index|
-          series[index][:data] << whitehall_scope.where(status: serie[:name]).sum("size")
+          series[index][:data] << specialist_scope.where(status: serie[:name]).sum("size")
         end
       end
     end

@@ -52,7 +52,7 @@ class ContentPlan < ActiveRecord::Base
     contents_status = contents.map(&:status).uniq
     i = contents_status.map do |st|
       Content::STATUS.index(st)
-    end.max
+    end.min
     i.nil? ? Content::STATUS.first : Content::STATUS[i]
   end
 

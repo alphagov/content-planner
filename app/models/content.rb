@@ -3,10 +3,10 @@ class Content < ActiveRecord::Base
 
   acts_as_taggable
 
-  PLATFORMS = ["Mainstream", "Whitehall"]
+  PLATFORMS = ["Mainstream", "Specialist"]
 
   STATUSES = {
-    "Whitehall" => [
+    "Specialist" => [
       "Not started",
       "Drafting",
       "2i",
@@ -38,7 +38,7 @@ class Content < ActiveRecord::Base
   validates :title, presence: true
 
   scope :mainstream, -> { where platform: "Mainstream" }
-  scope :whitehall,  -> { where platform: "Whitehall"  }
+  scope :specialist,  -> { where platform: "Specialist"  }
   scope :organisation, ->(organisation_id) {
     where id: Organisationable.for_content.where(organisation_id: organisation_id).pluck(:organisationable_id) if organisation_id.present?
   }
@@ -58,8 +58,8 @@ class Content < ActiveRecord::Base
     content_needs.any? ? content_needs.map(&:need_id) : nil
   end
 
-  def whitehall?
-    platform == "Whitehall"
+  def specialist?
+    platform == "Specialist"
   end
 
   def to_s

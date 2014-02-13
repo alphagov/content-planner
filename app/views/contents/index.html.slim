@@ -45,7 +45,7 @@
           td
             = link_to content.title, content
           td
-            = content.description
+            = content.description.truncate(80) if content.description
           td
             = content.size
           td

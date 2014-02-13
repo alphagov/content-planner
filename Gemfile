@@ -32,6 +32,7 @@ gem "logstasher", "0.4.1"
 gem "aws-ses", require: "aws/ses" # Needed by exception_notification
 gem "exception_notification"
 gem "highcharts-rails", "~> 3.0.0"
+gem "dullard"
 
 group :development do
   gem "rubocop"

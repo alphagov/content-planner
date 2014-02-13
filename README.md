@@ -32,7 +32,9 @@ Setup for development
   ```
   bundle
 
-  bundle exec rake db:create db:migrate
+  bundle exec rake db:create db:schema:load db:seed
+
+  bundle exec rake content_plans:import DATA_FILE=db/hmrc-plans.xlsx
 
   ./startup.sh
   ```

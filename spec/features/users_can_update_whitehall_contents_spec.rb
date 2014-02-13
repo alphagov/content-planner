@@ -1,15 +1,15 @@
 require "spec_helper"
 
-feature "Users can update whitehall contents" do
+feature "Users can update Specialist contents" do
   before do
     user = build :user
     user.permissions = [User::Permissions::SIGNIN]
     user.save
   end
 
-  describe "Can update content if it belongs to Whitehall" do
+  describe "Can update content if it belongs to Specialist" do
     before do
-      content = create :content, platform: "Whitehall"
+      content = create :content, platform: "Specialist"
       visit content_path(content)
       click_on "edit"
     end
@@ -28,7 +28,7 @@ feature "Users can update whitehall contents" do
     #   page.should_not have_content("Mainstream")
     # end
   end
-  describe "Can't update content if it doesn't belong to Whitehall" do
+  describe "Can't update content if it doesn't belong to Specialist" do
     before do
       @content = create :content, platform: "Mainstream"
     end
