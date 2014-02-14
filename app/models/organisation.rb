@@ -12,7 +12,7 @@ class Organisation
   end
 
   def exempt?
-    @govuk_status == "exempt"
+    @govuk_status == 'exempt'
   end
 
   def abbreviation_or_name

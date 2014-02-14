@@ -1,6 +1,6 @@
 module ApplicationHelper
   def display_base_errors(resource)
-    return "" if (resource.errors.empty?) || (resource.errors[:base].empty?)
+    return '' if (resource.errors.empty?) || (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
     html = <<-HTML
     <div class="alert alert-error alert-block">
@@ -16,17 +16,17 @@ module ApplicationHelper
   end
 
   def user_needs_links(ids)
-    maslow = Plek.current.find("maslow")
+    maslow = Plek.current.find('maslow')
     Array.wrap(ids).map do |id|
-      link_to(id, maslow + "/needs/#{id}", target: "_blank")
-    end.join(", ").html_safe
+      link_to(id, maslow + "/needs/#{id}", target: '_blank')
+    end.join(', ').html_safe
   end
 
   def content_organisations(organisations)
-    organisations.map(&:abbreviation_or_name).join ", "
+    organisations.map(&:abbreviation_or_name).join ', '
   end
 
-  def collection_links(coll, f_name, f_link, separator = ", ")
+  def collection_links(coll, f_name, f_link, separator = ', ')
     coll.map do |item|
       link_to f_name.call(item),
               f_link.call(item)
@@ -47,13 +47,13 @@ module ApplicationHelper
   end
 
   def breadcrumb(*links)
-    content_tag :ul, class: "breadcrumb" do
+    content_tag :ul, class: 'breadcrumb' do
       raw(links.map { |link|
-        content_tag :li, class: "active" do
+        content_tag :li, class: 'active' do
           if link.class == String
             link
           else
-            link_to(link.first, link.last) + content_tag(:span, "/", class: "divider")
+            link_to(link.first, link.last) + content_tag(:span, '/', class: 'divider')
           end
         end
       }.join)
@@ -76,7 +76,7 @@ module ApplicationHelper
 
     wrapper_options = if controller_name.in?(controllers_options) ||
                          [* options[controller_name.to_sym]].include?(action_name)
-                        { class: "active" }
+                        { class: 'active' }
                       end
 
     nav_element(text, url, wrapper_options)

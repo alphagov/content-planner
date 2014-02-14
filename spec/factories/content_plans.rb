@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :content_plan do
-    ref_no "MyString"
-    title "MyString"
-    details "MyText"
-    notes "MyText"
+    ref_no 'MyString'
+    title 'MyString'
+    details 'MyText'
+    notes 'MyText'
   end
 end

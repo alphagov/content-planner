@@ -145,7 +145,6 @@ SpaceInsideParens:
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 StringLiterals:
   Enabled: true
-  EnforcedStyle: double_quotes
 
 Tab:
   Enabled: true

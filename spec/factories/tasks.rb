@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :task do
-    title "MyString"
+    title 'MyString'
   end
 end

@@ -3,25 +3,25 @@ class Content < ActiveRecord::Base
 
   acts_as_taggable
 
-  PLATFORMS = ["Mainstream", "Specialist"]
+  PLATFORMS = ['Mainstream', 'Specialist']
 
   STATUSES = {
-    "Specialist" => [
-      "Not started",
-      "Drafting",
-      "2i",
-      "Amends",
-      "Ready for publish",
-      "Live"
+    'Specialist' => [
+      'Not started',
+      'Drafting',
+      '2i',
+      'Amends',
+      'Ready for publish',
+      'Live'
     ],
-    "Mainstream" => [
-      "Not started",
-      "Drafting",
-      "GDS 2i",
-      "Amends",
-      "Factcheck",
-      "Ready for publish",
-      "Live"
+    'Mainstream' => [
+      'Not started',
+      'Drafting',
+      'GDS 2i',
+      'Amends',
+      'Factcheck',
+      'Ready for publish',
+      'Live'
     ]
   }
   STATUS = STATUSES.values.flatten.uniq
@@ -37,8 +37,8 @@ class Content < ActiveRecord::Base
 
   validates :title, presence: true
 
-  scope :mainstream, -> { where platform: "Mainstream" }
-  scope :specialist,  -> { where platform: "Specialist"  }
+  scope :mainstream, -> { where platform: 'Mainstream' }
+  scope :specialist,  -> { where platform: 'Specialist'  }
   scope :organisation, ->(organisation_id) {
     where id: Organisationable.for_content.where(organisation_id: organisation_id).pluck(:organisationable_id) if organisation_id.present?
   }
@@ -59,7 +59,7 @@ class Content < ActiveRecord::Base
   end
 
   def specialist?
-    platform == "Specialist"
+    platform == 'Specialist'
   end
 
   def to_s
@@ -67,9 +67,9 @@ class Content < ActiveRecord::Base
   end
 
   def self.percentages_for(options)
-    tag = options.fetch(:tag) { raise ArgumentError.new("#percentages_for expects tag: as part of options hash") }
-    platform = options.fetch(:platform) { raise ArgumentError.new("#percentages_for expects platform: as part of options hash") }
-    contents = options.fetch(:contents) { raise ArgumentError.new("#percentages_for expecs contents: as part of options hash") }
+    tag = options.fetch(:tag) { raise ArgumentError.new('#percentages_for expects tag: as part of options hash') }
+    platform = options.fetch(:platform) { raise ArgumentError.new('#percentages_for expects platform: as part of options hash') }
+    contents = options.fetch(:contents) { raise ArgumentError.new('#percentages_for expecs contents: as part of options hash') }
 
     scope = contents.where(platform: platform).tagged_with(tag.name)
     total = scope.sum(:size)

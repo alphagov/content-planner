@@ -19,7 +19,7 @@ class ContentsController < ApplicationController
 
   def create
     if content.save
-      redirect_to content_path(content), notice: "Content was successfully created."
+      redirect_to content_path(content), notice: 'Content was successfully created.'
     else
       render :new
     end

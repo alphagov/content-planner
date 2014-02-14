@@ -24,7 +24,7 @@ class HomeController < ApplicationController
       if mainstream_scope.any?
         categories << "#{tag.name} (Mainstream)"
         series.each_with_index do |serie, index|
-          series[index][:data] << mainstream_scope.where(status: serie[:name]).sum("size")
+          series[index][:data] << mainstream_scope.where(status: serie[:name]).sum('size')
         end
       end
 
@@ -32,7 +32,7 @@ class HomeController < ApplicationController
       if specialist_scope.any?
         categories << "#{tag.name} (Specialist)"
         series.each_with_index do |serie, index|
-          series[index][:data] << specialist_scope.where(status: serie[:name]).sum("size")
+          series[index][:data] << specialist_scope.where(status: serie[:name]).sum('size')
         end
       end
     end

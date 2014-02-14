@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
-feature "Content Plan management" do
+feature 'Content Plan management' do
 
   before do
     user = build(:user)
@@ -8,17 +8,17 @@ feature "Content Plan management" do
     user.save
   end
 
-  scenario "creating a Content Plan" do
+  scenario 'creating a Content Plan' do
 
     visit new_content_plan_path
 
-    fill_in "Title", with: "Some title"
-    fill_in "Ref no", with: "X"
+    fill_in 'Title', with: 'Some title'
+    fill_in 'Ref no', with: 'X'
 
-    click_button "Create Content plan"
+    click_button 'Create Content plan'
 
-    expect(page).to have_text("Content plan was successfully created.")
-    expect(page).to have_text("Some title")
-    expect(page).to have_text("X")
+    expect(page).to have_text('Content plan was successfully created.')
+    expect(page).to have_text('Some title')
+    expect(page).to have_text('X')
   end
 end
