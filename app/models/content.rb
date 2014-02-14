@@ -43,6 +43,11 @@ class Content < ActiveRecord::Base
     where id: Organisationable.for_content.where(organisation_id: organisation_id).pluck(:organisationable_id) if organisation_id.present?
   }
 
+  # Caching
+  before_save do
+    content_plans.each { |record| record.touch }
+  end
+
   def maslow_need_ids
     content_needs.map(&:need_id)
   end

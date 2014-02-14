@@ -38,18 +38,19 @@
       th Status
       th Due
       - content_plans.each do |content_plan|
-        tr
-          td
-            = content_plan.size
-          td
-            = content_organisations content_plan.organisations
-          td
-            = link_to content_plan.name, content_plan
-          td
-            = user_needs_links content_plan.need_ids
-          td
-            = content_plan_tag_filters content_plan.tag_list
-          td
-            = content_plan.status
-          td
-            = content_plan.due_date
+        - cache(content_plan) do 
+          tr
+            td
+              = content_plan.size
+            td
+              = content_organisations content_plan.organisations
+            td
+              = link_to content_plan.name, content_plan
+            td
+              = user_needs_links content_plan.need_ids
+            td
+              = content_plan_tag_filters content_plan.tag_list
+            td
+              = content_plan.status
+            td
+              = content_plan.due_date

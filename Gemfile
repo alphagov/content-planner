@@ -40,6 +40,8 @@ group :development do
   gem "binding_of_caller"
   gem "quiet_assets"
   gem "capistrano"
+  gem "rack-mini-profiler"
+  gem "bullet"
 end
 
 group :development, :test do

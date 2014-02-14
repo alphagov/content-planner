@@ -13,6 +13,10 @@ ContentPlanner::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  # Caching testing
+  # config.cache_store = :memory_store
+  # config.action_controller.perform_caching = true
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -33,4 +37,10 @@ ContentPlanner::Application.configure do
 
   # mailer default url options
   config.action_mailer.default_url_options = { host: "http://10.1.1.254:3058/" }
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+  end
 end

@@ -7,19 +7,6 @@ class ContentPlan < ActiveRecord::Base
   QUARTERS = 1..4
   YEARS = Time.now.year..(Time.now + 2.years).year
 
-  validates :title, presence: true
-  validates :ref_no, presence: true
-
-  scope :due_date, ->(quarter, year) {
-    scope = all
-    scope = scope.where(due_quarter: quarter) if quarter.present?
-    scope = scope.where(due_year: year) if year.present?
-    scope
-  }
-  scope :contents, -> {
-    Content.where id: all.map(&:content_plan_contents).flatten.map(&:content_id).uniq
-  }
-
   has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 
@@ -27,6 +14,25 @@ class ContentPlan < ActiveRecord::Base
 
   has_many :content_plan_contents, dependent: :destroy
   has_many :contents, through: :content_plan_contents
+
+  scope :due_date, ->(quarter, year) {
+    scope = all
+    scope = scope.where(due_quarter: quarter) if quarter.present?
+    scope = scope.where(due_year: year) if year.present?
+    scope
+  }
+
+  scope :contents, -> {
+    Content.where id: all.map(&:content_plan_contents).flatten.map(&:content_id)
+  }
+
+  validates :title, presence: true
+  validates :ref_no, presence: true
+
+  # Caching
+  before_save do
+    contents.each { |record| record.touch }
+  end
 
   def name
     "#{ref_no} - #{title}"

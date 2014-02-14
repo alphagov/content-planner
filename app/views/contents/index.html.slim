@@ -39,24 +39,25 @@
       th Content Plans
       th Content Users
       - contents.each do |content|
-        tr
-          td
-            = content_organisations content.organisations
-          td
-            = link_to content.title, content
-          td
-            = content.description.truncate(80) if content.description
-          td
-            = content.size
-          td
-            = content.platform
-          td
-            = content.status
-          td
-            = user_needs_links content.need_ids
-          td
-            = content_tag_filters content.tag_list
-          td
-            = conent_plan_links content.content_plans
-          td
-            = conent_user_links content.users
+        - cache(content)
+          tr
+            td
+              = content_organisations content.organisations
+            td
+              = link_to content.title, content
+            td
+              = content.description.truncate(80) if content.description
+            td
+              = content.size
+            td
+              = content.platform
+            td
+              = content.status
+            td
+              = user_needs_links content.need_ids
+            td
+              = content_tag_filters content.tag_list
+            td
+              = conent_plan_links content.content_plans
+            td
+              = conent_user_links content.users
