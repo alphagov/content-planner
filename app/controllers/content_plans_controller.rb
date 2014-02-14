@@ -21,7 +21,7 @@ class ContentPlansController < ApplicationController
 
   def create
     if content_plan.save
-      redirect_to content_plans_path, notice: 'Content plan was successfully created.'
+      redirect_to content_plans_path, notice: "Content plan was successfully created."
     else
       render :new
     end

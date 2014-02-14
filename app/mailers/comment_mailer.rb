@@ -1,5 +1,5 @@
 class CommentMailer < ActionMailer::Base
-  default from: 'DO NOT REPLY <content-planner@digital.cabinet-office.gov.uk>'
+  default from: "DO NOT REPLY <content-planner@digital.cabinet-office.gov.uk>"
 
   def notify_user(comment, user)
     @comment = comment

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 feature "Make it more obious when you're looking at a content plan vs content" do
 
@@ -8,16 +8,16 @@ feature "Make it more obious when you're looking at a content plan vs content" d
     user.save
   end
 
-  describe 'Content plans is active' do
-    scenario 'index' do
+  describe "Content plans is active" do
+    scenario "index" do
       visit content_plans_path
       expect_content_plans_to_be_active
     end
-    scenario 'new' do
+    scenario "new" do
       visit new_content_plan_path
       expect_content_plans_to_be_active
     end
-    scenario 'edit' do
+    scenario "edit" do
       content_plan = create :content_plan
       visit edit_content_plan_path(content_plan)
       expect_content_plans_to_be_active

@@ -1,4 +1,4 @@
-require 'dullard'
+require "dullard"
 
 class ImportContentPlans
   def initialize(file_path)
@@ -15,7 +15,7 @@ class ImportContentPlans
       tag = create_tag(sheet.name)
 
       content_plan = create_content_plan(sheet, tag)
-
+      
       sheet.rows.each_with_index do |row, i|
         create_content(row, content_plan, tag) unless i == 0
       end
@@ -36,14 +36,14 @@ class ImportContentPlans
 
   def extract_status(status)
     return nil unless status
-    if status.match('Done')
-      'Live'
-    elsif status.match('In progress')
-      'Drafting'
-    elsif status.match('Not started')
-      'Not started'
+    if status.match("Done")
+      "Live"
+    elsif status.match("In progress")
+      "Drafting"
+    elsif status.match("Not started")
+      "Not started"
     else
-      'Not started'
+      "Not started"
     end
   end
 
@@ -57,7 +57,7 @@ class ImportContentPlans
         5
       elsif size.match('Small')
         3
-      elsif size.match('Tweak')
+      elsif size.match('Tweak')      
         2
       else
         nil
@@ -66,17 +66,17 @@ class ImportContentPlans
   end
 
   def extract_content_type(content_type)
-    type = content_type || ''
+    type = content_type || ""
     type.truncate(255)
   end
 
   def extract_url(url)
-    u = url || ''
+    u = url || ""
     u.truncate(255)
   end
 
   def extract_title(title)
-    t = title || ''
+    t = title || ""
     t.truncate(255)
   end
 
