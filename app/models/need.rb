@@ -1,7 +1,12 @@
 class Need
+  cattr_writer :needs
   attr_accessor :data
 
   def self.all
+    @@needs ||= load_needs
+  end
+
+  def self.load_needs
     ContentPlanner.needs_api.needs.with_subsequent_pages.map do |n|
       new(n)
     end.compact

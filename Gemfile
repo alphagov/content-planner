@@ -33,6 +33,8 @@ gem "aws-ses", require: "aws/ses" # Needed by exception_notification
 gem "exception_notification"
 gem "highcharts-rails", "~> 3.0.0"
 gem "dullard"
+gem "roo", github: "Empact/roo"
+gem "google-spreadsheet-ruby"
 
 group :development do
   gem "rubocop"

@@ -1,23 +1,20 @@
-require "dullard"
+require 'roo'
 
 class ImportContentPlans
   def initialize(file_path)
-    @file_path = Pathname.new(file_path)
-
-    raise ArgumentError.new("#{file_path} does not exist") unless @file_path.exist?
+    @file_path = file_path
   end
 
   def import
-    workbook = Dullard::Workbook.new @file_path
+    xls = Roo::Spreadsheet.open(@file_path)
+    xls.each_with_pagename do |name, sheet|
+      next if name.match('_drop downs_')
 
-    workbook.sheets.each do |sheet|
-      next if sheet.name.match('p downs')
-      tag = create_tag(sheet.name)
-
-      content_plan = create_content_plan(sheet, tag)
-      
-      sheet.rows.each_with_index do |row, i|
-        create_content(row, content_plan, tag) unless i == 0
+      tag = create_tag(name)
+      content_plan = create_content_plan(name, tag)
+      # First row is a heading
+      (2..sheet.last_row).each do |n|
+        create_content(sheet.row(n), content_plan, tag, n)
       end
     end
   end
@@ -35,7 +32,7 @@ class ImportContentPlans
   end
 
   def extract_status(status)
-    return nil unless status
+    return "Not started" if status.blank?
     if status.match("Done")
       "Live"
     elsif status.match("In progress")
@@ -80,30 +77,52 @@ class ImportContentPlans
     t.truncate(255)
   end
 
-  def create_content(row, content_plan, tag)
+  def extract_description(row)
+    new_line = "\n\n"
+    basic = [
+      row[5],
+      new_line,
+      row[6],
+      new_line,
+      row[9],
+      new_line
+    ]
+
+    source_url = ["## Source URL", new_line, row[10]]
+
+    if row[10].present?
+      basic << source_url
+    end
+
+    basic.join(" ")
+  end
+
+  def create_content(row, content_plan, tag, n)
+    return if row.compact.empty?
     content_hash = {
       platform: row[0],
       size: extract_size(row[1]),
       status: extract_status(row[2]),
       title: extract_title(row[4]),
-      description: "#{row[5]} \n\n #{row[6]} \n\n ### Source URL \n\n #{row[9]}",
+      description: extract_description(row),
       url: extract_url(row[7]),
       content_type: extract_content_type(row[8]),
       organisation_ids: ['hm-revenue-customs']
     }
 
-    content = Content.create(content_hash)
-    content.maslow_need_ids = extract_need_id(row[10])
+    content = Content.create!(content_hash)
+
+    content.maslow_need_ids = extract_need_id(row[11])
     content.tag_list = tag
     content.content_plans << content_plan
     content.save
   end
 
-  def create_content_plan(sheet, tag)
+  def create_content_plan(name, tag)
     # name e.g. '1 - PAYE'
-    title = sheet.name.match(/-(.*)/)[0][2..-1]
-    ref_no = sheet.name.match(/\d{1,2}/)[0]
-    plan = ContentPlan.create(title: title, ref_no: ref_no, organisation_ids: ['hm-revenue-customs'])
+    title = name.match(/-(.*)/)[0][2..-1]
+    ref_no = name.match(/\d{1,2}/)[0]
+    plan = ContentPlan.create!(title: title, ref_no: ref_no, organisation_ids: ['hm-revenue-customs'])
     plan.tag_list = tag.name
     plan.save
     plan

@@ -42,8 +42,16 @@ class Organisation
   private
 
   def self.load_organisations
-    all_orgs = (need_api.organisations || []).map { |attrs| new(attrs.symbolize_keys) }
+    all_orgs = orgs_from_api.map { |attrs| new(attrs.symbolize_keys) }
     all_orgs.reject { |org| org.exempt? }
+  end
+
+  def self.orgs_from_api
+    begin
+      need_api.organisations
+    rescue GdsApi::HTTPErrorResponse #Needs API is down
+      []
+    end
   end
 
   def self.need_api
