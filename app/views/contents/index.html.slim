@@ -29,6 +29,7 @@
 
     table.table
       th Org
+      th Content Plans
       th Title
       th Description
       th Size
@@ -36,13 +37,14 @@
       th Status
       th User Needs
       th Tags
-      th Content Plans
       th Content Users
       - contents.each do |content|
         - cache(content)
           tr
             td
               = content_organisations content.organisations
+            td
+              = conent_plan_links content.content_plans
             td
               = link_to content, content
             td
@@ -57,7 +59,5 @@
               = user_needs_links content.need_ids
             td
               = content_tag_filters content.tag_list
-            td
-              = conent_plan_links content.content_plans
             td
               = conent_user_links content.users

@@ -44,6 +44,7 @@ class ContentsController < ApplicationController
     if current_user.gds_editor?
       params.require(:content)
             .permit(
+        :ref_no,
         :title,
         :description,
         :url,
@@ -61,6 +62,7 @@ class ContentsController < ApplicationController
     else
       params.require(:content)
             .permit(
+        :ref_no,
         :title,
         :description,
         :url,
