@@ -90,7 +90,7 @@ class ImportContentPlans
       new_line
     ]
 
-    source_url = ["#### Source URL", new_line, row[11]]
+    source_url = [new_line, "#### Source URL", new_line, row[11]]
 
     if row[11].present?
       basic << source_url
