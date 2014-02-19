@@ -1,5 +1,5 @@
 require 'roo'
-
+require 'pry'
 class ImportContentPlans
   def initialize(file_path)
     @file_path = file_path
@@ -78,23 +78,25 @@ class ImportContentPlans
   end
 
   def extract_description(row)
-    new_line = "\n\n"
+    new_line = "\n"
     basic = [
       row[5],
       new_line,
       row[6],
       new_line,
-      row[9],
+      row[7],
+      new_line,
+      row[10],
       new_line
     ]
 
-    source_url = ["## Source URL", new_line, row[10]]
+    source_url = ["#### Source URL", new_line, row[11]]
 
-    if row[10].present?
+    if row[11].present?
       basic << source_url
     end
 
-    basic.join(" ")
+    basic.join
   end
 
   def create_content(row, content_plan, tag, n)
@@ -106,8 +108,8 @@ class ImportContentPlans
       ref_no: row[3],
       title: extract_title(row[4]),
       description: extract_description(row),
-      url: extract_url(row[7]),
-      content_type: extract_content_type(row[8]),
+      url: extract_url(row[8]),
+      content_type: extract_content_type(row[9]),
       organisation_ids: ['hm-revenue-customs']
     }
 
