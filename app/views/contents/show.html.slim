@@ -5,16 +5,14 @@
 .row
   .span12
     h2
-      = content.title
+      = content
 
   .span12
     = govspeak content.description
 
   .span6
     h4 Organisations
-    ul
-      - content.organisations.each do |organisation|
-        li = organisation.name_with_abbreviation
+    = content_organisations content.organisations
     h4 Url
     = content.url
     h4 Platform

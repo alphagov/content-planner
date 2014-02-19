@@ -68,7 +68,7 @@ class Content < ActiveRecord::Base
   end
 
   def to_s
-    title
+    "#{ref_no} #{title}"
   end
 
   def self.percentages_for(options)

@@ -1,6 +1,7 @@
 .form-margin.well
   = simple_form_for content,
                     html: { class: 'form-horizontal form-container' } do |f|
+    = f.input :ref_no
     = f.input :title
     = f.input :description
     = f.input :url, as: :string

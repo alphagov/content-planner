@@ -103,6 +103,7 @@ class ImportContentPlans
       platform: row[0],
       size: extract_size(row[1]),
       status: extract_status(row[2]),
+      ref_no: row[3],
       title: extract_title(row[4]),
       description: extract_description(row),
       url: extract_url(row[7]),
