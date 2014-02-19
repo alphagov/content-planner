@@ -1,0 +1,15 @@
+= breadcrumb ["Tags", tags_path], "Edit"
+
+.container-fluid
+  .row-fluid
+    .span12
+      h2 Edit Tag
+      .form-margin.well
+        = simple_form_for @tag, url: tag_path, as: :tag,
+                    html: { class: 'form-horizontal form-container' } do |f|
+          = f.input :name, as: :string, input_html: {class: "span4"}
+          .control-group
+            .controls
+              = f.button :submit, "Edit Tag", class: 'btn-success'
+
+

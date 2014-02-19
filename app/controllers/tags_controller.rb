@@ -37,6 +37,19 @@ class TagsController < ApplicationController
     redirect_to tags_path
   end
 
+  def edit
+    @tag = ActsAsTaggableOn::Tag.find(params[:id])
+  end
+
+  def update
+    @tag = ActsAsTaggableOn::Tag.find(params[:id])
+    name = params[:tag][:name]
+    downcase_name = name.strip.mb_chars.downcase.to_s
+    @tag.name = downcase_name
+    @tag.save!
+    redirect_to tags_path
+  end
+
   def destroy
     ActsAsTaggableOn::Tag.destroy(params[:id])
     redirect_to tags_path
