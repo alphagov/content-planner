@@ -23,6 +23,7 @@ module ApplicationHelper
   end
 
   def content_organisations(organisations)
+    return if organisations.compact.empty?
     organisations.map(&:abbreviation_or_name).join ", "
   end
 
