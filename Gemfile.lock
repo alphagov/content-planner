@@ -353,6 +353,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   logstasher (= 0.4.1)
+  lrucache (= 0.1.4)
   mysql2
   paper_trail (>= 3.0.0.rc1)
   plek (>= 1.0.0)

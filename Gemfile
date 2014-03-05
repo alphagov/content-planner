@@ -28,6 +28,7 @@ gem "gds-sso", "7.0.0", github: "alphagov/gds-sso"
 gem "gds-api-adapters", "7.20.0"
 gem "pundit"
 gem "logstasher", "0.4.1"
+gem "lrucache", "0.1.4"
 
 gem "aws-ses", require: "aws/ses" # Needed by exception_notification
 gem "exception_notification"
