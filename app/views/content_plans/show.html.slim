@@ -8,49 +8,51 @@
   .span12
     h2
       = content_plan.name
-    table.table
-      tr
-        th Size
-        th User Needs
-        th Tags
-        th Status
-        th Due
-      tr
-        td
-          = content_plan.size
-        td
-          = user_needs_links content_plan.need_ids
-        td
-          = content_plan_tag_filters content_plan.tag_list
-        td
-          = content_plan.status
-        td
-          = content_plan.due_date
+    dl.metadata
+      dt Size:
+      dd 
+        = content_plan.size
+      dt User Needs:
+      dd
+        = user_needs_links content_plan.need_ids
+      dt Tags:
+      dd
+        = content_plan_tag_filters content_plan.tag_list
+      dt Status:
+      dd
+        = content_plan.status
+      dt Due:
+      dd
+        = content_plan.due_date
+
   .span6
-    h4 Organisations
-    ul
-      - content_plan.organisations.each do |organisation|
-        li = organisation.abbreviation_or_name
-    
-    h4 Details
     = govspeak content_plan.details
+
+    - if content_plan.notes.present?
+      h4 Notes
+      = govspeak content_plan.notes
 
     h4
       | Content
       = link_to "Add content", new_content_path(content_plan_id: content_plan.id), class: "btn btn-mini contents-btn"
-    ul
-      - content_plan.contents.each do |content|
-        li
-          = link_to content.title, content
-          |
-          = "(#{content.size})"
-          |
-          = "[#{content.status}]"
-          |
-          = link_to "[#{content.platform}]", content.url, rel: "external", target: "_blank"
+    table.table
+      thead
+        th.title Title
+        th.size Size
+        th.status Status
+        th.platform Platform
+      tbody
+        - content_plan.contents.each do |content|
+            tr
+              td
+                = link_to content.title, content
+              td
+                = content.size
+              td
+                = content.status
+              td
+                = link_to content.platform, content.url, rel: "external", target: "_blank"
 
-    h4 Notes
-    = govspeak content_plan.notes
 
   .span6
     h4
