@@ -1,7 +1,7 @@
 class ContentPlansController < ApplicationController
   expose_decorated(:content_plan, attributes: :content_plan_params)
   expose_decorated(:content_plans) {
-    ContentPlanSearch.new(params[:search]).results.page(params[:page])
+    ContentPlanSearch.new(params[:search]).results.order(:ref_no).page(params[:page])
   }
   expose(:comment) {
     current_user.comments.build(commentable: content_plan)

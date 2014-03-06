@@ -1,7 +1,35 @@
+require "lrucache"
+
 class Organisation
   cattr_writer :organisations
 
   attr_reader :id, :name, :abbreviation, :parent_ids, :govuk_status
+
+  def self.cache
+    @cache ||= LRUCache.new(soft_ttl: 1.day, ttl: 2.days)
+  end
+
+  def self.reset_cache
+    @cache = nil
+  end
+
+  def self.cache_fetch(key)
+    inner_exception = nil
+    cache.fetch(key) do
+      begin
+        yield
+      rescue GdsApi::BaseError => e
+        inner_exception = e
+        raise RuntimeError.new("use_stale_value")
+      end
+    end
+  rescue RuntimeError => e
+    if e.message == "use_stale_value"
+      raise inner_exception
+    else
+      raise
+    end
+  end
 
   def initialize(attrs)
     @id = attrs[:id]
@@ -32,7 +60,9 @@ class Organisation
   alias_method :to_s, :name_with_abbreviation
 
   def self.all
-    @@organisations ||= load_organisations
+    cache_fetch("all") do
+      load_organisations
+    end
   end
 
   def self.find(id)

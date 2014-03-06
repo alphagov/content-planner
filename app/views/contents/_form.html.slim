@@ -2,9 +2,9 @@
   = simple_form_for content,
                     html: { class: 'form-horizontal form-container' } do |f|
     = f.input :ref_no
-    = f.input :title
-    = f.input :description
-    = f.input :url, as: :string
+    = f.input :title, input_html: { class: 'span12' }
+    = f.input :description, input_html: { class: 'span12', rows: 10 }
+    = f.input :url, as: :string, input_html: { class: 'span12' }
     - if current_user.gds_editor?
       = f.input :platform, as: :select, collection: Content::PLATFORMS, include_blank: false
     = f.input :size

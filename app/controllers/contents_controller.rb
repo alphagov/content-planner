@@ -1,7 +1,7 @@
 class ContentsController < ApplicationController
   expose(:content, attributes: :content_params)
   expose(:contents) {
-    ContentSearch.new(params[:search]).results.page(params[:page])
+    ContentSearch.new(params[:search]).results.order(:ref_no).page(params[:page])
   }
   expose(:comment) {
     current_user.comments.build(commentable: content)
