@@ -13,14 +13,16 @@
                    include_blank: true, placeholder: "Organisation", class: "js-organisations"
       = submit_tag "Filter", class: "btn"
   .span12
-    - @tags.each do |tag|
-      .tag-box.span3
-        h4
-          = link_to tag, content_plans_path(search: {tag: tag.name})
-        - %w(Mainstream Specialist).each do |platform|
-          - cache([platform, tag, params[:q], params[:year], params[:organisation]], expires_in: 1.hour) do
-            .platform
-              = platform
-              .progress
-                - Content.percentages_for(tag: tag, platform: platform, contents: @contents).each do |status, percentage|
-                  div[class="status status-#{status.parameterize}" style="width: #{percentage}%" title="#{status}: #{percentage}%" data-tooltip=true data-placement="bottom"]
+    - @content_plans.each do |content_plan|
+      - contents = content_plan.contents.organisation(params[:organisation])
+      - if contents.count > 0
+        .tag-box.span3
+          h4
+            = link_to content_plan, content_plan_path(content_plan)
+          - %w(Mainstream Specialist).each do |platform|
+            - cache([platform, content_plan, params[:q], params[:year], params[:organisation]], expires_in: 1.hour) do
+              .platform
+                = platform
+                .progress
+                  - Content.percentages_for(platform: platform, contents: contents).each do |status, percentage|
+                    div[class="status status-#{status.parameterize}" style="width: #{percentage}%" title="#{status}: #{percentage}%" data-tooltip=true data-placement="bottom"]
