@@ -7,39 +7,47 @@
     h2
       = content
 
-  .span12
+  .span8
     = govspeak content.description
 
-  .span6
-    h4 Url
-    = content.url
-    h4 Platform
-    = content.platform
-    h4 Size
-    = content.size
-    h4 Content type
-    = content.content_type
-    h4 Status
-    = content.status
-    h4 Users
-    = conent_user_links content.users
+  .metadata
+    .inner
+      dl.metadata
+        dt Url:
+        dd 
+          = link_to content.url, content.url
+        dt Platform:
+        dd
+          = content.platform    
+        dt Size:
+        dd
+          = content.size
+        dt Content type:
+        dd
+          = content.content_type
+        dt Status:
+        dd
+          = content.status
+        dt Users:
+        dd
+          = conent_user_links content.users
+        dt Content plans:
+        dd
+          - content.content_plans.each do |content_plan|
+            = link_to content_plan.name, content_plan
+        dt Maslow need ids:
+        dd
+          = content.maslow_need_ids.join(", ")
+        dt Tags:
+        dd
+          - content.tags.each do |tag|
+            = tag.name
 
-  .span6
-    h4 Content plans
-    ul
-      - content.content_plans.each do |content_plan|
-        li
-          = link_to content_plan.name, content_plan
-    h4 Maslow need ids
-    = content.maslow_need_ids.join(", ")
-    h4 Tags
-    ul
-      - content.tags.each do |tag|
-        li
-          = tag.name
 
-    h4 Comments
-    = render "comments/form", comment: comment
-    ul.comments
-      - content.comments.each do |comment|
-        = render comment
+  .comments
+    .inner
+      h4 Comments
+      = render "comments/form", comment: comment
+      ul.comments
+        - content.comments.each do |comment|
+          = render comment

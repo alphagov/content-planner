@@ -25,57 +25,59 @@
       dd
         = content_plan.due_date
 
-  .span6
-    = govspeak content_plan.details
+  .content-plan-details
+    .inner
+      = govspeak content_plan.details
 
-    - if content_plan.notes.present?
-      h4 Notes
-      = govspeak content_plan.notes
+      - if content_plan.notes.present?
+        h4 Notes
+        = govspeak content_plan.notes
 
-    h4
-      | Content
-      = link_to "Add content", new_content_path(content_plan_id: content_plan.id), class: "btn btn-mini contents-btn"
-    table.table
-      thead
-        th.title Title
-        th.size Size
-        th.status Status
-        th.platform Platform
-      tbody
-        - content_plan.contents.each do |content|
-            tr
-              td
-                = link_to content.title, content
-              td
-                = content.size
-              td
-                = content.status
-              td
-                = link_to content.platform, content.url, rel: "external", target: "_blank"
+      h4
+        | Content
+        = link_to "Add content", new_content_path(content_plan_id: content_plan.id), class: "btn btn-mini contents-btn"
+      table.table
+        thead
+          th.title Title
+          th.size Size
+          th.status Status
+          th.platform Platform
+        tbody
+          - content_plan.contents.each do |content|
+              tr
+                td
+                  = link_to content.title, content
+                td
+                  = content.size
+                td
+                  = content.status
+                td
+                  = link_to content.platform, content.url, rel: "external", target: "_blank"
 
 
-  .span6
-    h4
-      | Tasks
-      = link_to "Add task", new_content_plan_task_path(content_plan), class: "btn btn-mini tasks-btn"
+  .tasks-comments
+    .inner
+      h4
+        | Tasks
+        = link_to "Add task", new_content_plan_task_path(content_plan), class: "btn btn-mini tasks-btn"
 
-    ul.tasks
-      - content_plan.tasks.each do |task|
-        li
-          .delete
-            = form_for [content_plan, task], method: :delete do |f|
-              = button_tag type: 'submit', class: 'btn btn-mini' do
-                <i class='icon-trash'></i>
+      ul.tasks
+        - content_plan.tasks.each do |task|
+          li
+            .delete
+              = form_for [content_plan, task], method: :delete do |f|
+                = button_tag type: 'submit', class: 'btn btn-mini' do
+                  <i class='icon-trash'></i>
 
-          = form_for [content_plan, task] do |f|
-            = f.check_box :done, class: 'js-task-checkbox'
-            = f.submit
-          span[class= "#{task.done? ? 'done' : nil}"]
-            = task.title
+            = form_for [content_plan, task] do |f|
+              = f.check_box :done, class: 'js-task-checkbox'
+              = f.submit
+            span[class= "#{task.done? ? 'done' : nil}"]
+              = task.title
 
-    h4 Comments
-    = render "comments/form"
+      h4 Comments
+      = render "comments/form"
 
-    ul.comments
-      - content_plan.comments.each do |comment|
-        = render comment
+      ul.comments
+        - content_plan.comments.each do |comment|
+          = render comment

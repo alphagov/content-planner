@@ -1,0 +1,54 @@
+.table {
+  th,
+  td {
+    background-color: none;
+    padding: 8px 15px 8px 0;
+
+    &.title {
+      width: 50%;
+    }
+    &.size {
+      width: 10%;
+    }
+    &.status {
+      width: 20%;
+    }
+  }
+}
+
+dl.metadata {
+  padding-bottom: 20px;
+  overflow: hidden;
+
+  dt,
+  dd {
+    float: left;
+    margin: 0 1px 0 0;
+  }
+  dt {
+    clear: both;
+    min-width: 120px;
+    padding-right: 10px;
+  }
+}
+
+
+ul.comments {
+  width: 100%;
+
+  .message {
+    clear: both;
+    p {
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+  }
+
+  .name,
+  .created_at {
+    float: left;
+    font-size: 14px;
+    color: #6f777b;
+    margin: 0 5px 10px 0;
+  }
+}

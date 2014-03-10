@@ -1,7 +1,8 @@
 li.comment
-  span.name
-    = comment.user
-  span.created_at.clearfix
-    = comment.created_at.to_formatted_s(:long)
   .message
     = govspeak comment.message
+  span.name
+    = link_to comment.user, comment.user
+    |,
+  span.created_at
+    = comment.created_at.to_formatted_s(:long)

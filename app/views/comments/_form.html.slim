@@ -1,6 +1,6 @@
 = simple_form_for comment,
                 html: { class: 'form-container' } do |f|
-  = f.input :message, input_html: { class: 'span6' }
+  = f.input :message, input_html: { class: '' }
   = f.input :commentable_id, as: :hidden
   = f.input :commentable_type, as: :hidden
   = f.input :user_id, as: :hidden
