@@ -1,4 +1,4 @@
 #!/bin/bash
 
 bundle install
-bundle exec unicorn -p 3058
+bundle exec rails s -p 3058

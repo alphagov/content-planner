@@ -72,11 +72,10 @@ class Content < ActiveRecord::Base
   end
 
   def self.percentages_for(options)
-    tag = options.fetch(:tag) { raise ArgumentError.new("#percentages_for expects tag: as part of options hash") }
     platform = options.fetch(:platform) { raise ArgumentError.new("#percentages_for expects platform: as part of options hash") }
-    contents = options.fetch(:contents) { raise ArgumentError.new("#percentages_for expecs contents: as part of options hash") }
+    contents = options.fetch(:contents) { raise ArgumentError.new("#percentages_for expects contents scope: as part of options hash") }
 
-    scope = contents.where(platform: platform).tagged_with(tag.name)
+    scope = contents.where(platform: platform)
     total = scope.sum(:size)
     STATUSES[platform].inject({}) do |hash, status|
       hash.tap do |new_hash|

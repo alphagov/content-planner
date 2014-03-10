@@ -37,7 +37,7 @@
             = link_to content_plan.name, content_plan
         dt Maslow need ids:
         dd
-          = content.maslow_need_ids.join(", ")
+          = user_needs_links content.maslow_need_ids
         dt Tags:
         dd
           - content.tags.each do |tag|
