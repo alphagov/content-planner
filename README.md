@@ -10,7 +10,11 @@ This application requires:
 
 And depends on or uses the following parts of the GOV.UK stack:
 
-* https://github.com/alphagov/govuk_need_api
+* https://github.com/alphagov/govuk_need_api (needs)
+* https://github.com/alphagov/whitehall (organisations)
+
+Loosely related:
+
 * https://github.com/alphagov/maslow
 * https://github.com/alphagov/transition
 
@@ -23,21 +27,16 @@ Development
 * Front-end Framework: Twitter Bootstrap (Sass)
 * Form Builder: SimpleForm
 
-Setup for development
+Running the application
 ---------------------
-1. revise the config/database.yml
 
-2. run
+Ensure you have replicated the databases from preview (maslow, whitehall and content-planner).
 
   ```
-  bundle
-
-  bundle exec rake db:create db:schema:load db:seed
-
-  bundle exec rake content_plans:import DATA_FILE=db/hmrc-plans.xlsx
-
-  ./startup.sh
+  bowl content-planner
   ```
+
+Alternatively run whitehall and govuk_need_api then run `./startup.sh`
 
 Emails in development
 ---------------------

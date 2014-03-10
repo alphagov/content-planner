@@ -45,6 +45,7 @@ group :development do
   gem "capistrano"
   gem "rack-mini-profiler"
   gem "bullet"
+  gem "thin"
 end
 
 group :development, :test do
