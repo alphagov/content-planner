@@ -5,7 +5,7 @@
 .content-plan-details,
 .tasks-comments,
 .metadata,
-.comments
+.comments-form
  {
   float: left;
   width: 33.33%;
@@ -18,9 +18,17 @@
   }
 }
 
-.content-plan-details,
-.metadata {
+.content-plan-details {
   width: 66.66%;
+}
+
+.comments-form,
+.metadata {
+  margin-top: 40px;
+  width: 50%;
+  .metadata {
+    margin-top: 0;
+  }
 }
 
 .inner {
