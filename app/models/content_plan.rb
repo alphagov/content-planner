@@ -23,7 +23,8 @@ class ContentPlan < ActiveRecord::Base
   }
 
   scope :contents, -> {
-    Content.where id: all.map(&:content_plan_contents).flatten.map(&:content_id).uniq
+    Content.where(id: all.map(&:content_plan_contents).flatten.map(&:content_id).uniq).
+      order("contents.ref_no")
   }
 
   validates :title, presence: true
