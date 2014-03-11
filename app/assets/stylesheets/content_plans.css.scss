@@ -15,13 +15,17 @@
   }
 }
 
+.clear-box{
+  clear: both;
+}
+
 .tag-box{
   border-radius: 3px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
   padding: 10px;
   margin: 0.5em;
   background: #ffffff;
-  min-height: 240px;
+
 
   .platform {
     border-bottom: 1px solid #eee;

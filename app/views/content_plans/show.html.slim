@@ -5,7 +5,7 @@
 = breadcrumb ["Content Plans", content_plans_path], content_plan.name
 
 .row
-  .span12
+  .span8
     h2
       = content_plan.name
     dl.metadata
@@ -21,15 +21,27 @@
       dt Due:
       dd
         = content_plan.due_date
+  .span4
+    .tag-box.mini
+      - %w(Mainstream Specialist).each do |platform|
+        - cache([platform, content_plan, params[:q], params[:year], params[:organisation]], expires_in: 1.hour) do
+          .platform
+            = platform
+            .progress
+              - Content.percentages_for(platform: platform, contents: content_plan.contents).each do |status, percentage|
+                div[class="status status-#{status.parameterize}" style="width: #{percentage}%" title="#{status}: #{percentage}%" data-tooltip=true data-placement="bottom"]
 
-  .content-plan-details
-    .inner
-      = govspeak content_plan.details
+.row
+  .span12
+    .content-plan-details
+      .inner
+        = govspeak content_plan.details
 
-      - if content_plan.notes.present?
-        h4 Notes
-        = govspeak content_plan.notes
-
+        - if content_plan.notes.present?
+          h4 Notes
+          = govspeak content_plan.notes
+.row
+  .span8
       h4
         | Content
         = link_to "Add content", new_content_path(content_plan_id: content_plan.id), class: "btn btn-mini contents-btn"
@@ -52,7 +64,7 @@
                   = link_to content.platform, content.url, rel: "external", target: "_blank"
 
 
-  .tasks-comments
+  .span4.tasks-comments
     .inner
       h4
         | Tasks

@@ -12,10 +12,10 @@
                    include_blank: true, placeholder: "Organisation", class: "js-organisations"
       = submit_tag "Filter", class: "btn"
   .span12
-    - @content_plans.each do |content_plan|
+    - @content_plans.each_with_index do |content_plan, i|
       - contents = content_plan.contents.organisation(params[:organisation])
       - if contents.count > 0
-        .tag-box.span3
+        div class=(("tag-box span3") + (i % 3 == 0 ? " clear-box" : ""))
           h4
             = link_to content_plan, content_plan_path(content_plan)
           - %w(Mainstream Specialist).each do |platform|
