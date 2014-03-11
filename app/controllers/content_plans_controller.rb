@@ -32,7 +32,7 @@ class ContentPlansController < ApplicationController
 
   def update
     if content_plan.save
-      redirect_to content_plans_path
+      redirect_to content_plan_path content_plan
     else
       render :edit
     end

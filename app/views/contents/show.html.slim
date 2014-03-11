@@ -40,9 +40,7 @@
           = user_needs_links content.maslow_need_ids
         dt Tags:
         dd
-          - content.tags.each do |tag|
-            = tag.name
-
+          = content_tag_filters content.tag_list
 
   .comments-form
     .inner
