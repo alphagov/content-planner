@@ -10,39 +10,41 @@
   .span8
     = govspeak content.description
 
-  .metadata
-    .inner
-      dl.metadata
-        dt Url:
-        dd 
-          = link_to content.url, content.url
-        dt Platform:
-        dd
-          = content.platform    
-        dt Size:
-        dd
-          = content.size
-        dt Content type:
-        dd
-          = content.content_type
-        dt Status:
-        dd
-          = content.status
-        dt Users:
-        dd
-          = conent_user_links content.users
-        dt Content plans:
-        dd
-          - content.content_plans.each do |content_plan|
-            = link_to content_plan.name, content_plan
-        dt Maslow need ids:
-        dd
-          = user_needs_links content.maslow_need_ids
-        dt Tags:
-        dd
-          = content_tag_filters content.tag_list
+.row
+  .span8
+    .metadata
+      .inner
+        dl.metadata
+          dt Url:
+          dd 
+            = link_to content.url, content.url
+          dt Platform:
+          dd
+            = content.platform    
+          dt Size:
+          dd
+            = content.size
+          dt Content type:
+          dd
+            = content.content_type
+          dt Status:
+          dd
+            = content.status
+          dt Users:
+          dd
+            = conent_user_links content.users
+          dt Content plans:
+          dd
+            - content.content_plans.each do |content_plan|
+              = link_to content_plan.name, content_plan
+          dt Maslow need ids:
+          dd
+            = user_needs_links content.maslow_need_ids
+          dt Tags:
+          dd
+            = content_tag_filters content.tag_list
 
-  .comments-form
+  .span4.comments-form
     .inner
       h4 Comments
       = render "comments/form", comment: comment
