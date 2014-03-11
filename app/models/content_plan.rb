@@ -55,14 +55,6 @@ class ContentPlan < ActiveRecord::Base
     content_plan_needs.any? ? content_plan_needs.map(&:need_id) : nil
   end
 
-  def status
-    contents_status = contents.map(&:status).uniq
-    i = contents_status.map do |st|
-      Content::STATUS.index(st)
-    end.min
-    i.nil? ? Content::STATUS.first : Content::STATUS[i]
-  end
-
   def size
     contents.sum(:size)
   end

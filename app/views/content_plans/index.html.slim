@@ -17,10 +17,6 @@
                  { include_blank: true },
                  { class: "js-needs", style: "width:230px"}
       = f.text_field :tag, placeholder: "Tag", class: "js-tags", style: "width:220px"
-      = f.select :status,
-                 options_for_select(Content::STATUS, @search.status),
-                 { include_blank: true },
-                 { class: "select2", placeholder: "Status" }
       = f.select :due_date,
                  options_for_select(due_date_options_for_select, @search.due_date),
                  { include_blank: true },
@@ -35,7 +31,6 @@
       th Name
       th User Needs
       th Tags
-      th Status
       th Due
       - content_plans.each do |content_plan|
         - cache(content_plan) do 
@@ -50,7 +45,5 @@
               = user_needs_links content_plan.need_ids
             td
               = content_plan_tag_filters content_plan.tag_list
-            td
-              = content_plan.status
             td
               = content_plan.due_date
