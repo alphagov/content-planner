@@ -16,6 +16,4 @@
 //= require turbolinks
 //= require select2
 //= require google-diff-match-patch
-//= require highcharts
-//= require highcharts/highcharts-more
 //= require_tree .

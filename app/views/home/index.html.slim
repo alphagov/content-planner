@@ -1,6 +1,5 @@
 .row
   .span12
-    = link_to "View as chart", chart_path, class: 'btn pull-right'
     = form_tag root_path, method: :get, class: "form-inline search-form" do
       = select_tag :q,
                    options_for_select( ContentPlan::QUARTERS.map {|x| ["Quarter #{x}", x]}, params[:q] ),
