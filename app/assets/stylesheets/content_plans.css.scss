@@ -28,7 +28,7 @@
     margin: 0.5em 0;
     .status {
       height: 100%;
-      display: inline-block;
+      float: left;
     }
     .status-not-started {
       background-color: #F2B701;
