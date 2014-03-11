@@ -19,8 +19,8 @@ GIT
 
 GIT
   remote: git://github.com/bitzesty/select2-rails.git
-  revision: 45dd4d01f89f53dbb65fef2fd23b50ef836c60dd
-  ref: 45dd4d01f89f53dbb65fef2fd23b50ef836c60dd
+  revision: a3447b203593f489c8d4071063ebd5ca7edf2bba
+  ref: a3447b2
   branch: 2.1.0
   specs:
     select2-rails (2.1.0)
