@@ -1,0 +1,11 @@
+li
+  .delete
+    = form_for task, method: :delete do |f|
+      = button_tag type: 'submit', class: 'btn btn-mini' do
+        <i class='icon-trash'></i>
+
+  = form_for task do |f|
+    = f.check_box :done, class: 'js-task-checkbox'
+    = f.submit
+  span[class= "#{task.done? ? 'done' : nil}"]
+    = task.title

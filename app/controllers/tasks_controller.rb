@@ -1,11 +1,9 @@
 class TasksController < ApplicationController
-  expose(:content_plan)
   expose(:task, attributes: :task_params)
-  expose(:tasks, ancestor: :content_plan)
 
   def create
     if task.save(task_params)
-      redirect_to content_plan_path(task.content_plan)
+      redirect_to task.taskable
     else
       render :new
     end
@@ -13,13 +11,10 @@ class TasksController < ApplicationController
 
   def update
     if task.update(task_params)
-      redirect_to content_plan_path(task.content_plan)
+      redirect_to task.taskable
     else
       render :edit
     end
-  end
-
-  def new
   end
 
   def edit
@@ -27,10 +22,10 @@ class TasksController < ApplicationController
 
   def destroy
     task.destroy
-    redirect_to content_plan_path(content_plan)
+    redirect_to task.taskable
   end
 
   def task_params
-    params.require(:task).permit(:title, :done, :content_plan_id)
+    params.require(:task).permit(:title, :done, :taskable_id, :taskable_type)
   end
 end

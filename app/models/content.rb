@@ -33,6 +33,7 @@ class Content < ActiveRecord::Base
   has_many :content_users
   has_many :users, through: :content_users
 
+  has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy, as: :taskable
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 
   validates :title, presence: true

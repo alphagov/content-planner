@@ -46,8 +46,14 @@
 
   .span4.comments-form
     .inner
+      h4 Tasks
+      = render "tasks/form"
+
+      ul.tasks
+        = render content.tasks
+
       h4 Comments
       = render "comments/form", comment: comment
+      
       ul.comments
-        - content.comments.each do |comment|
-          = render comment
+        = render content.comments
