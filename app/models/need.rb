@@ -5,7 +5,7 @@ class Need
   attr_accessor :data
 
   def self.cache
-    @cache ||= LRUCache.new(soft_ttl: 5.minutes, ttl: 1.hour)
+    @cache ||= LRUCache.new(soft_ttl: 2.minutes, ttl: 10.minutes)
   end
 
   def self.reset_cache
