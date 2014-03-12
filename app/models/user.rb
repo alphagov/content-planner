@@ -6,7 +6,10 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true
 
-  has_many :comments
+  has_many :comments, -> { order(created_at: :desc) }
+  has_many :content_users
+  has_many :contents, through: :content_users
+
 
   module Permissions
     SIGNIN = "signin"

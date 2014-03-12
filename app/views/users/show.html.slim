@@ -1,5 +1,31 @@
-h3 User
-p
-  | User: #{@user.name}
+= breadcrumb ["Users", users_path], @user.name
+
+h3= @user.name
 p
   | Email: #{@user.email if @user.email}
+.row
+  .span8
+    h4 Content Records
+    table.table
+      thead
+        th.title Title
+        th.size Size
+        th.status Status
+        th.platform Platform
+      tbody
+      - @user.contents.each do |content|
+        tr
+          td
+            = link_to content, content
+          td
+            = content.size
+          td
+            = content.status
+          td
+            = link_to content.platform, content.url, rel: "external", target: "_blank"
+
+  .span4.comments-form
+    h4 Comments
+    ul.comments
+    - @user.comments.each do |comment|
+     = render comment

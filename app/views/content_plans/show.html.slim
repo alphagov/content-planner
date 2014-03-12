@@ -54,15 +54,15 @@
           th.platform Platform
         tbody
           - content_plan.contents.each do |content|
-              tr
-                td
-                  = link_to content, content
-                td
-                  = content.size
-                td
-                  = content.status
-                td
-                  = link_to content.platform, content.url, rel: "external", target: "_blank"
+            tr
+              td
+                = link_to content, content
+              td
+                = content.size
+              td
+                = content.status
+              td
+                = link_to content.platform, content.url, rel: "external", target: "_blank"
 
 
   .span4.tasks-comments

@@ -3,4 +3,5 @@ ul.users
   - @users.each do |user|
     li
       = link_to user.name, user
-      | &nbsp; signed up #{user.created_at.to_date}
+      | &nbsp; 
+      = user.email
