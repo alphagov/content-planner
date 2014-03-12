@@ -20,7 +20,7 @@
 }
 
 .tag-box{
-  margin: 0 0 40px 30px;
+  margin: 0 0 40px 20px;
 
   .platform {
     .status {
@@ -56,6 +56,15 @@
       margin-bottom: 5px;
     }
   }
+
+  @media (min-width: 1200px) {
+    margin-left: 30px;
+  }
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+  }
+
 }
 
 .content-plans .tag-box {
