@@ -15,34 +15,43 @@
     .metadata
       .inner
         dl.metadata
-          dt Url:
-          dd 
-            = link_to content.url, content.url
-          dt Platform:
-          dd
-            = content.platform    
-          dt Size:
-          dd
-            = content.size
-          dt Content type:
-          dd
-            = content.content_type
-          dt Status:
-          dd
-            = content.status
-          dt Users:
-          dd
-            = conent_user_links content.users
-          dt Content plans:
-          dd
-            - content.content_plans.each do |content_plan|
-              = link_to content_plan.name, content_plan
-          dt Maslow need ids:
-          dd
-            = user_needs_links content.maslow_need_ids
-          dt Tags:
-          dd
-            = content_tag_filters content.tag_list
+          - if content.url.present?
+            dt Url:
+            dd 
+              = link_to content.url, content.url
+          - if content.platform .present?
+            dt Platform:
+            dd
+              = content.platform
+          - if content.size.present?
+            dt Size:
+            dd
+              = content.size
+          - if content.content_type.present?
+            dt Content type:
+            dd
+              = content.content_type
+          - if content.status.present?
+            dt Status:
+            dd
+              = content.status
+          - if content.users.present?
+            dt Users:
+            dd
+              = conent_user_links content.users
+          - if content.content_plans.any?
+            dt Content plans:
+            dd
+              - content.content_plans.each do |content_plan|
+                = link_to content_plan.name, content_plan
+          - if content.maslow_need_ids.present?
+            dt Maslow need ids:
+            dd
+              = user_needs_links content.maslow_need_ids
+          - if content.tag_list.present?
+            dt Tags:
+            dd
+              = content_tag_filters content.tag_list
 
   .span6.comments-form
     .inner

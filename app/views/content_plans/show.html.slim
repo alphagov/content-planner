@@ -9,18 +9,22 @@
     h2
       = content_plan.name
     dl.metadata
-      dt Size:
-      dd 
-        = content_plan.size
-      dt User Needs:
-      dd
-        = user_needs_links content_plan.need_ids
-      dt Tags:
-      dd
-        = content_plan_tag_filters content_plan.tag_list
-      dt Due:
-      dd
-        = content_plan.due_date
+      - if content_plan.size.present?
+        dt Size:
+        dd 
+          = content_plan.size
+      - if content_plan.need_ids.present?
+        dt User Needs:
+        dd
+          = user_needs_links content_plan.need_ids
+      - if content_plan.tag_list.present?
+        dt Tags:
+        dd
+          = content_plan_tag_filters content_plan.tag_list
+      - if content_plan.due_date.present?
+        dt Due:
+        dd
+          = content_plan.due_date
   .span4.content-plans
     .tag-box.mini
       h4 Status
