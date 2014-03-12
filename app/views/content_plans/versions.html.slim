@@ -1,9 +1,11 @@
 h1
   =link_to "#{content_plan.title} history", content_plan
 table.table
-  tr
-    th Time
-    th User
-    th Action
-    th Changes
-  = render partial: 'version', collection: content_plan.display_versions, as: :version
+  thead
+    tr
+      th.time Time
+      th.user User
+      th.action Action
+      th.changes Changes
+  tbody
+    = render partial: 'version', collection: content_plan.display_versions, as: :version
