@@ -89,6 +89,10 @@ module ApplicationHelper
     end
   end
 
+  def users_options_for_select
+    User.all.map { |user| [user.to_s, user.id] }
+  end
+
   def organisations_options_for_select
     Organisation.all.map do |organisation|
       [organisation.to_s, organisation.id]

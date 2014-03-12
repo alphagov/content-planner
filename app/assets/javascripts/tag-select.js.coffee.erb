@@ -27,6 +27,14 @@ jsNeeds = ->
 $(document).ready jsNeeds
 $(document).on "page:load", jsNeeds
 
+jsUsers = ->
+  $(".js-users").select2
+    placeholder: "Person"
+    allowClear: true
+
+$(document).ready jsUsers
+$(document).on "page:load", jsUsers
+
 jsContents = ->
   $('#content_user_ids').select2()
 
