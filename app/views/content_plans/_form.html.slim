@@ -8,6 +8,10 @@
     = f.input :tag_list, 
               as: :string,
               input_html: {class: "js-tags"}
+    = f.association :users,
+                    collection: User.all,
+                    label: 'Users',
+                    input_html: { style: "width:300px" }
     = f.input :maslow_need_ids,
               as: :select,
               collection: Need.all,

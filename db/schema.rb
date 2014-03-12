@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311172544) do
+ActiveRecord::Schema.define(version: 20140312150825) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 20140311172544) do
   end
 
   add_index "content_plan_needs", ["content_plan_id", "need_id"], name: "index_content_plan_needs_on_content_plan_id_and_need_id", using: :btree
+
+  create_table "content_plan_users", force: true do |t|
+    t.integer "content_plan_id", null: false
+    t.integer "user_id",         null: false
+  end
+
+  add_index "content_plan_users", ["content_plan_id", "user_id"], name: "index_content_plan_users_on_content_plan_id_and_user_id", using: :btree
 
   create_table "content_plans", force: true do |t|
     t.string   "ref_no"

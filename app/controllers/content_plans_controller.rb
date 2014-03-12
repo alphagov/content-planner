@@ -59,6 +59,7 @@ class ContentPlansController < ApplicationController
                                          :notes,
                                          :due_quarter,
                                          :due_year,
+                                         user_ids: [],
                                          maslow_need_ids: [],
                                          organisation_ids: []
     )

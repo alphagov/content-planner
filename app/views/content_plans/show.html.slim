@@ -17,6 +17,10 @@
         dt User Needs:
         dd
           = user_needs_links content_plan.need_ids
+      - if content_plan.users.any?
+        dt Users:
+        dd
+          = content_user_links content_plan.users
       - if content_plan.tag_list.present?
         dt Tags:
         dd

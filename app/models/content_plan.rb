@@ -11,6 +11,8 @@ class ContentPlan < ActiveRecord::Base
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 
   has_many :content_plan_needs
+  has_many :content_plan_users
+  has_many :users, through: :content_plan_users
 
   has_many :content_plan_contents, dependent: :destroy
   has_many :contents, through: :content_plan_contents
@@ -57,15 +59,5 @@ class ContentPlan < ActiveRecord::Base
 
   def size
     contents.sum(:size)
-  end
-
-  def users
-    @users ||= User.where id: user_ids
-  end
-
-  def user_ids
-    contents.map do |content|
-      content.content_users.pluck :user_id
-    end.reject(&:blank?).uniq
   end
 end

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :comments, -> { order(created_at: :desc) }
   has_many :content_users
   has_many :contents, through: :content_users
+  has_many :content_plan_users
+  has_many :content_plans, through: :content_plan_users
 
 
   module Permissions
