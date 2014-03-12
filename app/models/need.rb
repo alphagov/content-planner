@@ -42,7 +42,7 @@ class Need
     end.compact
   end
 
-  def find(n)
+  def self.find(n)
     cache_fetch("find_#{n}") do
       new(ContentPlanner.needs_api.need(n))
     end
@@ -65,7 +65,11 @@ class Need
   end
 
   def to_s
-    "[#{id}](#{org_names.join(', ')}) As a #{data.role} I want to #{data.goal} so that #{data.benefit}"
+    "[#{id}](#{org_names.join(', ')}) #{story}"
+  end
+
+  def story
+    "As a #{data.role} I want to #{data.goal} so that #{data.benefit}" if data
   end
 
   def persisted?

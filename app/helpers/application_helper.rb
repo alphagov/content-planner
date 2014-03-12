@@ -18,7 +18,7 @@ module ApplicationHelper
   def user_needs_links(ids)
     maslow = Plek.current.find("maslow")
     Array.wrap(ids).map do |id|
-      link_to(id, maslow + "/needs/#{id}", target: "_blank")
+      link_to(id, maslow + "/needs/#{id}", target: "_blank", :'data-tooltip' => "", title: Need.find(id).try(:story) )
     end.join(", ").html_safe
   end
 
