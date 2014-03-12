@@ -1,0 +1,38 @@
+.contents-btn {
+  margin-left: 10px;
+}
+
+.content-plan-details,
+.tasks-comments,
+.metadata,
+.comments-form
+ {
+  textarea {
+    width: 100%;
+  }
+  .comment_message label {
+    position: absolute;
+    left: -9999px;
+  }
+}
+
+.content-plan-details {
+  width: 66.66%;
+}
+
+.comments-form,
+.metadata {
+  margin-top: 40px;
+
+  h4 {
+    margin-top: 0;
+  }
+
+  .metadata {
+    margin-top: 0;
+    width: 100%;
+  }
+}
+
+.inner {
+}
