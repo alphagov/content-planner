@@ -6,6 +6,9 @@ class ContentsController < ApplicationController
   expose(:comment) {
     current_user.comments.build(commentable: content)
   }
+  expose(:task) {
+    Task.new(taskable: content)
+  }
 
   before_filter :authorize_user
 

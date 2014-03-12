@@ -66,27 +66,14 @@
 
   .span4.tasks-comments
     .inner
-      h4
-        | Tasks
-        = link_to "Add task", new_content_plan_task_path(content_plan), class: "btn btn-mini tasks-btn"
+      h4 Tasks
+      = render "tasks/form"
 
       ul.tasks
-        - content_plan.tasks.each do |task|
-          li
-            .delete
-              = form_for [content_plan, task], method: :delete do |f|
-                = button_tag type: 'submit', class: 'btn btn-mini' do
-                  <i class='icon-trash'></i>
-
-            = form_for [content_plan, task] do |f|
-              = f.check_box :done, class: 'js-task-checkbox'
-              = f.submit
-            span[class= "#{task.done? ? 'done' : nil}"]
-              = task.title
+        = render content_plan.tasks
 
       h4 Comments
       = render "comments/form"
 
       ul.comments
-        - content_plan.comments.each do |comment|
-          = render comment
+        = render content_plan.comments

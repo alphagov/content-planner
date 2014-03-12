@@ -7,7 +7,7 @@ class ContentPlan < ActiveRecord::Base
   QUARTERS = 1..4
   YEARS = Time.now.year..(Time.now + 2.years).year
 
-  has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy, as: :taskable
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 
   has_many :content_plan_needs

@@ -4,9 +4,10 @@ ContentPlanner::Application.routes.draw do
   root to: "home#index"
 
   resources :content_plans do
-    resources :tasks
     get 'versions', on: :member
   end
+
+  resources :tasks
 
   resources :comments
 
