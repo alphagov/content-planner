@@ -23,5 +23,5 @@
               .platform
                 = platform
                 .progress
-                  - Content.percentages_for(platform: platform, contents: contents).each do |status, percentage|
-                    div[class="status status-#{status.parameterize}" style="width: #{percentage}%" title="#{status}: #{percentage}%" data-tooltip=true data-placement="bottom"]
+                  - Content.percentages_for(platform: platform, contents: contents).each do |status, results|
+                    div[class="status status-#{status.parameterize}" style="width: #{results[1]}%" title="#{status}: #{results[1]}% (#{results[0]} items)" data-tooltip=true data-placement="bottom"]
