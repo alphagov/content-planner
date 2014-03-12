@@ -21,8 +21,9 @@
       dt Due:
       dd
         = content_plan.due_date
-  .span4
+  .span4.content-plans
     .tag-box.mini
+      h4 Status
       - %w(Mainstream Specialist).each do |platform|
         - cache([platform, content_plan, params[:q], params[:year], params[:organisation]], expires_in: 1.hour) do
           .platform

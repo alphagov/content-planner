@@ -20,17 +20,9 @@
 }
 
 .tag-box{
-  border-radius: 3px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
-  padding: 10px;
-  margin: 0.5em;
-  background: #ffffff;
-
+  margin: 0 0 40px 30px;
 
   .platform {
-    border-bottom: 1px solid #eee;
-    padding: 0.5em 0 1em 0;
-    margin: 0.5em 0;
     .status {
       height: 100%;
       float: left;
@@ -59,9 +51,14 @@
     .status-live {
       background-color: #7CB854;
     }
+
+    .progress {
+      margin-bottom: 5px;
+    }
   }
-  .platform:last-child {
-    border-bottom: 0;
-  }
+}
+
+.content-plans .tag-box {
+  margin: 20px 0;
 }
 
