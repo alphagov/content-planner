@@ -35,13 +35,13 @@ module ApplicationHelper
        .html_safe
   end
 
-  def conent_plan_links(content_plans)
+  def content_plan_links(content_plans)
     collection_links content_plans,
                      ->(content_plan) { content_plan.name              },
                      ->(content_plan) { content_plan_path content_plan }
   end
 
-  def conent_user_links(users)
+  def content_user_links(users)
     collection_links users,
                      ->(user) { user.name      },
                      ->(user) { user_path user }
