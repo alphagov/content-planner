@@ -20,12 +20,10 @@ describe CommentMailer do
       deliveries.map(&:to).flatten.should eq(@users.slice(1, 2).map(&:email))
     end
     
-    it "should deliver a notification to all users that belong to contents inside a content plan (except the user that commented)" do
+    it "should deliver a notification to all users that belong to a content plan (except the user that commented)" do
       content_plan = create :content_plan
       @users.each do |user|
-        content = create :content
-        ContentUser.create(user: user, content: content)
-        ContentPlanContent.create(content: content, content_plan: content_plan)
+        ContentPlanUser.create(user: user, content_plan: content_plan)
       end
       content_plan.reload
       Comment.create(commentable: content_plan, user: @users.first)
