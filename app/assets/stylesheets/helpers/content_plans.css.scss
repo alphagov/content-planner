@@ -28,28 +28,28 @@
       float: left;
     }
     .status-not-started {
-      background-color: #F2B701;
+      background-color: #e69138;
     }
-    .status-drafting {
-      background-color: #E57D04;
+    .status-drafting-gds, .status-drafting-agency {
+      background-color: #f1c232;
     }
-    .status-2i {
-      background-color: #DC0030;
+    .status-specialist-2i, .status-mainstream-2i {
+      background-color: #3d85c6;
     }
-    .status-gds-2i {
-      background-color: #B10058;
+    .status-specialist-amends, .status-mainstream-amends {
+      background-color: #9fc5e8;
     }
-    .status-amends {
-      background-color: #7C378A;
-    }
-    .status-factcheck {
-      background-color: #3465AA;
+    .status-mainstream-factcheck {
+      background-color: #a64d79;
     }
     .status-ready-for-publish {
-      background-color: #09A275;
+      background-color: #66FFCC;
     }
     .status-live {
-      background-color: #7CB854;
+      background-color: #33CC33;
+    }
+    .status-blocked{
+      background-color: #ff0000;
     }
 
     .progress {

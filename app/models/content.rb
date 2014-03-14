@@ -8,20 +8,22 @@ class Content < ActiveRecord::Base
   STATUSES = {
     "Specialist" => [
       "Not started",
-      "Drafting",
-      "2i",
-      "Amends",
+      "Drafting Agency",
+      "Specialist 2i",
+      "Specialist amends",
       "Ready for publish",
-      "Live"
+      "Live",
+      "Blocked"
     ],
     "Mainstream" => [
       "Not started",
-      "Drafting",
-      "GDS 2i",
-      "Amends",
-      "Factcheck",
+      "Drafting GDS",
+      "Mainstream 2i",
+      "Mainstream factcheck",
+      "Mainstream amends",
       "Ready for publish",
-      "Live"
+      "Live",
+      "Blocked"
     ]
   }
   STATUS = STATUSES.values.flatten.uniq
@@ -39,7 +41,7 @@ class Content < ActiveRecord::Base
   validates :title, presence: true
 
   scope :mainstream, -> { where platform: "Mainstream" }
-  scope :specialist,  -> { where platform: "Specialist"  }
+  scope :specialist,  -> { where platform: "Specialist" }
   scope :organisation, ->(organisation_id) {
     where id: Organisationable.for_content.where(organisation_id: organisation_id).pluck(:organisationable_id) if organisation_id.present?
   }
