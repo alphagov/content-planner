@@ -3,7 +3,7 @@ require "lrucache"
 class Organisation
   cattr_writer :organisations
 
-  attr_reader :id, :name, :abbreviation, :parent_ids, :govuk_status
+  attr_reader :id, :title, :format, :slug, :abbreviation, :govuk_status, :parent_organisations
 
   def self.cache
     @cache ||= LRUCache.new(soft_ttl: 1.day, ttl: 2.days)
@@ -31,33 +31,47 @@ class Organisation
     end
   end
 
-  def initialize(attrs)
-    @id = attrs[:id]
-    @name = attrs[:name]
-    @abbreviation = attrs[:abbreviation]
-    @parent_ids = attrs[:parent_ids]
-    @govuk_status = attrs[:govuk_status]
+  def initialize(org)
+    @id = org.details.slug #to preserve compatibility with old API
+    @title = org.title
+    @format = org.format
+    @updated_at = Time.parse(org.updated_at) if org.updated_at
+    @web_url = org.web_url
+    @slug = org.details.slug
+    @abbreviation = org.details.abbreviation
+    @closed_at = Time.parse(org.details.closed_at) if org.details.closed_at
+    @govuk_status = org.details.govuk_status
+    @parent_organisations = org.parent_organisations
+    @child_organisations = org.child_organisations
   end
 
   def exempt?
     @govuk_status == "exempt"
   end
 
-  def abbreviation_or_name
-    abbreviation || name
+  def abbreviation_or_title
+    abbreviation || title
   end
 
-  def name_with_abbreviation
-    if abbreviation.present? && abbreviation != name
+  def title_with_abbreviation
+    if abbreviation.present? && abbreviation != title
       # Use square brackets around the abbreviation
       # as Chosen doesn't like matching with
       # parentheses at the start of a word
-      "#{name} [#{abbreviation}]"
+      "#{title} [#{abbreviation}]"
     else
-      name
+      title
     end
   end
-  alias_method :to_s, :name_with_abbreviation
+  alias_method :to_s, :title_with_abbreviation
+
+  def to_param
+    slug
+  end
+
+  def path
+    "/government/organisations/#{slug}"
+  end
 
   def self.all
     cache_fetch("all") do
@@ -65,26 +79,19 @@ class Organisation
     end
   end
 
-  def self.find(id)
-    all.find { |organisation| organisation.id == id }
+  def self.find(slug)
+    all.find { |organisation| organisation.slug == slug }
   end
 
   private
 
   def self.load_organisations
-    all_orgs = orgs_from_api.map { |attrs| new(attrs.symbolize_keys) }
-    all_orgs.reject { |org| org.exempt? }
+   (organisations_api.organisations.with_subsequent_pages || []).map { |org|
+      new org
+    }.reject { |dep| dep.exempt? }
   end
 
-  def self.orgs_from_api
-    begin
-      need_api.organisations
-    rescue GdsApi::HTTPErrorResponse #Needs API is down
-      []
-    end
-  end
-
-  def self.need_api
-    ContentPlanner.needs_api
+  def self.organisations_api
+    ContentPlanner.organisations_api
   end
 end
