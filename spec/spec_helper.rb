@@ -40,6 +40,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     ContentPlanner.needs_api = MockNeedsApi.new
+    ContentPlanner.organisations_api = MockOrganisationsApi.new
     DatabaseCleaner.strategy = :truncation
   end
   config.before(:each) do
