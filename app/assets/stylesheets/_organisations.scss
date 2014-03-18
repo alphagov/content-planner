@@ -1,0 +1,957 @@
+// Suitable body pullouts and asides
+@mixin ig-core-16 {
+  font-family: $NTA-Light;
+  font-size: 16px;
+  line-height: (20/16); /* 20px */
+  font-weight: 400;
+  text-transform: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  @media (max-width: 640px) {
+    font-size: 13px;
+    line-height: (20/13);
+    padding-top: 6px;
+    padding-bottom: 4px;
+  }
+}
+
+// Suitable for captions, buttons etc
+@mixin ig-core-14 {
+  font-family: $NTA-Light;
+  font-size: 14px;
+  line-height: 1.4285714286; // 20 / 14
+  font-weight: 400;
+  text-transform: none;
+  padding-top: 6px;
+  padding-bottom: 4px;
+  @media (max-width: 640px) {
+    font-size: 12px;
+    line-height: (15/12);
+    padding-top: 4px;
+    padding-bottom: 1px;
+  }
+}
+
+$right-to-left: false !default;
+
+@mixin right-to-left {
+  @if $right-to-left {
+    @content;
+  }
+}
+@mixin left-to-right {
+  @if $right-to-left == false {
+    @content;
+  }
+}
+
+$gutter:            10px;
+$gutter-two-thirds: $gutter*0.666666; // equivalent to 16px
+$gutter-half:       $gutter*0.5; // equivalent to 12px
+$gutter-one-third:  $gutter*0.333333; // equivalent to 8px
+$gutter-one-sixth:  $gutter-one-third*0.5; // equivalent to 8px
+
+// Web safe department colours
+$attorney-generals-office-websafe: #a03a88;
+$cabinet-office-websafe: #347da4;
+$department-for-business-innovation-skills-websafe: #347da4;
+$department-for-communities-and-local-government-websafe: #37836e;
+$department-for-culture-media-sport-websafe: #a03155;
+$department-for-education-websafe: #347ca9;
+$department-for-environment-food-rural-affairs-websafe: #67650f;
+$department-for-international-development-websafe: #405e9a;
+$department-for-transport-websafe: #398373;
+$department-for-work-pensions-websafe: #37807b;
+$department-of-energy-climate-change-websafe: #2b7cac;
+$department-of-health-websafe: #39836e;
+$foreign-commonwealth-office-websafe: #406e97;
+$hm-government-websafe: #347da4;
+$hm-revenue-customs-websafe: #008770;
+$hm-treasury-websafe: #832322;
+$home-office-websafe: #9440b2;
+$ministry-of-defence-websafe: #5A5C92;
+$ministry-of-justice-websafe: #5A5C92;
+$northern-ireland-office-websafe: #3e598c;
+$office-of-the-advocate-general-for-scotland-websafe: $link-colour;
+$office-of-the-leader-of-the-house-of-lords-websafe: #c2395d;
+$scotland-office-websafe: #405c8a;
+$the-office-of-the-leader-of-the-house-of-commons-websafe: #005f8f;
+$uk-export-finance-websafe: $link-colour;
+$uk-trade-investment-websafe: $link-colour;
+$wales-office-websafe: #7a242a;
+
+
+$all-organisation-brand-colours: 
+  'attorney-generals-office' $attorney-generals-office $attorney-generals-office-websafe,
+  'cabinet-office' $cabinet-office $cabinet-office-websafe,
+  'department-for-business-innovation-skills' $department-for-business-innovation-skills $department-for-business-innovation-skills-websafe,
+  'department-for-communities-and-local-government' $department-for-communities-and-local-government $department-for-communities-and-local-government-websafe,
+  'department-for-culture-media-sport' $department-for-culture-media-sport $department-for-culture-media-sport-websafe,
+  'department-for-education' $department-for-education $department-for-education-websafe,
+  'department-for-environment-food-rural-affairs' $department-for-environment-food-rural-affairs $department-for-environment-food-rural-affairs-websafe,
+  'department-for-international-development' $department-for-international-development $department-for-international-development-websafe,
+  'department-for-transport' $department-for-transport $department-for-transport-websafe,
+  'department-for-work-pensions' $department-for-work-pensions $department-for-work-pensions-websafe,
+  'department-of-energy-climate-change' $department-of-energy-climate-change $department-of-energy-climate-change-websafe,
+  'department-of-health' $department-of-health $department-of-health-websafe,
+  'foreign-commonwealth-office' $foreign-commonwealth-office $foreign-commonwealth-office-websafe,
+  'hm-government' $hm-government $hm-government-websafe,
+  'hm-revenue-customs' $hm-revenue-customs $hm-revenue-customs-websafe,
+  'hm-treasury' $hm-treasury $hm-treasury-websafe,
+  'home-office' $home-office $home-office-websafe,
+  'ministry-of-defence' $ministry-of-defence $ministry-of-defence-websafe,
+  'ministry-of-justice' $ministry-of-justice $ministry-of-justice-websafe,
+  'northern-ireland-office' $northern-ireland-office $northern-ireland-office-websafe,
+  'office-of-the-advocate-general-for-scotland' $office-of-the-advocate-general-for-scotland $office-of-the-advocate-general-for-scotland-websafe,
+  'office-of-the-leader-of-the-house-of-lords' $office-of-the-leader-of-the-house-of-lords $office-of-the-leader-of-the-house-of-lords-websafe,
+  'scotland-office' $scotland-office $scotland-office-websafe,
+  'the-office-of-the-leader-of-the-house-of-commons' $the-office-of-the-leader-of-the-house-of-commons $the-office-of-the-leader-of-the-house-of-commons-websafe,
+  'uk-export-finance' $uk-export-finance $uk-export-finance-websafe,
+  'uk-trade-investment' $uk-trade-investment $uk-trade-investment-websafe,
+  'wales-office' $wales-office $wales-office-websafe;
+
+
+@mixin organisation-brand-colour($selector, $property, $websafe: false) {
+  @each $organisation in $all-organisation-brand-colours {
+    .#{nth($organisation, 1)}-brand-colour #{$selector} {
+      @if $websafe {
+        #{$property}: nth($organisation, 3);
+      }
+      @else {
+        #{$property}: nth($organisation, 2);
+      }
+    }
+  }
+}
+
+.organisations-icon-list {
+  position: relative;
+  z-index: 9;
+  margin: 0;
+  padding-bottom: 20px;
+  @include right-to-left {
+    direction: ltr;
+  }
+  li{
+    float: left;
+    margin-right: 30px;
+    overflow: hidden;
+    list-style: none;
+    padding-bottom: $gutter-one-third; // stops descenders being cropped off
+  }
+}
+
+.organisation-logo {
+  font-family: Helvetica, Arial;
+  font-weight: 400;
+  display: block;
+  position: relative;
+  background-repeat: no-repeat;
+  font-size: 13px;
+  line-height: $gutter-half;
+  padding: 3px 0 2px 0;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: $black;
+  }
+
+  a, span {
+    color: $black;
+  }
+
+  @include right-to-left {
+    direction: ltr;
+  }
+}
+a.organisation-logo {
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }  
+}
+@include organisation-brand-colour(".organisation-logo", border-color);
+
+.organisation-logo-stacked-no-identity {
+}
+.organisation-logo-identity {
+  border-left: 2px solid;
+}
+
+img.organisation-logo-custom {
+  max-width: 90%;
+  width: auto;
+}
+
+
+// Plain single identity
+.organisation-logo-single-identity {
+  @extend .organisation-logo-identity;
+
+  padding: 3px 0 2px 35px;
+  background-image: image-url("crests/org_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-single-identity {
+  @extend .organisation-logo-identity;
+
+  padding: 20px 0 0 6px;
+  background-image: image-url("crests/org_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-single-identity span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-single-identity,
+  .organisation-logo-stacked-single-identity {
+    background-image: image-url("crests/org_crest_13px_x2.png");
+  }
+}
+
+// BIS
+.organisation-logo-bis {
+  @extend .organisation-logo-identity;
+
+  padding: 3px 0 2px 30px;
+  background-image: image-url("crests/bis_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-bis {
+  @extend .organisation-logo-identity;
+
+  padding: 20px 0 0 6px;
+  background-image: image-url("crests/bis_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-bis span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-bis,
+  .organisation-logo-stacked-bis {
+    background-image: image-url("crests/bis_crest_13px_x2.png");
+  }
+}
+
+// Scotland Office
+.organisation-logo-so {
+  @extend .organisation-logo-identity;
+
+  padding: 3px 0 2px 35px;
+  background-image: image-url("crests/so_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-so {
+  @extend .organisation-logo-identity;
+
+  padding: 20px 0 0 6px;
+  background-image: image-url("crests/so_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-so span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-so,
+  .organisation-logo-stacked-so {
+    background-image: image-url("crests/so_crest_13px_x2.png");
+  }
+}
+
+// Home Office
+.organisation-logo-ho {
+  @extend .organisation-logo-identity;
+
+  padding: 5px 0 5px 24px;
+  background-image: image-url("crests/ho_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 25px;
+}
+.organisation-logo-stacked-ho {
+  @extend .organisation-logo-identity;
+
+  padding: 25px 0 0 6px;
+  background-image: image-url("crests/ho_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 25px;
+}
+.organisation-logo-stacked-ho span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-ho,
+  .organisation-logo-stacked-ho {
+    background-image: image-url("crests/ho_crest_13px_x2.png");
+  }
+}
+
+// MOD
+.organisation-logo-mod {
+  @extend .organisation-logo-identity;
+
+  padding: 5px 0 5px 30px;
+  background-image: image-url("crests/mod_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 25px;
+}
+.organisation-logo-stacked-mod {
+  @extend .organisation-logo-identity;
+
+  padding: 25px 0 0 6px;
+  background-image: image-url("crests/mod_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 25px;
+}
+.organisation-logo-stacked-mod span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-mod,
+  .organisation-logo-stacked-mod {
+    background-image: image-url("crests/mod_crest_13px_x2.png");
+  }
+}
+
+// Wales Office
+.organisation-logo-wales {
+  @extend .organisation-logo-identity;
+
+  padding: 5px 0 5px 26px;
+  background-image: image-url("crests/wales_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 25px;
+}
+.organisation-logo-stacked-wales {
+  @extend .organisation-logo-identity;
+
+  padding: 25px 0 0 6px;
+  background-image: image-url("crests/wales_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 25px;
+}
+.organisation-logo-stacked-wales span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-wales,
+  .organisation-logo-stacked-wales {
+    background-image: image-url("crests/wales_crest_13px_x2.png");
+  }
+}
+
+// HM Coastguard
+.organisation-logo-coastguard {
+  @extend .organisation-logo-identity;
+
+  padding: 5px 0 5px 26px;
+  background-image: image-url("crests/coastguard_13px.png");
+  background-position: 5px center;
+  background-size: auto 25px;
+}
+.organisation-logo-stacked-coastguard {
+  @extend .organisation-logo-identity;
+
+  padding: 25px 0 0 6px;
+  background-image: image-url("crests/coastguard_13px.png");
+  background-position: 5px top;
+  background-size: auto 25px;
+}
+.organisation-logo-stacked-coastguard span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-coastguard,
+  .organisation-logo-stacked-coastguard {
+    background-image: image-url("crests/coastguard_13px_x2.png");
+  }
+}
+
+// Parliment Portcullis
+.organisation-logo-portcullis {
+  @extend .organisation-logo-identity;
+
+  padding: 3px 0 2px 26px;
+  background-image: image-url("crests/portcullis_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-portcullis {
+  @extend .organisation-logo-identity;
+
+  padding: 25px 0 0 6px;
+  background-image: image-url("crests/portcullis_13px.png");
+  background-position: 5px top;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-portcullis span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-portcullis,
+  .organisation-logo-stacked-portcullis {
+    background-image: image-url("crests/portcullis_13px_x2.png");
+  }
+}
+
+// UK Hydrographic Office
+.organisation-logo-ukho {
+  @extend .organisation-logo-identity;
+
+  padding: 5px 0 5px 30px;
+  background-image: image-url("crests/ukho_13px.png");
+  background-position: 5px center;
+  background-size: auto 25px;
+}
+.organisation-logo-stacked-ukho {
+  @extend .organisation-logo-identity;
+
+  padding: 25px 0 0 6px;
+  background-image: image-url("crests/ukho_13px.png");
+  background-position: 5px top;
+  background-size: auto 25px;
+}
+.organisation-logo-stacked-ukho span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-ukho,
+  .organisation-logo-stacked-ukho {
+    background-image: image-url("crests/ukho_13px_x2.png");
+  }
+}
+
+// Executive Office
+.organisation-logo-eo {
+  @extend .organisation-logo-no-identity;
+
+  padding: 3px 0 2px 35px;
+  background-image: image-url("crests/org_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-eo {
+  @extend .organisation-logo-no-identity;
+
+  padding: 20px 0 0 1px;
+  background-image: image-url("crests/org_crest_13px.png");
+  background-position: 0 top;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-eo span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-eo,
+  .organisation-logo-stacked-eo {
+    background-image: image-url("crests/org_crest_13px_x2.png");
+  }
+}
+
+// HMRC
+.organisation-logo-hmrc {
+  @extend .organisation-logo-identity;
+
+  padding: 3px 0 2px 30px;
+  background-image: image-url("crests/hmrc_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-hmrc {
+  @extend .organisation-logo-identity;
+
+  padding: 20px 0 0 6px;
+  background-image: image-url("crests/hmrc_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-hmrc span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-hmrc,
+  .organisation-logo-stacked-hmrc {
+    background-image: image-url("crests/hmrc_crest_13px_x2.png");
+  }
+}
+
+// UK Atomic Energy Authority
+.organisation-logo-ukaea {
+  @extend .organisation-logo-identity;
+
+  padding: 3px 0 2px 30px;
+  background-image: image-url("crests/ukaea_crest_13px.png");
+  background-position: 5px center;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-ukaea {
+  @extend .organisation-logo-identity;
+
+  padding: 20px 0 0 6px;
+  background-image: image-url("crests/ukaea_crest_13px.png");
+  background-position: 5px top;
+  background-size: auto 20px;
+}
+.organisation-logo-stacked-ukaea span {
+  display: block;
+  position: relative;
+  top: 3px;
+}
+@media all and (-webkit-min-device-pixel-ratio: 2) {
+  .organisation-logo-ukaea,
+  .organisation-logo-stacked-ukaea {
+    background-image: image-url("crests/ukaea_crest_13px_x2.png");
+  }
+}
+
+// Custom logos
+.organisation-logo-custom {
+  border-left: none;
+}
+
+// Non-cornforming Medium
+.organisation-logo-no-identity-medium {
+  @include media(tablet){
+    font-size: 18px;
+    line-height: 20px;
+    padding: 3px 0 2px 0;
+  }
+}
+.organisation-logo-identity-medium {
+  @extend .organisation-logo-no-identity-medium;
+  @include media(tablet){
+    border-left: 2px solid;
+  }
+}
+
+// Single identity Medium
+.organisation-logo-single-identity-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 3px 0 2px 44px;
+    background-image: image-url("crests/org_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px;
+  }
+}
+.organisation-logo-stacked-single-identity-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 25px 0 0 7px;
+    background-image: image-url("crests/org_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-single-identity-medium span {
+      display: block;
+      position: relative;
+      top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-single-identity-medium,
+    .organisation-logo-stacked-single-identity-medium {
+      background-image: image-url("crests/org_crest_18px_x2.png");
+    }
+  }
+}
+
+// BIS Medium
+.organisation-logo-bis-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 3px 0 2px 38px;
+    background-image: image-url("crests/bis_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px;
+  }
+}
+.organisation-logo-stacked-bis-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 25px 0 0 7px;
+    background-image: image-url("crests/bis_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-bis-medium span {
+    display: block;
+    position: relative;
+    top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-bis-medium,
+    .organisation-logo-stacked-bis-medium {
+      background-image: image-url("crests/bis_crest_18px_x2.png");
+    }
+  }
+}
+
+// Scotland Office Medium
+.organisation-logo-so-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 3px 0 2px 45px;
+    background-image: image-url("crests/so_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px;
+  }
+}
+.organisation-logo-stacked-so-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 25px 0 0 7px;
+    background-image: image-url("crests/so_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-so-medium span {
+    display: block;
+    position: relative;
+    top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-so-medium,
+    .organisation-logo-stacked-so-medium {
+      background-image: image-url("crests/so_crest_18px_x2.png");
+    }
+  }
+}
+
+// Home Office Medium
+.organisation-logo-ho-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 8px 0 7px 32px;
+    background-image: image-url("crests/ho_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 35px;
+  }
+}
+.organisation-logo-stacked-ho-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 35px 0 0 7px;
+    background-image: image-url("crests/ho_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 35px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-ho-medium span {
+    display: block;
+    position: relative;
+    top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-ho-medium,
+    .organisation-logo-stacked-ho-medium {
+      background-image: image-url("crests/ho_crest_18px_x2.png");
+    }
+  }
+}
+
+// MOD Medium
+.organisation-logo-mod-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 8px 0 7px 36px;
+    background-image: image-url("crests/mod_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 35px;
+  }
+}
+.organisation-logo-stacked-mod-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 35px 0 0 7px;
+    background-image: image-url("crests/mod_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 35px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-mod-medium span {
+    display: block;
+    position: relative;
+    top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-mod-medium,
+    .organisation-logo-stacked-mod-medium {
+      background-image: image-url("crests/mod_crest_18px_x2.png");
+    }
+  }
+}
+
+// Wales Medium
+.organisation-logo-wales-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 8px 0 7px 35px;
+    background-image: image-url("crests/wales_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 35px;
+  }
+}
+.organisation-logo-stacked-wales-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 35px 0 0 7px;
+    background-image: image-url("crests/wales_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 35px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-wales-medium span {
+    display: block;
+    position: relative;
+    top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-wales-medium,
+    .organisation-logo-stacked-wales-medium {
+      background-image: image-url("crests/wales_crest_18px_x2.png");
+    }
+  }
+}
+
+// HM Coastguard Medium
+.organisation-logo-coastguard-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 8px 0 7px 35px;
+    background-image: image-url("crests/coastguard_18px.png");
+    background-position: 6px center;
+    background-size: auto 35px;
+  }
+}
+.organisation-logo-stacked-coastguard-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 35px 0 0 7px;
+    background-image: image-url("crests/coastguard_18px.png");
+    background-position: 6px top;
+    background-size: auto 35px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-coastguard-medium span {
+    display: block;
+    position: relative;
+    top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-coastguard-medium,
+    .organisation-logo-stacked-coastguard-medium {
+      background-image: image-url("crests/coastguard_18px_x2.png");
+    }
+  }
+}
+
+// Parliment Portcullis Medium
+.organisation-logo-portcullis-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 3px 0 2px 34px;
+    background-image: image-url("crests/portcullis_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px;
+  }
+}
+.organisation-logo-stacked-portcullis-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 25px 0 0 7px;
+    background-image: image-url("crests/portcullis_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-portcullis-medium span {
+    display: block;
+    position: relative;
+    top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-portcullis-medium,
+    .organisation-logo-stacked-portcullis-medium {
+      background-image: image-url("crests/portcullis_18px_x2.png");
+    }
+  }
+}
+
+// UK Hydrographic Office Medium
+.organisation-logo-ukho-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 3px 0 2px 38px;
+    background-image: image-url("crests/ukho_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px;
+  }
+}
+.organisation-logo-stacked-ukho-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 25px 0 0 7px;
+    background-image: image-url("crests/ukho_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-ukho-medium span {
+    display: block;
+    position: relative;
+    top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-ukho-medium,
+    .organisation-logo-stacked-ukho-medium {
+      background-image: image-url("crests/ukho_18px_x2.png");
+    }
+  }
+}
+
+// Executive Office Medium
+.organisation-logo-eo-medium {
+  @extend .organisation-logo-no-identity-medium;
+  @include media(tablet){
+    padding: 3px 0 2px 44px;
+    background-image: image-url("crests/org_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px;
+  }
+}
+.organisation-logo-stacked-eo-medium {
+  @extend .organisation-logo-no-identity-medium;
+  @include media(tablet){
+    padding: 25px 0 0 1px;
+    background-image: image-url("crests/org_crest_18px.png");
+    background-position: 0 top;
+    background-size: auto 25px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-eo-medium span {
+      display: block;
+      position: relative;
+      top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-eo-medium,
+    .organisation-logo-stacked-eo-medium {
+      background-image: image-url("crests/org_crest_18px_x2.png");
+    }
+  }
+}
+
+// HMRC Medium
+.organisation-logo-hmrc-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 3px 0 2px 38px;
+    background-image: image-url("crests/hmrc_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px;
+  }
+}
+.organisation-logo-stacked-hmrc-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 25px 0 0 7px;
+    background-image: image-url("crests/hmrc_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-hmrc-medium span {
+    display: block;
+    position: relative;
+    top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-hmrc-medium,
+    .organisation-logo-stacked-hmrc-medium {
+      background-image: image-url("crests/hmrc_crest_18px_x2.png");
+    }
+  }
+}
+
+// UK Atomic Energy Authority Medium
+.organisation-logo-ukaea-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 3px 0 2px 38px;
+    background-image: image-url("crests/ukaea_crest_18px.png");
+    background-position: 6px center;
+    background-size: auto 25px;
+  }
+}
+.organisation-logo-stacked-ukaea-medium {
+  @extend .organisation-logo-identity-medium;
+  @include media(tablet){
+    padding: 25px 0 0 7px;
+    background-image: image-url("crests/ukaea_crest_18px.png");
+    background-position: 6px top;
+    background-size: auto 25px;
+  }
+}
+@include media(tablet){
+  .organisation-logo-stacked-ukaea-medium span {
+    display: block;
+    position: relative;
+    top: 3px;
+  }
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    .organisation-logo-ukaea-medium,
+    .organisation-logo-stacked-ukaea-medium {
+      background-image: image-url("crests/ukaea_crest_18px_x2.png");
+    }
+  }
+}
+
+// Custom logos Medium
+.organisation-logo-custom-medium {
+  @extend .organisation-logo-identity-medium;
+  border-left: none;
+}
+

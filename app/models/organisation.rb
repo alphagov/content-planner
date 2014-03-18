@@ -3,7 +3,7 @@ require "lrucache"
 class Organisation
   cattr_writer :organisations
 
-  attr_reader :id, :title, :format, :slug, :abbreviation, :govuk_status, :parent_organisations
+  attr_reader :id, :title, :format, :slug, :abbreviation, :govuk_status, :parent_organisations, :logo_formatted_name, :organisation_brand_colour_class_name, :organisation_logo_type_class_name
 
   def self.cache
     @cache ||= LRUCache.new(soft_ttl: 1.day, ttl: 2.days)
@@ -43,6 +43,17 @@ class Organisation
     @govuk_status = org.details.govuk_status
     @parent_organisations = org.parent_organisations
     @child_organisations = org.child_organisations
+    @logo_formatted_name = org.details.logo_formatted_name
+    @organisation_brand_colour_class_name = org.details.organisation_brand_colour_class_name
+    @organisation_logo_type_class_name = org.details.organisation_logo_type_class_name
+  end
+
+  def self.model_name
+    "Organisation"
+  end
+
+  def self.param_key
+    "org"
   end
 
   def exempt?

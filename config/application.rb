@@ -20,6 +20,14 @@ module ContentPlanner
       g.helper_specs false
     end
 
+    config.assets.precompile += %w(
+      application.css
+      application-ie8.css
+      application-ie7.css
+      application-ie6.css
+      application.js
+    )
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

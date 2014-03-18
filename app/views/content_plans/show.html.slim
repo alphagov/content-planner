@@ -3,7 +3,14 @@
 = link_to "history", [:versions, content_plan], class: 'btn pull-right history-btn'
 
 = breadcrumb ["Content Plans", content_plans_path], content_plan.name
-
+.row
+  .span12
+    ul class="organisations-icon-list organisation"
+      - content_plan.organisations.each do |organisation|
+        li class=(organisation.organisation_brand_colour_class_name + "-brand-colour")
+          a class=(logo_classes(class_name: organisation.organisation_logo_type_class_name, organisation: organisation, size: 'medium'))
+            span
+              = organisation_logo_name(organisation, content_plan.organisations.count == 1)
 .row
   .span8
     h2
