@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   prepend_before_filter :authenticate_user!
   before_filter :require_signin_permission!
-  before_filter :skip_slimmer
 
   protect_from_forgery with: :exception
 
