@@ -8,7 +8,7 @@ class ContentPolicy < Struct.new(:user, :content)
   end
 
   def create?
-    user.gds_editor?
+    content.specialist? || user.gds_editor?
   end
 
   def new?
@@ -16,14 +16,14 @@ class ContentPolicy < Struct.new(:user, :content)
   end
 
   def update?
-    content.specialist? || user.gds_editor?
+    create?
   end
 
   def edit?
-    update?
+    create?
   end
 
   def destroy?
-    user.gds_editor?
+    create?
   end
 end

@@ -31,6 +31,10 @@
             dt Content type:
             dd
               = content.content_type
+          - if content.publish_by.present?
+            dt Publish by:
+            dd
+              = l content.publish_by
           - if content.status.present?
             dt Status:
             dd

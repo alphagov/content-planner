@@ -60,6 +60,7 @@
           th.size Size
           th.status Status
           th.platform Platform
+          th.publish_by Publish by
         tbody
           - content_plan.contents.each do |content|
             tr
@@ -71,6 +72,9 @@
                 = content.status
               td
                 = link_to content.platform, content.url, rel: "external", target: "_blank"
+              td
+                - if content.publish_by.present?
+                  = l content.publish_by
 
 
   .span4.tasks-comments
