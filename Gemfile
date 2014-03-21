@@ -27,6 +27,7 @@ gem "govspeak", ">= 1.3.0"
 gem "plek", ">= 1.0.0"
 gem "gds-sso", "9.2.5", github: "alphagov/gds-sso"
 gem "gds-api-adapters", "10.1.0"
+gem 'govuk_frontend_toolkit', :git => "https://github.com/alphagov/govuk_frontend_toolkit_gem.git", :submodules => true
 gem "pundit"
 gem "logstasher", "0.4.1"
 gem "lrucache", "0.1.4"
