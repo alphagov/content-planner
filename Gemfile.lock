@@ -67,6 +67,9 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
+    airbrake (3.1.15)
+      builder
+      multi_json
     arel (4.0.1)
     ast (1.1.0)
     atomic (1.1.14)
@@ -123,9 +126,6 @@ GEM
       rubyzip (~> 0.9.6)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    exception_notification (4.0.1)
-      actionmailer (>= 3.0.4)
-      activesupport (>= 3.0.4)
     execjs (2.0.2)
     factory_girl (4.3.0)
       activesupport (>= 3.0.0)
@@ -351,6 +351,7 @@ PLATFORMS
 DEPENDENCIES
   active_hash
   acts-as-taggable-on
+  airbrake (= 3.1.15)
   aws-ses
   better_errors
   binding_of_caller
@@ -365,7 +366,6 @@ DEPENDENCIES
   decent_exposure
   draper
   dullard
-  exception_notification
   factory_girl_rails
   gds-api-adapters (= 10.1.0)
   gds-sso (= 9.2.5)!
