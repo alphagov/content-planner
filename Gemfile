@@ -32,8 +32,8 @@ gem "pundit"
 gem "logstasher", "0.4.1"
 gem "lrucache", "0.1.4"
 
-gem "aws-ses", require: "aws/ses" # Needed by exception_notification
-gem "exception_notification"
+gem "aws-ses", require: "aws/ses"
+gem "airbrake", "3.1.15"
 gem "highcharts-rails", "~> 3.0.0"
 gem "dullard"
 gem "roo", github: "Empact/roo"
