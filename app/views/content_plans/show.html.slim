@@ -1,4 +1,4 @@
-- if policy(content_plan).create?
+- if policy(content_plan).edit?
   = link_to "edit", [:edit, content_plan], class: 'btn pull-right'
 = link_to "history", [:versions, content_plan], class: 'btn pull-right history-btn'
 

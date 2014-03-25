@@ -12,7 +12,7 @@ class ContentPolicy < Struct.new(:user, :content)
   end
 
   def new?
-    create?
+    true
   end
 
   def update?
