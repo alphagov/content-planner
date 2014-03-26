@@ -1,11 +1,7 @@
 require "spec_helper"
 
 feature "Add comments from content" do
-  before do
-    user = build :user
-    user.permissions = [User::Permissions::SIGNIN, User::Permissions::GDS_EDITOR]
-    user.save
-  end
+  before { create :user, :gds_editor }
 
   scenario "add comment from content" do
     content = create :content

@@ -1,12 +1,7 @@
 require "spec_helper"
 
 feature "Make it more obious when you're looking at a content plan vs content" do
-
-  before do
-    user = build :user
-    user.permissions = [User::Permissions::SIGNIN, User::Permissions::GDS_EDITOR]
-    user.save
-  end
+  before { create :user, :gds_editor }
 
   describe "Content plans is active" do
     scenario "index" do
