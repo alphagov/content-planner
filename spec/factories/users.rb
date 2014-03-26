@@ -8,5 +8,9 @@ FactoryGirl.define do
   factory :user do
     sequence(:name) { |n| "User #{n}" }
     email
+
+    trait :gds_editor do
+      permissions { [User::Permissions::SIGNIN, User::Permissions::GDS_EDITOR] }
+    end
   end
 end
