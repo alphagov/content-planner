@@ -17,16 +17,23 @@ FactoryGirl.define do
       end
     end
 
-    trait :with_needs do
+    trait :with_need do
       after(:create) do |content_plan|
         ContentPlanNeed.create(content_plan: content_plan, need_id: Need.all.first.id)
       end
     end
 
-    trait :with_tags do
+    trait :with_tag do
       after(:create) do |content_plan|
         content_plan.tag_list.add create(:tag).name
         content_plan.save!
+      end
+    end
+
+    trait :with_user do
+      after(:create) do |content_plan|
+        content_plan.content_plan_users
+        ContentPlanUser.create!(content_plan: content_plan, user: create(:user))
       end
     end
   end
