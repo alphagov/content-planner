@@ -7,7 +7,7 @@
   .span12
     ul class="organisations-icon-list organisation"
       - content_plan.organisations.each do |organisation|
-        li class=(organisation.organisation_brand_colour_class_name + "-brand-colour")
+        li class=(organisation.organisation_brand_colour_class_name.to_s + "-brand-colour")
           a class=(logo_classes(class_name: organisation.organisation_logo_type_class_name, organisation: organisation, size: 'medium'))
             span
               = organisation_logo_name(organisation, content_plan.organisations.count == 1)
@@ -18,7 +18,7 @@
     dl.metadata
       - if content_plan.size.present?
         dt Size:
-        dd 
+        dd
           = content_plan.size
       - if content_plan.need_ids.present?
         dt User Needs:
