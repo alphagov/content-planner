@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :content_plan_content do
-    content_plan_id 1
-    content_id 1
+    content_plan
+    content
   end
 end
