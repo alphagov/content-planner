@@ -1,14 +1,15 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :content_plan do
-    sequence(:ref_no) { |n| "REF-#{"%03d" % n}" }
-    sequence(:title)  { |n| "Content plan #{n}" }
+  sequence(:ref_no) { |n| "REF-#{"%03d" % n}" }
 
-    details     { "#{title} details" }
-    notes       { "#{title} notes" }
-    due_quarter { ContentPlan::QUARTERS.to_a.sample }
-    due_year    { ContentPlan::YEARS.to_a.sample }
+  factory :content_plan do
+    ref_no
+    sequence(:title)  { |n| "Content plan #{n}" }
+    details           { "#{title} details" }
+    notes             { "#{title} notes" }
+    due_quarter       { ContentPlan::QUARTERS.to_a.sample }
+    due_year          { ContentPlan::YEARS.to_a.sample }
 
     trait :with_organisation do
       after(:create) do |content_plan|
