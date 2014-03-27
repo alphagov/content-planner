@@ -36,6 +36,10 @@
         dt Due:
         dd
           = content_plan.due_date
+      - if content_plan.organisations.any?
+        dt Organisations:
+        dd
+          = content_plan.organisations.map(&:title).join("<br />").html_safe
   .span4.content-plans
     .tag-box.mini
       h4 Status
