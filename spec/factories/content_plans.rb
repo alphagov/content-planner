@@ -37,5 +37,23 @@ FactoryGirl.define do
         ContentPlanUser.create!(content_plan: content_plan, user: create(:user))
       end
     end
+
+    trait :with_content do
+      after(:create) do |content_plan|
+        create(:content_plan_content, content_plan: content_plan)
+      end
+    end
+
+    trait :with_task do
+      after(:create) do |content_plan|
+        create(:task, taskable: content_plan)
+      end
+    end
+
+    trait :with_comment do
+      after(:create) do |content_plan|
+        create(:comment, commentable: content_plan)
+      end
+    end
   end
 end

@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :comment do
-    commentable_id 1
-    commentable_type "ContentPlan"
+    user
+    sequence(:message) { |n| "Comment #{n}" }
+    commentable        { create :content_plan }
   end
 end
