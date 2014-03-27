@@ -3,8 +3,6 @@ class Content < ActiveRecord::Base
 
   acts_as_taggable
 
-  PLATFORMS = ["Mainstream", "Specialist"]
-
   STATUSES = {
     "Specialist" => [
       "Not started",
@@ -26,6 +24,7 @@ class Content < ActiveRecord::Base
       "Blocked"
     ]
   }
+  PLATFORMS = STATUSES.keys
   STATUS = STATUSES.values.flatten.uniq
 
   has_many :content_plan_contents, dependent: :destroy
@@ -76,17 +75,17 @@ class Content < ActiveRecord::Base
 
   def self.percentages_for(options)
     platform = options.fetch(:platform) { raise ArgumentError.new("#percentages_for expects platform: as part of options hash") }
-    contents = options.fetch(:contents) { raise ArgumentError.new("#percentages_for expects contents scope: as part of options hash") }
+    contents = options.fetch(:contents) { raise ArgumentError.new("#percentages_for expects contents: as part of options hash") }
 
     scope = contents.where(platform: platform)
     total = scope.sum(:size)
     STATUSES[platform].inject({}) do |hash, status|
-      hash.tap do |new_hash|
+      hash.tap do |hash|
         if total > 0
           sum = scope.where(status: status).sum(:size)
-          new_hash[status] = [scope.where(status: status).count, ((sum / total.to_f) * 100.0).round(3)]
+          hash[status] = [scope.where(status: status).count, ((sum / total.to_f) * 100.0).round(3)]
         else
-          new_hash[status] = [0, 0]
+          hash[status] = [0, 0]
         end
       end
     end
