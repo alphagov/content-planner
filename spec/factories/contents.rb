@@ -36,5 +36,24 @@ FactoryGirl.define do
         create(:comment, commentable: content)
       end
     end
+
+    trait :with_need do
+      after(:create) do |content|
+        ContentNeed.create(content: content, need_id: Need.all.first.id)
+      end
+    end
+
+    trait :with_user do
+      after(:create) do |content|
+        ContentUser.create!(content: content, user: create(:user))
+      end
+    end
+
+    trait :with_tag do
+      after(:create) do |content|
+        content.tag_list.add create(:tag).name
+        content.save!
+      end
+    end
   end
 end

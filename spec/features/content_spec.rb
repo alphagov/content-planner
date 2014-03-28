@@ -80,4 +80,17 @@ describe "Content" do
     it { expect(page).to have_text(task.title) }
     it { expect(page).to have_text(comment.message) }
   end
+
+  context "filter" do
+    let!(:content) { create(:content, :with_organisation, :with_content_plan, :with_need, :with_user, :with_tag) }
+    let!(:content_2) { create(:content) }
+
+    before {
+      visit contents_path
+      fill_in_filter_form_for(content)
+    }
+
+    it { expect(page).to have_text(content.title) }
+    it { expect(page).to_not have_text(content_2.title) }
+  end
 end
