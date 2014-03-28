@@ -64,4 +64,17 @@ describe "Content Plan" do
     it { expect(page).to have_text(task.title) }
     it { expect(page).to have_text(comment.message) }
   end
+
+  context "filter" do
+    let!(:content_plan) { create(:content_plan, :with_organisation, :with_need, :with_tag, :with_user) }
+    let!(:content_plan_2) { create(:content_plan) }
+
+    before {
+      visit content_plans_path
+      fill_in_filter_form_for(content_plan)
+    }
+
+    it { expect(page).to have_content(content_plan.ref_no) }
+    it { expect(page).to_not have_content(content_plan_2.ref_no) }
+  end
 end

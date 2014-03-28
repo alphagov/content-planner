@@ -33,7 +33,6 @@ FactoryGirl.define do
 
     trait :with_user do
       after(:create) do |content_plan|
-        content_plan.content_plan_users
         ContentPlanUser.create!(content_plan: content_plan, user: create(:user))
       end
     end
