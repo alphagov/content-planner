@@ -19,9 +19,8 @@ FactoryGirl.define do
     end
 
     trait :with_organisation do
-      after(:create) do |content|
+      after(:build) do |content|
         content.organisation_ids = [Organisation.all.first.id]
-        content.save!
       end
     end
 
