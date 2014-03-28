@@ -17,7 +17,7 @@
         dl.metadata
           - if content.url.present?
             dt Url:
-            dd 
+            dd
               = link_to content.url, content.url
           - if content.platform .present?
             dt Platform:
@@ -56,6 +56,10 @@
             dt Tags:
             dd
               = content_tag_filters content.tag_list
+          - if content.organisations.any?
+            dt Organisations:
+            dd
+              = content.organisations.map(&:title).join("<br />").html_safe
 
   .span6.comments-form
     .inner
@@ -67,6 +71,6 @@
 
       h4 Comments
       = render "comments/form", comment: comment
-      
+
       ul.comments
         = render content.comments
