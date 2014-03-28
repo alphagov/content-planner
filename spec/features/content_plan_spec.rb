@@ -15,8 +15,6 @@ describe "Content Plan" do
   end
 
   context "edit" do
-    let(:need) { Need.all.first }
-    let(:organisation) { Organisation.all.first }
     let(:content_plan) { ContentPlan.last }
     let(:attributes) {
       attributes_for(:content_plan).tap do |attributes|
