@@ -13,7 +13,7 @@ ContentPlanner::Application.routes.draw do
 
   resources :users
 
-  resources :tags
+  resources :tags, only: [:index, :new, :create, :edit, :update, :destroy]
 
   get "dashboard_data", to: "home#dashboard_data"
   get "chart", to: "home#chart"
