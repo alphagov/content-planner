@@ -1,5 +1,5 @@
 module ContentPlanSteps
-  include ::CommonSteps
+  include CommonSteps
 
   def create_content_plan!
     visit new_content_plan_path
