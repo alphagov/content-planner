@@ -8,7 +8,6 @@ describe Content do
       before { content.valid? }
 
       it { should_not be_valid }
-      it { content.errors.messages[:title].should include("can't be blank") }
     end
   end
 
