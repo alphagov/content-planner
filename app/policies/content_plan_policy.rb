@@ -12,19 +12,19 @@ class ContentPlanPolicy < Struct.new(:user, :content_plan)
   end
 
   def create?
-    user.gds_editor?
+    true
   end
 
   def new?
-    create?
+    true
   end
 
   def update?
-    user.gds_editor?
+    true
   end
 
   def edit?
-    update?
+    true
   end
 
   def destroy?
