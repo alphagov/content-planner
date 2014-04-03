@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError do |e|
     # Layout and view comes from GDS::SSO::ControllerMethods
-    render "authorisations/unauthorised", layout: "unauthorised", status: :forbidden, locals: { message: e.message }
+    render "authorisations/unauthorised", 
+            layout: "unauthorised", 
+            status: :forbidden, 
+            locals: { message: "You are not authorized to perform this action." }
   end unless Rails.env.test?
 end

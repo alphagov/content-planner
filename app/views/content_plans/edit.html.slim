@@ -5,6 +5,7 @@
     .span12
       h2
         Edit Content Plan
-        = button_to "Delete", content_plan, method: :delete, class: 'btn btn-danger', form_class: 'delete-btn pull-right'
+        - if policy(content_plan).destroy?
+          = button_to "Delete", content_plan, method: :delete, class: 'btn btn-danger', form_class: 'delete-btn pull-right'
 
       = render "form"
