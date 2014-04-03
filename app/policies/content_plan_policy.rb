@@ -28,6 +28,6 @@ class ContentPlanPolicy < Struct.new(:user, :content_plan)
   end
 
   def destroy?
-    user.gds_editor?
+    content_plan.contents.empty?
   end
 end
