@@ -1,0 +1,79 @@
+(function() {
+  var jsContentPlans, jsContents, jsNeeds, jsOrganisations, jsTags, jsUsers, select2Default;
+
+  jsTags = function() {
+    return $(".js-tags").select2({
+      tags: <%= ActsAsTaggableOn::Tag.all.map(&:name).to_json %>,
+      allowClear: true
+    });
+  };
+
+  $(document).ready(jsTags);
+
+  $(document).on("page:load", jsTags);
+
+  jsContentPlans = function() {
+    $("#source_url_content_plan_ids").select2();
+    $("#content_content_plan_ids").select2();
+    $('#content_plan_user_ids').select2();
+    return $("#search_content_plan_ids").select2({
+      allowClear: true
+    });
+  };
+
+  $(document).ready(jsContentPlans);
+
+  $(document).on("page:load", jsContentPlans);
+
+  jsNeeds = function() {
+    return $(".js-needs").select2({
+      placeholder: "User needs",
+      allowClear: true
+    });
+  };
+
+  $(document).ready(jsNeeds);
+
+  $(document).on("page:load", jsNeeds);
+
+  jsUsers = function() {
+    return $(".js-users").select2({
+      placeholder: "Person",
+      allowClear: true
+    });
+  };
+
+  $(document).ready(jsUsers);
+
+  $(document).on("page:load", jsUsers);
+
+  jsContents = function() {
+    return $('#content_user_ids').select2();
+  };
+
+  $(document).ready(jsContents);
+
+  $(document).on("page:load", jsContents);
+
+  jsOrganisations = function() {
+    return $(".js-organisations").select2({
+      placeholder: "Organisation",
+      allowClear: true
+    });
+  };
+
+  $(document).ready(jsOrganisations);
+
+  $(document).on("page:load", jsOrganisations);
+
+  select2Default = function() {
+    return $(".select2").select2({
+      allowClear: true
+    });
+  };
+
+  $(document).ready(select2Default);
+
+  $(document).on("page:load", select2Default);
+
+}).call(this);

@@ -1,0 +1,26 @@
+(function (){
+  "use strict";
+
+  var statuses = <%= Content::STATUSES.to_json %>; // statuses for content's form
+
+  $(document).on("change", "#content_platform", function (e) {
+    var options = statuses[e.target.value];
+
+    $("#content_status option").each(function () {
+      var $node = $(this);
+      if (options.indexOf($node.text()) >= 0) {
+        $node.removeAttr("disabled");
+      }
+      else {
+        $node.attr("disabled", "disabled");
+      }
+    });
+  });
+
+  var triggerChange = function () {
+    $("#content_platform").trigger("change");
+  };
+
+  $(document).ready(triggerChange)
+  $(document).on("page:load", triggerChange);
+})();

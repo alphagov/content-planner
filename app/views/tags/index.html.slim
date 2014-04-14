@@ -9,15 +9,12 @@
     table.table
       th Tag
       th &nbsp;
+      th &nbsp;
       - @tags.each do |tag|
         tr
           td
             = tag.name
-            |(
-            = link_to "edit", {action: :edit, controller: :tags, id: tag.id}
-            |)
+          td
+            = link_to "edit", edit_tag_path(tag), class: "btn btn-default pull-right"
           td
             = button_to "delete", {action: :destroy, controller: :tags, id: tag.id}, method: :delete, class: "btn btn-danger pull-right"
-
-
-
