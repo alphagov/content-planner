@@ -1,12 +1,12 @@
 bundler_args: --without development
 before_script:
-   - mysql -e 'CREATE DATABASE content_planner_test;'
+  - mysql -e 'CREATE DATABASE content_planner_test;'
 before_install:
-   - sudo apt-get update -qq
+  - cp config/database.travis.yml config/database.yml
 script:
- - RAILS_ENV=test bundle exec rake db:create
- - RAILS_ENV=test bundle exec rake db:migrate
- - RAILS_ENV=test bundle exec rake spec
+  - RAILS_ENV=test bundle exec rake db:create
+  - RAILS_ENV=test bundle exec rake db:migrate
+  - RAILS_ENV=test bundle exec rake spec
 rvm:
   - 2.0.0
 branches:
