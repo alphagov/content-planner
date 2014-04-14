@@ -1,0 +1,8 @@
+test:
+  adapter: mysql2
+  host: localhost
+  encoding: utf8
+  database: content_planner_test
+  username: root
+  password:
+  pool: 5
