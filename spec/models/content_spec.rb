@@ -1,12 +1,44 @@
 require "spec_helper"
 
 describe Content do
-  it "should not be valid without a title" do
-    content = FactoryGirl.build :content, title: nil
-    content.valid?.should be_false
-    content.errors.messages[:title].should include("can't be blank")
+  describe "validations" do
+    context "title" do
+      let(:content) { FactoryGirl.build(:content, title: nil) }
+
+      before { content.valid? }
+
+      it { should_not be_valid }
+    end
   end
-  it "should be valid with a title" do
-    FactoryGirl.build(:content).should be_valid
+
+  describe "#percentages_for" do
+    before { 50.times { create(:content) } }
+
+    let(:scope) { Content.limit(40) }
+    let(:percentages) { Content.percentages_for(platform: platform, contents: scope) }
+    let(:spec_percentages) {
+      hash = Content::STATUSES[platform].inject({}) { |h, s|
+        h.tap { |h| h[s] = {count: 0} }
+      }
+      scoped = scope.where(platform: platform)
+      total = scoped.sum(:size)
+      scoped.each do |content|
+        hash[content.status][:count] += 1
+      end
+      hash.each do |k, v|
+        count = hash[k][:count]
+        sum = scoped.where(status: k).sum(:size)
+        percentage = ((sum / total.to_f) * 100.0).round(3)
+        hash[k] = [count, percentage]
+      end
+    }
+
+    Content::PLATFORMS.each do |platform|
+      context platform do
+        let!(:platform) { platform }
+
+        it { expect(percentages).to eq(spec_percentages) }
+      end
+    end
   end
 end

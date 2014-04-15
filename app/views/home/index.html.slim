@@ -18,11 +18,11 @@
         div class=(("tag-box span4") + (i % 3 == 0 ? " clear-box" : ""))
           h4
             = link_to content_plan, content_plan_path(content_plan)
-          - %w(Mainstream Specialist).each do |platform|
+          - Content::PLATFORMS.each do |platform|
             - cache([platform, content_plan, params[:q], params[:year], params[:organisation]], expires_in: 1.hour) do
-              - if content_plan.contents.where(platform: platform).any?
+              - if content_plan.contents.platform(platform).any?
                 .platform
                   = platform
                   .progress
                     - Content.percentages_for(platform: platform, contents: contents).each do |status, results|
-                      div[class="status status-#{status.parameterize}" style="width: #{results[1]}%" title="#{status}: #{results[1]}% (#{results[0]} items)" data-tooltip=true data-placement="bottom"]
+                      div[class="status status-#{status.parameterize}" style="width: #{results[1]}%" title="#{status}: #{results[1]}% (#{pluralize results[0], 'item'})" data-tooltip=true data-placement="bottom"]
