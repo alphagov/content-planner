@@ -23,8 +23,9 @@ module ApplicationHelper
   end
 
   def content_organisations(organisations)
-    return if organisations.compact.empty?
-    organisations.map(&:abbreviation_or_title).join ", "
+    orgs = organisations.compact
+    return if orgs.empty?
+    orgs.map(&:abbreviation_or_title).join(", ")
   end
 
   def collection_links(coll, f_name, f_link, separator = ", ")
