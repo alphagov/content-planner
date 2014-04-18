@@ -38,6 +38,7 @@ gem "highcharts-rails", "~> 3.0.0"
 gem "dullard"
 gem "roo", github: "Empact/roo"
 gem "google-spreadsheet-ruby"
+gem 'spreadsheet'
 
 group :development do
   gem "rubocop"

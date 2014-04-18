@@ -16,12 +16,13 @@ class ContentPlansController < ApplicationController
     contents.pluck(:status).uniq
   }
   expose(:all_records_are_live?) {
-    content_records_statuses.size == 1 &&
-    content_records_statuses[0] == 'Live'
+    true
+    # content_records_statuses.size == 1 &&
+    # content_records_statuses[0] == 'Live'
   }
 
   before_filter :authorize_user
-  before_action :require_all_records_to_be_live!, only: :csv_export
+  before_action :require_all_records_to_be_live!, only: :xls_export
 
   def index
     @search = ContentPlanSearch.new(params[:search])
@@ -57,13 +58,13 @@ class ContentPlansController < ApplicationController
     redirect_to content_plans_path
   end
 
-  def csv_export
-    csv_data, csv_filename = ContentPlans::CsvExport.new(content_plan).run
+  def xls_export
+    xls_data, xls_filename = ContentPlans::XlsExport.new(content_plan).run
 
     send_data(
-      csv_data.force_encoding(::Encoding::UTF_8),
-      filename: csv_filename,
-      type: 'text/csv; charset=Unicode(UTF-8); header=present'
+      xls_data,
+      filename: xls_filename,
+      type: 'application/vnd.ms-excel'
     )
   end
 
