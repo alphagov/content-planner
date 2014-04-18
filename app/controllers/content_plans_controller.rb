@@ -9,8 +9,19 @@ class ContentPlansController < ApplicationController
   expose(:task) {
     Task.new(taskable: content_plan)
   }
+  expose(:contents) {
+    content_plan.contents
+  }
+  expose(:content_records_statuses) {
+    contents.pluck(:status).uniq
+  }
+  expose(:all_records_are_live?) {
+    content_records_statuses.size == 1 &&
+    content_records_statuses[0] == 'Live'
+  }
 
   before_filter :authorize_user
+  before_action :require_all_records_to_be_live!, only: :csv_export
 
   def index
     @search = ContentPlanSearch.new(params[:search])
@@ -46,6 +57,16 @@ class ContentPlansController < ApplicationController
     redirect_to content_plans_path
   end
 
+  def csv_export
+    csv_data, csv_filename = ContentPlans::CsvExport.new(content_plan).run
+
+    send_data(
+      csv_data.force_encoding(::Encoding::UTF_8),
+      filename: csv_filename,
+      type: 'text/csv; charset=Unicode(UTF-8); header=present'
+    )
+  end
+
   private
 
   def content_plan_params
@@ -67,5 +88,9 @@ class ContentPlansController < ApplicationController
 
   def authorize_user
     authorize content_plan
+  end
+
+  def require_all_records_to_be_live!
+    all_records_are_live?
   end
 end
