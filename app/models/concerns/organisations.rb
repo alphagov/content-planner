@@ -10,7 +10,7 @@ module Organisations
   end
 
   def organisations
-    organisation_ids.map { |organisation_id| Organisation.find organisation_id }
+    organisation_ids.map { |organisation_id| Organisation.find organisation_id }.compact
   end
 
   def organisation_ids=(ids)
