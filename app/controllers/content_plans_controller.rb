@@ -16,9 +16,8 @@ class ContentPlansController < ApplicationController
     contents.pluck(:status).uniq
   }
   expose(:all_records_are_live?) {
-    true
-    # content_records_statuses.size == 1 &&
-    # content_records_statuses[0] == 'Live'
+    content_records_statuses.size == 1 &&
+    content_records_statuses[0] == 'Live'
   }
 
   before_filter :authorize_user
