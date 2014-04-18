@@ -15,7 +15,10 @@ class MockOrganisationsApi
                      details: OpenStruct.new(slug: "hm-revenue-customs",
                                              abbreviation: "HMRC",
                                              closed_at: nil,
-                                             govuk_status: "live"))
+                                             govuk_status: "live",
+                                             logo_formatted_name: "HM Revenue & Customs",
+                                             organisation_brand_colour_class_name: "hm-revenue-customs",
+                                             organisation_logo_type_class_name: "hmrc"))
     ]
   end
 end
