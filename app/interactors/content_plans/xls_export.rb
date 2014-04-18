@@ -84,7 +84,7 @@ module ContentPlans
     end
 
     def contents
-      content_plan.contents.map do |content_record|
+      content_plan.contents.includes(:comments, :tasks).map do |content_record|
         fetch_content_record_data(content_record)
       end
     end
