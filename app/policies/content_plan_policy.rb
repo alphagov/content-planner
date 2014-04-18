@@ -31,7 +31,7 @@ class ContentPlanPolicy < Struct.new(:user, :content_plan)
     content_plan.contents.empty?
   end
 
-  def csv_export?
+  def xls_export?
     true
   end
 end

@@ -6,7 +6,7 @@ ContentPlanner::Application.routes.draw do
   resources :content_plans do
     member do
       get 'versions'
-      get :csv_export
+      get :xls_export
     end
   end
 
