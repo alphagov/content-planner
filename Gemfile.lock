@@ -171,6 +171,7 @@ GEM
       activesupport (>= 3.0.0)
     kgio (2.8.1)
     kramdown (0.13.8)
+    libv8 (3.16.14.3)
     link_header (0.0.8)
     lockfile (2.1.0)
     logstash-event (1.1.5)
@@ -253,6 +254,7 @@ GEM
     rainbow (2.0.0)
     raindrops (0.12.0)
     rake (10.1.0)
+    ref (1.0.5)
     request_store (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -316,6 +318,9 @@ GEM
     temple (0.6.7)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -398,6 +403,7 @@ DEPENDENCIES
   simplecov
   simplecov-rcov
   slim
+  therubyracer
   thin
   turbolinks
   uglifier (>= 1.3.0)

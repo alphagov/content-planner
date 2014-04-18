@@ -48,6 +48,7 @@ group :development do
   gem "rack-mini-profiler"
   gem "bullet"
   gem "thin"
+  gem 'therubyracer', platforms: :ruby
 end
 
 group :development, :test do
