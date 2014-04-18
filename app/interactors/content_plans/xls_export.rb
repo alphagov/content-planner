@@ -8,6 +8,17 @@ module ContentPlans
       'Publish by'
     ]
 
+    TASKS_HEADERS = [
+      'Title',
+      'Status'
+    ]
+
+    COMMENTS_HEADERS = [
+      'User',
+      'Message',
+      'Added at'
+    ]
+
     attr_reader :content_plan
 
     def initialize(content_plan)
@@ -37,6 +48,20 @@ module ContentPlans
         contents_sheet.row(index + 1).concat content
       end
 
+      tasks_sheet = book.create_worksheet name: "Tasks"
+      tasks_sheet.row(0).concat TASKS_HEADERS
+
+      content_plan_tasks.each_with_index do |task, index|
+        tasks_sheet.row(index + 1).concat task
+      end
+
+      comments_sheet = book.create_worksheet name: "Comments"
+      comments_sheet.row(0).concat COMMENTS_HEADERS
+
+      content_plan_comments.each_with_index do |comment, index|
+        comments_sheet.row(index + 1).concat comment
+      end
+
       book.write spreadsheet
       spreadsheet.string
     end
@@ -49,6 +74,25 @@ module ContentPlans
           content_record.status,
           content_record.platform,
           content_record.publish_by.present? ? content_record.publish_by : ''
+        ]
+      end
+    end
+
+    def content_plan_tasks
+      content_plan.tasks.map do |task|
+        [
+          task.title,
+          task.done? ? 'completed' : 'pending'
+        ]
+      end
+    end
+
+    def content_plan_comments
+      content_plan.comments.map do |comment|
+        [
+          comment.user.name,
+          comment.message,
+          comment.created_at.to_formatted_s(:long)
         ]
       end
     end
