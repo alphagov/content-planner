@@ -20,6 +20,14 @@ module ContentPlans
       'Publish by'
     ]
 
+    USERS_HEADERS = [
+      "Uid",
+      "Name",
+      "Email",
+      "Organisation slug",
+      "Permissions"
+    ]
+
     attr_reader :content_plan, :spreadsheet, :book
 
     def initialize(content_plan)
@@ -48,12 +56,49 @@ module ContentPlans
     private
 
     def generate_xls
+      generate_content_plan_details_sheet
+      generate_users_sheet
+
       generate_contents_sheet
       generate_tasks_sheet
       generate_comments_sheet
 
       book.write spreadsheet
       spreadsheet.string
+    end
+
+    def generate_content_plan_details_sheet
+      sheet = book.create_worksheet name: "Content Plan Details"
+      needs = content_plan.content_plan_needs.map(&:need_id)
+
+      details = [
+        [ "Ref no:", content_plan.ref_no ],
+        [ "Title:", content_plan.title ],
+        [ "Details:", content_plan.details ],
+        [ "Notes:", content_plan.notes ],
+        [ "Due quarter:", content_plan.due_quarter ],
+        [ "Due Year:", content_plan.due_year ],
+        [ "Created at:", content_plan.created_at.to_formatted_s(:long) ],
+        [ "Updated at:", content_plan.updated_at.to_formatted_s(:long) ],
+        [ "Needs (#{needs.count}):", needs.join(', ') ],
+        [ "Number of users:", content_plan.users.count ],
+        [ "Number of contents:", content_plan.contents.count ],
+        [ "Number of tasks:", content_plan.tasks.count ],
+        [ "Number of comments:", content_plan.comments.count ]
+      ]
+
+      details.each_with_index do |content, index|
+        sheet.row(index).concat content
+      end
+    end
+
+    def generate_users_sheet
+      sheet = book.create_worksheet name: "Users"
+      sheet.row(0).concat USERS_HEADERS
+
+      users.each_with_index do |user, index|
+        sheet.row(index + 1).concat user
+      end
     end
 
     def generate_contents_sheet
@@ -80,6 +125,18 @@ module ContentPlans
 
       comments(content_plan).each_with_index do |comment, index|
         comments_sheet.row(index + 1).concat comment
+      end
+    end
+
+    def users
+      content_plan.users.map do |user|
+        [
+          user.uid.to_s,
+          user.name,
+          user.email,
+          user.organisation_slug.to_s,
+          user.permissions.join(', ')
+        ]
       end
     end
 
