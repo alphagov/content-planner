@@ -69,28 +69,38 @@ So that I can have ability to review content plan in excel file
       expect(book.worksheets.count).to eql 3
 
       # Content Plan Contens sheet should consist of 7 rows:
-      # 1 - headers
-      # 2 - first content line
+      # 0 - headers
+      # 1 - first content line
+      # 2 - first content tasks headers line
       # 3 - first content tasks line (1 content task)
-      # 4 - first content comments line (1 content comment)
-      # 5 - second content line
-      # 6 - second content tasks line (1 content task)
-      # 7 - second content comments line (1 content comment)
+      # 4 - first content comments headers line
+      # 5 - first content comments line (1 content comment)
+      # 6 - second content line
       contents_sheet = book.worksheets[0]
       expect(contents_sheet.rows.count).to eql 7
       expect(contents_sheet.rows[0]).to eql ContentPlans::XlsExport::CONTENTS_HEADERS
 
+      # expect(contents_sheet.rows[1].map(&:to_s)).to eql content_row(content)
+
+      expect(contents_sheet.rows[2].map(&:to_s)).to eql ContentPlans::XlsExport::TASKS_HEADERS
+      expect(contents_sheet.rows[3].map(&:to_s)).to eql content_task_row(content_task)
+
+      expect(contents_sheet.rows[4].map(&:to_s)).to eql ContentPlans::XlsExport::COMMENTS_HEADERS
+      expect(contents_sheet.rows[5].map(&:to_s)).to eql content_comment_row(content_comment)
+
+      # expect(contents_sheet.rows[6].map(&:to_s)).to eql content_row(second_content)
+
       # Tasks sheet should consist of 2 rows:
-      # 1 - headers
-      # 2 - task line
+      # 0 - headers
+      # 1 - task line
       tasks_sheet = book.worksheets[1]
       expect(tasks_sheet.rows.count).to eql 2
       expect(tasks_sheet.rows[0].map(&:to_s)).to eql ContentPlans::XlsExport::TASKS_HEADERS
       expect(tasks_sheet.rows[1].map(&:to_s)).to eql task_row(content_plan_task)
 
       # Comments sheet should consist of 2 rows:
-      # 1 - headers
-      # 2 - comment line
+      # 0 - headers
+      # 1 - comment line
       comments_sheet = book.worksheets[2]
       expect(comments_sheet.rows.count).to eql 2
       expect(comments_sheet.rows[0].map(&:to_s)).to eql ContentPlans::XlsExport::COMMENTS_HEADERS
@@ -123,19 +133,19 @@ So that I can have ability to review content plan in excel file
 
   def content_row(content)
     [
-      [content_record.ref_no, content_record.title].join(' '),
-      content_record.size,
-      content_record.status,
-      content_record.platform,
-      content_record.publish_by.present? ? content_record.publish_by : ''
+      [content.ref_no, content.title].join(' '),
+      content.size,
+      content.status,
+      content.platform,
+      content.publish_by.present? ? content.publish_by : ''
     ]
   end
 
   def content_task_row(task)
-    task_row(task)
+    task_row(task).unshift('')
   end
 
   def content_comment_row(comment)
-    comment_row(task)
+    comment_row(comment).unshift('')
   end
 end
