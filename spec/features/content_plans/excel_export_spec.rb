@@ -80,7 +80,7 @@ So that I can have ability to review content plan in excel file
       expect(contents_sheet.rows.count).to eql 7
       expect(contents_sheet.rows[0]).to eql ContentPlans::XlsExport::CONTENTS_HEADERS
 
-      # expect(contents_sheet.rows[1].map(&:to_s)).to eql content_row(content)
+      expect(contents_sheet.rows[1]).to eql content_row(content.reload)
 
       expect(contents_sheet.rows[2].map(&:to_s)).to eql ContentPlans::XlsExport::TASKS_HEADERS
       expect(contents_sheet.rows[3].map(&:to_s)).to eql content_task_row(content_task)
@@ -88,7 +88,7 @@ So that I can have ability to review content plan in excel file
       expect(contents_sheet.rows[4].map(&:to_s)).to eql ContentPlans::XlsExport::COMMENTS_HEADERS
       expect(contents_sheet.rows[5].map(&:to_s)).to eql content_comment_row(content_comment)
 
-      # expect(contents_sheet.rows[6].map(&:to_s)).to eql content_row(second_content)
+      expect(contents_sheet.rows[6]).to eql content_row(second_content.reload)
 
       # Tasks sheet should consist of 2 rows:
       # 0 - headers
@@ -131,13 +131,13 @@ So that I can have ability to review content plan in excel file
     ]
   end
 
-  def content_row(content)
+  def content_row(content_record)
     [
-      [content.ref_no, content.title].join(' '),
-      content.size,
-      content.status,
-      content.platform,
-      content.publish_by.present? ? content.publish_by : ''
+      [content_record.ref_no, content_record.title].join(' '),
+      content_record.size,
+      content_record.status,
+      content_record.platform,
+      (content_record.publish_by.present? ? content_record.publish_by.strftime("%d/%m/%Y") : '')
     ]
   end
 
