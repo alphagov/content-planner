@@ -64,4 +64,5 @@ group :test do
   gem "ci_reporter"
   gem "simplecov"
   gem "simplecov-rcov"
+  gem "launchy"
 end
