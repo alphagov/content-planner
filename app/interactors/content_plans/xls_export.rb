@@ -96,7 +96,7 @@ module ContentPlans
           content_record.size,
           content_record.status,
           content_record.platform,
-          content_record.publish_by.present? ? content_record.publish_by : ''
+          content_record.publish_by.present? ? content_record.publish_by.strftime("%d/%m/%Y") : ''
         ]
       ]
 
