@@ -22,6 +22,7 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.include FactoryGirl::Syntax::Methods
   config.include FeaturesHelpers, type: :feature
+  config.include ExpectationHelper, type: :feature
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
