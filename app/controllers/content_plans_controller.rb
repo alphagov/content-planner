@@ -91,6 +91,9 @@ class ContentPlansController < ApplicationController
   end
 
   def require_all_records_to_be_live!
-    all_records_are_live?
+    unless all_records_are_live?
+      redirect_to content_plan,
+                  alert: "Excel export available only if all records have been changed to the 'live' status"
+    end
   end
 end
