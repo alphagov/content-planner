@@ -88,7 +88,15 @@ So that I can have ability to review content plan in excel file
         expect(details_sheet.rows[index]).to eql data
       end
 
-      # Content Plan Contens sheet should consist of 7 rows:
+      # Users sheet should consist of 2 rows
+      # 0 - headers
+      # 1 - user line
+      users_sheet = book.worksheets[1]
+      expect(users_sheet.rows.count).to eql 2
+      expect(users_sheet.rows[0]).to eql ContentPlans::XlsExport::USERS_HEADERS
+      expect(users_sheet.rows[1].map(&:to_s)).to eql user_row(user.reload)
+
+      # Contens sheet should consist of 7 rows:
       # 0 - headers
       # 1 - first content line
       # 2 - first content tasks headers line
@@ -153,6 +161,16 @@ So that I can have ability to review content plan in excel file
       [ "Number of contents:", content_plan.contents.count ],
       [ "Number of tasks:", content_plan.tasks.count ],
       [ "Number of comments:", content_plan.comments.count ]
+    ]
+  end
+
+  def user_row(user)
+    [
+      user.uid.to_s,
+      user.name,
+      user.email,
+      user.organisation_slug.to_s,
+      user.permissions.join(', ')
     ]
   end
 
