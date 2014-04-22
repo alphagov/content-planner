@@ -6,7 +6,7 @@ class Content < ActiveRecord::Base
   STATUSES = {
     "Publisher" => [
       "Not started",
-      "Drafting Agency",
+      "Drafting - agency",
       "Publisher 2i",
       "Publisher amends",
       "Ready for publish",
@@ -15,7 +15,7 @@ class Content < ActiveRecord::Base
     ],
     "Whitehall" => [
       "Not started",
-      "Drafting GDS",
+      "Drafting - GDS",
       "Whitehall 2i",
       "Whitehall factcheck",
       "Whitehall amends",
