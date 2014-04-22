@@ -2,10 +2,13 @@
   = simple_form_for content_plan,
                     html: { class: 'form-horizontal form-container' } do |f|
     = f.input :ref_no
-    = f.input :title, input_html: { class: 'span12' }
+    .field_with_counter
+      = f.input :title, input_html: { class: 'span12 string_with_counter' }
+      .controls
+        .countdown
     = f.input :details, input_html: {class: 'span12', rows: 10}
     = f.input :notes, input_html: {class: 'span12', rows: 10}
-    = f.input :tag_list, 
+    = f.input :tag_list,
               as: :string,
               input_html: {class: "js-tags"}
     = f.association :users,
