@@ -1,20 +1,24 @@
 (function (){
   "use strict";
 
+  var current_status = null; // initial value
   var statuses = <%= Content::STATUSES.to_json %>; // statuses for content's form
 
   $(document).on("change", "#content_platform", function (e) {
     var options = statuses[e.target.value];
 
-    $("#content_status option").each(function () {
-      var $node = $(this);
-      if (options.indexOf($node.text()) >= 0) {
-        $node.removeAttr("disabled");
-      }
-      else {
-        $node.attr("disabled", "disabled");
-      }
+    if (current_status == null) {
+      current_status = $("#content_status option:selected").val();
+    }
+
+    $("#content_status").empty()
+
+    $.each(options, function( index, value ) {
+      var option = $('<option></option>').attr("value", value).text(value);
+      $("#content_status").append(option);
     });
+
+    $("#content_status").val(current_status);
   });
 
   var triggerChange = function () {
