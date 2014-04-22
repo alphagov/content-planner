@@ -4,21 +4,21 @@ class Content < ActiveRecord::Base
   acts_as_taggable
 
   STATUSES = {
-    "Specialist" => [
+    "Publisher" => [
       "Not started",
       "Drafting Agency",
-      "Specialist 2i",
-      "Specialist amends",
+      "Publisher 2i",
+      "Publisher amends",
       "Ready for publish",
       "Live",
       "Blocked"
     ],
-    "Mainstream" => [
+    "Whitehall" => [
       "Not started",
       "Drafting GDS",
-      "Mainstream 2i",
-      "Mainstream factcheck",
-      "Mainstream amends",
+      "Whitehall 2i",
+      "Whitehall factcheck",
+      "Whitehall amends",
       "Ready for publish",
       "Live",
       "Blocked"
@@ -42,6 +42,8 @@ class Content < ActiveRecord::Base
   scope :platform, ->(platform) { where platform: platform }
   scope :mainstream, -> { platform "Mainstream" }
   scope :specialist,  -> { platform "Specialist" }
+  scope :whitehall, -> { platform "Whitehall" }
+  scope :publisher,  -> { platform "Publisher" }
   scope :organisation, ->(organisation_id) {
     where id: Organisationable.for_content.where(organisation_id: organisation_id).pluck(:organisationable_id) if organisation_id.present?
   }
@@ -66,8 +68,8 @@ class Content < ActiveRecord::Base
     content_needs.any? ? content_needs.map(&:need_id) : nil
   end
 
-  def specialist?
-    platform == "Specialist"
+  def publisher?
+    platform == "Publisher"
   end
 
   def to_s
