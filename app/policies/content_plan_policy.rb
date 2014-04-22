@@ -30,4 +30,8 @@ class ContentPlanPolicy < Struct.new(:user, :content_plan)
   def destroy?
     content_plan.contents.empty?
   end
+
+  def xls_export?
+    true
+  end
 end

@@ -4,7 +4,10 @@ ContentPlanner::Application.routes.draw do
   root to: "home#index"
 
   resources :content_plans do
-    get 'versions', on: :member
+    member do
+      get 'versions'
+      get :xls_export
+    end
   end
 
   resources :tasks

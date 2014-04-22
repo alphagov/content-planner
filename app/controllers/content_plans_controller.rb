@@ -9,8 +9,19 @@ class ContentPlansController < ApplicationController
   expose(:task) {
     Task.new(taskable: content_plan)
   }
+  expose(:contents) {
+    content_plan.contents
+  }
+  expose(:content_records_statuses) {
+    contents.pluck(:status).uniq
+  }
+  expose(:all_records_are_live?) {
+    content_records_statuses.size == 1 &&
+    content_records_statuses[0] == 'Live'
+  }
 
   before_filter :authorize_user
+  before_action :require_all_records_to_be_live!, only: :xls_export
 
   def index
     @search = ContentPlanSearch.new(params[:search])
@@ -46,6 +57,16 @@ class ContentPlansController < ApplicationController
     redirect_to content_plans_path
   end
 
+  def xls_export
+    xls_data, xls_filename = ContentPlans::XlsExport.new(content_plan).run
+
+    send_data(
+      xls_data,
+      filename: xls_filename,
+      type: 'application/vnd.ms-excel'
+    )
+  end
+
   private
 
   def content_plan_params
@@ -67,5 +88,12 @@ class ContentPlansController < ApplicationController
 
   def authorize_user
     authorize content_plan
+  end
+
+  def require_all_records_to_be_live!
+    unless all_records_are_live?
+      redirect_to content_plan,
+                  alert: "Excel export available only if all records have been changed to the 'live' status"
+    end
   end
 end
