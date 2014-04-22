@@ -37,10 +37,10 @@ class Content < ActiveRecord::Base
   has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy, as: :taskable
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 
-  validates :title, presence: true, length: { maximum: 255 }
-  validates :ref_no, :content_type, :status, :platform, allow_blank: true,
-                                                        allow_nil: true,
-                                                        length: { maximum: 255 }
+  validates :title, :ref_no, presence: true, length: { maximum: 255 }
+  validates :content_type, :status, :platform, allow_blank: true,
+                                               allow_nil: true,
+                                               length: { maximum: 255 }
 
 
   scope :platform, ->(platform) { where platform: platform }
