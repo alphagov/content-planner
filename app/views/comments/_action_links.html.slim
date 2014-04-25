@@ -1,0 +1,13 @@
+- if policy(comment).can_update_or_remove?
+  .pull-right
+    - if policy(comment).update?
+      = link_to edit_comment_path(comment),
+                class: "btn btn-mini",
+                data: { action: "edit_comment", confirm: "Are you sure?" } do
+        i.icon-pencil
+    - if policy(comment).destroy?
+      = link_to comment_path(comment),
+                method: :delete,
+                class: "btn btn-mini",
+                data: { action: "delete_comment", confirm: "Are you sure?" } do
+        i.icon-trash

@@ -1,6 +1,7 @@
-li.comment
+li.comment id="#{dom_id(comment)}"
   .message
     = govspeak comment.message
+  = render 'comments/action_links', comment: comment
   span.name
     = link_to comment.user, comment.user
     |,

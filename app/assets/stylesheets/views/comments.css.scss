@@ -9,3 +9,10 @@
 span.created_at{
   float: right;
 }
+
+.edit_comment_form {
+  textarea {
+    width: 500px;
+    height: 150px;
+  }
+}
