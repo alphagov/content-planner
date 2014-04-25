@@ -1,0 +1,8 @@
+.form-margin.well
+  = simple_form_for @tag, url: @tag.new_record? ? tags_path : tag_path,
+                          as: :tag,
+                          html: { class: 'form-horizontal form-container' } do |f|
+    = f.input :name, input_html: { class: 'span4' }
+    .control-group
+      .controls
+        = f.button :submit, @tag.new_record? ? 'Create Tag' : 'Edit Tag', class: 'btn-success'

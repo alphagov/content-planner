@@ -29,8 +29,7 @@ class ContentPlan < ActiveRecord::Base
       order("contents.ref_no")
   }
 
-  validates :title, presence: true
-  validates :ref_no, presence: true
+  validates :title, :ref_no, presence: true, length: { maximum: 255 }
 
   # Caching
   before_save do

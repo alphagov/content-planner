@@ -3,8 +3,12 @@ class User < ActiveRecord::Base
 
   serialize :permissions, Array
 
-  validates :name, presence: true
-  validates :email, presence: true
+  validates :name, :email, presence: true,
+                           length: { maximum: 255 }
+
+  validates :uid, :organisation_slug, :permissions, allow_blank: true,
+                                                    allow_nil: true,
+                                                    length: { maximum: 255 }
 
   has_many :comments, -> { order(created_at: :desc) }
   has_many :content_users
