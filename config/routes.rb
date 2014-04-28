@@ -12,7 +12,11 @@ ContentPlanner::Application.routes.draw do
 
   resources :tasks
 
-  resources :comments
+  resources :comments do
+    member do
+      post :reply
+    end
+  end
 
   resources :users
 

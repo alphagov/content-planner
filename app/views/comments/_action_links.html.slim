@@ -1,13 +1,19 @@
-- if policy(comment).can_update_or_remove?
-  .pull-right
+.comment_actions.pull-right
+  - if policy(comment).reply?
+    = link_to "Reply", "#",
+              class: "btn btn-small reply_comment_link"
+
+  - if policy(comment).can_update_or_remove?
+
     - if policy(comment).update?
       = link_to edit_comment_path(comment),
-                class: "btn btn-mini",
-                data: { action: "edit_comment", confirm: "Are you sure?" } do
+                class: "btn btn-small",
+                data: { action: "edit_comment" } do
         i.icon-pencil
+
     - if policy(comment).destroy?
       = link_to comment_path(comment),
                 method: :delete,
-                class: "btn btn-mini",
+                class: "btn btn-small",
                 data: { action: "delete_comment", confirm: "Are you sure?" } do
         i.icon-trash

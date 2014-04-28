@@ -1,9 +1,14 @@
 li.comment id="#{dom_id(comment)}"
   .message
     = govspeak comment.message
-  = render 'comments/action_links', comment: comment
+  = render "comments/action_links", comment: comment
   span.name
     = link_to comment.user, comment.user
     |,
   span.created_at
     = comment.created_at.to_formatted_s(:long)
+  - if policy(comment).reply?
+    - if comment.children.present?
+      ul.comment_children
+        = render comment.children
+    = render 'comments/reply_form', comment: comment
