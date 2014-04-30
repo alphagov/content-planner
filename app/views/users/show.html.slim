@@ -33,5 +33,5 @@ h4 Content Plans
   .span4.comments-form
     h4 Comments
     ul.comments
-      - @user.comments.each do |comment|
+      - @user.comments.roots.each do |comment|
        = render comment

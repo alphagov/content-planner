@@ -16,3 +16,19 @@ span.created_at{
     height: 150px;
   }
 }
+
+.reply_comment_form {
+  clear: both;
+  margin-left: 30px;
+  padding-right: 13px;
+  margin-top: 0px;
+  padding-top: 15px;
+
+  .btn {
+    margin-right: -13px;
+  }
+}
+
+.comment_children {
+  list-style-type: none;
+}

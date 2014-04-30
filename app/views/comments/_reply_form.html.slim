@@ -1,0 +1,6 @@
+.reply_comment_form.hidden
+  = simple_form_for :reply, url: reply_comment_path(comment),
+                            as: :comment,
+                            html: { class: 'form-container' } do |f|
+    = f.input :message, as: :text, label: false
+    = f.button :submit, 'Reply', class: 'btn btn-small btn-success pull-right'

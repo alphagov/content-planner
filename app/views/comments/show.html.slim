@@ -1,0 +1,10 @@
+= breadcrumb [comment.commentable.to_s, comment.commentable], "Comment Replies"
+
+.container-fluid
+  .row-fluid
+    .span12
+      h2 Comment Replies
+  .row.comment_replies
+    .span6
+      ul.comments
+        = render comment, from_comment_feed: true

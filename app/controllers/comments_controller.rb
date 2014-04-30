@@ -3,6 +3,10 @@ class CommentsController < ApplicationController
   expose(:comments)
 
   before_action :require_to_be_owner!, only: [:edit, :update, :destroy]
+  before_action :check_ability_to_reply!, only: [:reply]
+
+  def show
+  end
 
   def create
     if comment.save(comment_params)
@@ -28,10 +32,26 @@ class CommentsController < ApplicationController
     redirect_to comment.commentable, notice: "Comment deleted"
   end
 
+  def reply
+    reply_comment = Comments::Reply.new(comment,
+                                        reply_params.merge(user: current_user)).run
+
+    if reply_comment.success?
+      redirect_to comment.commentable
+    else
+      redirect_to comment.commentable,
+                  alert: reply_comment.errors
+    end
+  end
+
   private
 
   def comment_params
     params.require(:comment).permit(:message, :user_id, :commentable_id, :commentable_type)
+  end
+
+  def reply_params
+    params.require(:reply).permit(:message)
   end
 
   def require_to_be_owner!
@@ -45,6 +65,15 @@ class CommentsController < ApplicationController
       end
 
       redirect_to comment.commentable, notice: notice
+    end
+  end
+
+  def check_ability_to_reply!
+    self.comment = Comment.find(params[:id])
+
+    unless CommentPolicy.new(current_user, comment).reply?
+      redirect_to comment.commentable,
+                  notice: "You can't reply on this comment"
     end
   end
 end
