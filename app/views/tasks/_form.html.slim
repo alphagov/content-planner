@@ -3,6 +3,10 @@
   = f.input :title, label: false
   = f.input :taskable_id, as: :hidden
   = f.input :taskable_type, as: :hidden
+  = f.association :users, placeholder: "Assign People",
+                          input_html: { class: 'js-users',
+                                        multiple: true },
+                          label: false
 
   .control-group
     .controls

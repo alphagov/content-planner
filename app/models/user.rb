@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :content_plan_users
   has_many :content_plans, through: :content_plan_users
 
+  has_many :task_and_users, dependent: :destroy
+  has_many :tasks, through: :task_and_users
 
   module Permissions
     SIGNIN = "signin"

@@ -7,5 +7,5 @@ li
   = form_for task do |f|
     = f.check_box :done, class: 'js-task-checkbox'
     = f.submit
-  span[class= "#{task.done? ? 'done' : nil}"]
+  span[class= "#{task.done? ? 'done' : nil}" title="#{task.decorate.assigned_people}" data-tooltip=true data-placement="right"]
     = task.title

@@ -9,6 +9,9 @@ class ContentsController < ApplicationController
   expose(:task) {
     Task.new(taskable: content)
   }
+  expose(:tasks) {
+    content.tasks.includes(:users)
+  }
 
   before_filter :authorize_user
 

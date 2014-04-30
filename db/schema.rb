@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421145053) do
+ActiveRecord::Schema.define(version: 20140430064227) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -113,6 +113,16 @@ ActiveRecord::Schema.define(version: 20140421145053) do
   create_table "tags", force: true do |t|
     t.string "name"
   end
+
+  create_table "task_and_users", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "task_and_users", ["task_id"], name: "index_task_and_users_on_task_id", using: :btree
+  add_index "task_and_users", ["user_id"], name: "index_task_and_users_on_user_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.string   "title"

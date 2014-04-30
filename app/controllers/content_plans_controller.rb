@@ -9,6 +9,9 @@ class ContentPlansController < ApplicationController
   expose(:task) {
     Task.new(taskable: content_plan)
   }
+  expose(:tasks) {
+    content_plan.tasks.includes(:users)
+  }
   expose(:contents) {
     content_plan.contents
   }
