@@ -6,6 +6,9 @@ class ContentPlansController < ApplicationController
   expose(:comment) {
     current_user.comments.build(commentable: content_plan)
   }
+  expose(:comments) {
+    content_plan.comments.roots.page(params[:page])
+  }
   expose(:task) {
     Task.new(taskable: content_plan)
   }

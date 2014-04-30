@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
-  def index
-    @users = User.all
-  end
-
-  def show
-    @user = User.find(params[:id])
-  end
+  expose(:user)
+  expose(:users)
+  expose(:comments) {
+    user.comments.roots.page(params[:page])
+  }
+  expose(:content_plans) {
+    user.content_plans
+  }
+  expose(:contents) {
+    user.contents
+  }
 end

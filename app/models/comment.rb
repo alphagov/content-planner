@@ -13,6 +13,8 @@ class Comment < ActiveRecord::Base
 
   scope :roots, -> { where parent_id: nil }
 
+  paginates_per 30
+
   def notify_users
     CommentNotifier.new(self)
   end
