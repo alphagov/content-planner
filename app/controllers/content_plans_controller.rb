@@ -13,7 +13,7 @@ class ContentPlansController < ApplicationController
     Task.new(taskable: content_plan)
   }
   expose(:tasks) {
-    content_plan.tasks.includes(:users)
+    content_plan.tasks.includes(:users).by_deadline
   }
   expose(:contents) {
     content_plan.contents

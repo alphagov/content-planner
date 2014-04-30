@@ -13,7 +13,7 @@ class ContentsController < ApplicationController
     Task.new(taskable: content)
   }
   expose(:tasks) {
-    content.tasks.includes(:users)
+    content.tasks.includes(:users).by_deadline
   }
 
   before_filter :authorize_user
