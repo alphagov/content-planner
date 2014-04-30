@@ -5,26 +5,26 @@
 .row
   .span12
 
-    = form_for(@search, url: contents_path, method: :get, html: { class: 'form-inline search-form' }) do |f|
+    = form_for(search, url: contents_path, method: :get, html: { class: 'form-inline search-form' }) do |f|
       = f.select :organisation_ids,
-                 options_for_select( organisations_options_for_select, @search.organisation_ids ),
+                 options_for_select( organisations_options_for_select, search.organisation_ids ),
                  { include_blank: true },
                  { class: "js-organisations", style: "width:120px" }
       = f.select :content_plan_ids,
-                 options_for_select( ContentPlan.all.map{|c| [c.to_s, c.id]}, @search.content_plan_ids ),
+                 options_for_select( ContentPlan.all.map{|c| [c.to_s, c.id]}, search.content_plan_ids ),
                  { include_blank: true },
                  { placeholder: "Content Plan", style: "width:200px",multiple: true }
       = f.select :need_id,
-                 options_for_select( needs_options_for_select, @search.need_id ),
+                 options_for_select( needs_options_for_select, search.need_id ),
                  { include_blank: true },
                  { class: "js-needs", style: "width:210px" }
       = f.select :user_id,
-                 options_for_select( users_options_for_select, @search.user_id ),
+                 options_for_select( users_options_for_select, search.user_id ),
                  { include_blank: true },
                  { class: "js-users", style: "width:140px"}
       = f.text_field :tag, placeholder: "Tag", class: "js-tags", style: "width:170px"
       = f.select :status,
-                 options_for_select(Content::STATUS, @search.status),
+                 options_for_select(Content::STATUS, search.status),
                  { include_blank: true },
                  { class: "select2", placeholder: "Status", style: "width:100px" }
       = f.submit "Search", class: 'btn'

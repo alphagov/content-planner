@@ -1,7 +1,15 @@
 class ContentsController < ApplicationController
   expose(:content, attributes: :content_params)
+  expose(:content_plan) { ContentPlan.find(params[:content_plan_id]) }
+  expose(:search) {
+    if params[:content_plan_id].present?
+      PlanContentsSearch.new(contents_search_params)
+    else
+      ContentSearch.new(params[:search])
+    end
+  }
   expose(:contents) {
-    ContentSearch.new(params[:search]).results.order(:ref_no).page(params[:page])
+    search.results.page(params[:page])
   }
   expose(:comment) {
     current_user.comments.build(commentable: content)
@@ -16,10 +24,9 @@ class ContentsController < ApplicationController
     content.tasks.includes(:users).by_deadline
   }
 
-  before_filter :authorize_user
+  before_filter :authorize_user, except: [:index]
 
   def index
-    @search = ContentSearch.new(params[:search])
   end
 
   def new
@@ -87,6 +94,10 @@ class ContentsController < ApplicationController
         content_plan_ids: []
       )
     end
+  end
+
+  def contents_search_params
+    (params[:search] || {}).merge({content_plan_id: params[:content_plan_id]})
   end
 
   def authorize_user

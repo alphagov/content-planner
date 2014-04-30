@@ -52,6 +52,14 @@ class Content < ActiveRecord::Base
     where id: Organisationable.for_content.where(organisation_id: organisation_id).pluck(:organisationable_id) if organisation_id.present?
   }
 
+  scope :for_status, -> (status) { where status: status }
+  scope :for_title, -> (title) {
+    where("lower(contents.title) LIKE ?", "%#{title.downcase}%")
+  }
+  scope :for_content_plan, -> (content_plan_id) {
+    joins(:content_plans).where("content_plans.id = ?", content_plan_id)
+  }
+
   # Caching
   before_save do
     content_plans.each { |record| record.touch }
