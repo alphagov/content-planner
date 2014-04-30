@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425124008) do
+ActiveRecord::Schema.define(version: 20140430085139) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20140425124008) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "taskable_type", null: false
+    t.datetime "deadline"
   end
 
   add_index "tasks", ["taskable_id", "taskable_type"], name: "index_tasks_on_taskable_id_and_taskable_type", using: :btree

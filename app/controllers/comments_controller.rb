@@ -1,6 +1,11 @@
 class CommentsController < ApplicationController
   expose(:comment, attributes: :comment_params)
-  expose(:comments)
+  expose(:commentable) {
+    params[:commentable_type].constantize.find(params[:commentable_id])
+  }
+  expose(:next_comments) {
+    commentable.comments.roots.page(params[:page])
+  }
 
   before_action :require_to_be_owner!, only: [:edit, :update, :destroy]
   before_action :check_ability_to_reply!, only: [:reply]
