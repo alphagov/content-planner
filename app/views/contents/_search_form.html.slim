@@ -1,0 +1,21 @@
+= simple_form_for contents_search,
+                  url: contents_path,
+                  html: { class: 'form-inline contents-search-form' },
+                  method: :get,
+                  remote: true do |f|
+  = hidden_field_tag :content_plan_id, content_plan.id
+  = f.input :title, placeholder: "Title",
+                    label: false,
+                    input_html: { class: "pull-left" }
+  = f.input :platform, as: :select,
+                       collection: Content::PLATFORMS,
+                       placeholder: "Platform",
+                       input_html: { class: "select2 pull-left", include_blank: true },
+                       label: false
+  = f.input :status, as: :select,
+                       collection: Content::STATUS,
+                       placeholder: "Status",
+                       input_html: { class: "select2 pull-left", include_blank: true },
+                       label: false
+
+  = f.submit "Search", class: 'btn pull-right'

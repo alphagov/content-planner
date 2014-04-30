@@ -12,8 +12,11 @@ class ContentPlansController < ApplicationController
   expose(:tasks) {
     content_plan.tasks.includes(:users)
   }
+  expose(:contents_search) {
+    PlanContentsSearch.new(contents_search_params)
+  }
   expose(:contents) {
-    content_plan.contents
+    contents_search.results.page(params[:page])
   }
   expose(:content_records_statuses) {
     contents.pluck(:status).uniq
@@ -87,6 +90,10 @@ class ContentPlansController < ApplicationController
                                          maslow_need_ids: [],
                                          organisation_ids: []
     )
+  end
+
+  def contents_search_params
+    {content_plan_id: content_plan.id}
   end
 
   def authorize_user

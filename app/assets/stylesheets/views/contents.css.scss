@@ -34,5 +34,11 @@
   }
 }
 
-.inner {
+.contents-search-form {
+  margin-top: 30px;
+  padding-bottom: 40px;
+
+  #search_title, .select2-container {
+    margin-right: 5px;
+  }
 }

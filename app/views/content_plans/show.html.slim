@@ -63,32 +63,7 @@
           h4 Notes
           = govspeak content_plan.notes
 .row
-  .span8
-      h4
-        | Content Records
-        = link_to "Add content", new_content_path(content_plan_id: content_plan.id), class: "btn btn-mini contents-btn"
-      table.table
-        thead
-          th.title Title
-          th.size Size
-          th.status Status
-          th.platform Platform
-          th.publish_by Publish by
-        tbody
-          - content_plan.contents.each do |content|
-            tr
-              td
-                = link_to content, content
-              td
-                = content.size
-              td
-                = content.status
-              td
-                = link_to content.platform, content.url, rel: "external", target: "_blank"
-              td
-                - if content.publish_by.present?
-                  = l content.publish_by
-
+  = render 'content_plans/contents_block'
 
   .span4.tasks-comments
     .inner
