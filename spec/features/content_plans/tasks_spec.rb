@@ -49,7 +49,7 @@ I want to be able to add tasks
       expect(created_task.users.count).to be_eql 2
 
       assigned_users = created_task.users
-      expect(created_task.decorate.assigned_people).to be_eql("Assigned on: #{first_user}, #{second_user}")
+      expect(created_task.decorate.assigned_people).to be_eql("Assigned: #{first_user}, #{second_user}")
     end
   end
 end

@@ -8,4 +8,8 @@ class Task < ActiveRecord::Base
 
   has_many :task_and_users, dependent: :destroy
   has_many :users, through: :task_and_users
+
+  scope :by_deadline, -> {
+    order('-deadline ASC')
+  }
 end

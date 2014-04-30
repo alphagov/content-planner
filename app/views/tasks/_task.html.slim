@@ -1,4 +1,4 @@
-li
+li class="#{task.decorate.deadline_status}"
   .delete
     = form_for task, method: :delete do |f|
       = button_tag type: 'submit', class: 'btn btn-mini' do
@@ -7,5 +7,5 @@ li
   = form_for task do |f|
     = f.check_box :done, class: 'js-task-checkbox'
     = f.submit
-  span[class= "#{task.done? ? 'done' : nil}" title="#{task.decorate.assigned_people}" data-tooltip=true data-placement="right"]
+  span[class= "#{task.done? ? 'done' : nil}" title="#{task.decorate.tooltip_content}" data-tooltip=true data-placement="right"]
     = task.title

@@ -39,6 +39,7 @@ gem "dullard"
 gem "roo", github: "Empact/roo"
 gem "google-spreadsheet-ruby"
 gem 'spreadsheet'
+gem 'bootstrap-datepicker-rails'
 
 group :development do
   gem "rubocop"
