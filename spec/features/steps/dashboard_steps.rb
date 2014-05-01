@@ -17,7 +17,7 @@ module DashboardSteps
   def fill_in_filter
     select "Quarter #{content_plan.due_quarter}", from: "q"
     select content_plan.due_year, from: "year"
-    select organisation, from: "organisation"
+    select organisation.to_s, from: "organisation"
     click_on "Filter"
   end
 end
