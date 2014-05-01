@@ -76,7 +76,7 @@ module ApplicationHelper
 
   def organisations_options_for_select
     Organisation.all.map do |organisation|
-      [organisation.to_s, organisation.id]
+      [organisation.to_s, organisation.slug]
     end
   end
 

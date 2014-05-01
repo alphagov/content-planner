@@ -7,4 +7,6 @@ def create_users
   }.save
 end
 
+ImportOrganisations.new.call
 create_users
+

@@ -9,7 +9,7 @@ describe "Dashboard" do
 
   let(:content_plan) { content.content_plans.reload.first }
   let(:content_plan2) { content2.content_plans.reload.first }
-  let(:organisation) { content.organisations.first }
+  let!(:organisation) { content.reload.organisations.first }
 
   before {
     create :user, :gds_editor

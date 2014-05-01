@@ -15,6 +15,7 @@ describe "Content" do
   end
 
   context "edit" do
+    let!(:organisation) { create :organisation }
     let(:content)       { Content.last }
     let!(:content_plan) { create :content_plan }
     let(:attributes) {

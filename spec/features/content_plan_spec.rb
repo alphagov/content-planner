@@ -15,6 +15,7 @@ describe "Content Plan" do
   end
 
   context "edit" do
+    let!(:organisation) { create :organisation }
     let(:content_plan) { ContentPlan.last }
     let(:attributes) {
       attributes_for(:content_plan).tap do |attributes|

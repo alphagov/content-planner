@@ -22,7 +22,7 @@
     = f.input :organisation_ids,
               label: "Organisations",
               as: :select,
-              collection: Organisation.all,
+              collection: organisations_options_for_select,
               input_html: {class: "js-organisations", style: "width:300px", multiple: true}
     legend Due
     = f.input :due_quarter, label: "Quarter", as: :select, collection: ContentPlan::QUARTERS, include_blank: false
