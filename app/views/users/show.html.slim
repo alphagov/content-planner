@@ -30,7 +30,12 @@ h4 Content Plans
           td
             = link_to content.platform, content.url, rel: "external", target: "_blank"
 
-  .span4.comments-form
-    h4 Comments
-    ul.comments
-      = render 'comments/comments_list', commentable: user
+  .span4.tasks-comments
+    .inner
+      h4 Tasks
+      ul.tasks
+        = render tasks
+
+      h4 Comments
+      ul.comments
+        = render 'comments/comments_list', commentable: user
