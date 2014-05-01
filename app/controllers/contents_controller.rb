@@ -11,6 +11,7 @@ class ContentsController < ApplicationController
   expose(:contents) {
     search.results.page(params[:page])
   }
+  expose(:content_plans) { content.content_plans.order(:ref_no) }
   expose(:comment) {
     current_user.comments.build(commentable: content)
   }

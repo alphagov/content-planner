@@ -43,10 +43,10 @@
             dt Users:
             dd
               = content_user_links content.users
-          - if content.content_plans.any?
+          - if content_plans.any?
             dt Content plans:
             dd
-              - content.content_plans.each do |content_plan|
+              - content_plans.each do |content_plan|
                 = link_to content_plan.name, content_plan
           - if content.maslow_need_ids.present?
             dt Maslow need ids:
