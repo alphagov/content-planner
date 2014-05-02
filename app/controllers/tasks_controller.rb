@@ -2,7 +2,9 @@ class TasksController < ApplicationController
   expose(:task, attributes: :task_params)
 
   def create
-    if task.save(task_params)
+    self.task = current_user.created_tasks.new(task_params)
+
+    if task.save
       redirect_to task.taskable
     else
       render :new
@@ -10,8 +12,12 @@ class TasksController < ApplicationController
   end
 
   def update
-    if task.update(task_params)
-      redirect_to task.taskable
+    self.task = Task.find(params[:id])
+    complete_task = Tasks::Complete.new(task, current_user, task_params).run
+
+    if complete_task.success?
+      redirect_to task.taskable,
+                  notice: "Task completed"
     else
       render :edit
     end

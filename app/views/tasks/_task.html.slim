@@ -1,4 +1,4 @@
-li class="#{task.decorate.deadline_status}"
+li id="#{dom_id(task)}" class="#{task.decorate.deadline_status}"
   .delete
     = form_for task, method: :delete do |f|
       = button_tag type: 'submit', class: 'btn btn-mini' do
