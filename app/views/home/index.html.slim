@@ -20,9 +20,10 @@
             = link_to content_plan, content_plan_path(content_plan)
           - Content::PLATFORMS.each do |platform|
             - cache([platform, content_plan, params[:q], params[:year], params[:organisation]], expires_in: 1.hour) do
-              - if content_plan.contents.platform(platform).any?
+              - platform_contents = content_plan.contents.platform(platform)
+              - if platform_contents.any?
                 .platform
                   = platform
                   .progress
-                    - Content.percentages_for(platform: platform, contents: contents).each do |status, results|
+                    - Content.percentages_for(platform: platform, contents: platform_contents).each do |status, results|
                       div[class="status status-#{status.parameterize}" style="width: #{results[1]}%" title="#{status}: #{results[1]}% (#{pluralize results[0], 'item'})" data-tooltip=true data-placement="bottom"]

@@ -1,11 +1,12 @@
-li id="#{dom_id(task)}" class="#{task.decorate.deadline_status}"
-  .delete
-    = form_for task, method: :delete do |f|
-      = button_tag type: 'submit', class: 'btn btn-mini' do
-        <i class='icon-trash'></i>
+- cache(task) do
+  li id="#{dom_id(task)}" class="#{task.decorate.deadline_status}"
+    .delete
+      = form_for task, method: :delete do |f|
+        = button_tag type: 'submit', class: 'btn btn-mini' do
+          <i class='icon-trash'></i>
 
-  = form_for task do |f|
-    = f.check_box :done, class: 'js-task-checkbox'
-    = f.submit
-  span[class= "#{task.done? ? 'done' : nil}" title="#{task.decorate.tooltip_content}" data-tooltip=true data-placement="right"]
-    = task.title
+    = form_for task do |f|
+      = f.check_box :done, class: 'js-task-checkbox'
+      = f.submit
+    span[class= "#{task.done? ? 'done' : nil}" title="#{task.decorate.tooltip_content}" data-tooltip=true data-placement="right"]
+      = task.title

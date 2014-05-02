@@ -1,7 +1,8 @@
 module DashboardSteps
   def expect_to_see_status_bars
     Content::PLATFORMS.map do |platform|
-      Content.percentages_for(platform: platform, contents: contents).each do |status, results|
+      platform_contents = contents.platform(platform)
+      Content.percentages_for(platform: platform, contents:  platform_contents).each do |status, results|
         expect(page.html).to include(status)
 
         percentage = "#{results[1]}%"

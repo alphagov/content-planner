@@ -16,7 +16,10 @@ class ContentsController < ApplicationController
     current_user.comments.build(commentable: content)
   }
   expose(:comments) {
-    content.comments.roots.page(params[:page])
+    content.comments
+           .roots
+           .includes(:user, :commentable, {children: [:user, :parent, :commentable]})
+           .page(params[:page])
   }
   expose(:task) {
     Task.new(taskable: content)
