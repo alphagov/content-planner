@@ -8,5 +8,9 @@ FactoryGirl.define do
     trait :completed do
       done true
     end
+
+    trait :overdue do
+      deadline 1.day.ago
+    end
   end
 end
