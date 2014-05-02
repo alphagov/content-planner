@@ -439,5 +439,5 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
-  whenever
   webmock (= 1.17.3)
+  whenever
