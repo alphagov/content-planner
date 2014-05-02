@@ -14,7 +14,7 @@ describe Content do
   describe "#percentages_for" do
     before { 50.times { create(:content) } }
 
-    let(:scope) { Content.limit(40) }
+    let(:scope) { Content.limit(40).platform(platform) }
     let(:percentages) { Content.percentages_for(platform: platform, contents: scope) }
     let(:spec_percentages) {
       hash = Content::STATUSES[platform].inject({}) { |h, s|

@@ -7,7 +7,10 @@ class ContentPlansController < ApplicationController
     current_user.comments.build(commentable: content_plan)
   }
   expose(:comments) {
-    content_plan.comments.roots.page(params[:page])
+    content_plan.comments
+                .roots
+                .includes(:user, :commentable, {children: [:user, :parent, :commentable]})
+                .page(params[:page])
   }
   expose(:task) {
     Task.new(taskable: content_plan)
@@ -20,6 +23,15 @@ class ContentPlansController < ApplicationController
   }
   expose(:contents) {
     contents_search.results.page(params[:page])
+  }
+  expose(:all_contents) {
+    content_plan.contents
+  }
+  expose(:whitehall_contents) {
+    all_contents.whitehall
+  }
+  expose(:publisher_contents) {
+    all_contents.publisher
   }
   expose(:content_records_statuses) {
     contents.pluck(:status).uniq
@@ -40,6 +52,11 @@ class ContentPlansController < ApplicationController
         render json: content_plans.map { |cp| { id: cp.id, text: cp.name } }
       }
     end
+  end
+
+  def show
+    self.content_plan = ContentPlan.includes(:contents, :tasks)
+                                   .find(params[:id])
   end
 
   def create

@@ -46,8 +46,7 @@
           - if content_plans.any?
             dt Content plans:
             dd
-              - content_plans.each do |content_plan|
-                = link_to content_plan.name, content_plan
+              = content.decorate.content_plans_list
           - if content.maslow_need_ids.present?
             dt Maslow need ids:
             dd
@@ -55,7 +54,7 @@
           - if content.tag_list.present?
             dt Tags:
             dd
-              = content_tag_filters content.tag_list
+              = content_tag_filters content.decorate.tag_list
           - if content.organisations.any?
             dt Organisations:
             dd

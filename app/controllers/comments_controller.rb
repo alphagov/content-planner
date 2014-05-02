@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     params[:commentable_type].constantize.find(params[:commentable_id])
   }
   expose(:next_comments) {
-    commentable.comments.roots.page(params[:page])
+    commentable.comments.roots.includes(:user, :commentable, {children: [:user, :parent, :commentable]}).page(params[:page])
   }
 
   before_action :require_to_be_owner!, only: [:edit, :update, :destroy]

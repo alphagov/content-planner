@@ -33,7 +33,7 @@
       - if content_plan.tag_list.present?
         dt Tags:
         dd
-          = content_plan_tag_filters content_plan.tag_list
+          = content_plan_tag_filters content_plan.decorate.tag_list
       - if content_plan.due_date.present?
         dt Due:
         dd
@@ -45,14 +45,9 @@
   .span4.content-plans
     .tag-box.mini
       h4 Status
-      - %w(Whitehall Publisher).each do |platform|
-        - cache([platform, content_plan, params[:q], params[:year], params[:organisation]], expires_in: 1.hour) do
-          - if content_plan.contents.where(platform: platform).any?
-            .platform
-              = platform
-              .progress
-                - Content.percentages_for(platform: platform, contents: content_plan.contents).each do |status, results|
-                    div[class="status status-#{status.parameterize}" style="width: #{results[1]}%" title="#{status}: #{results[1]}% (#{results[0]} items)" data-tooltip=true data-placement="bottom"]
+      = render 'content_plans/status', platform: 'Whitehall'
+      = render 'content_plans/status', platform: 'Publisher'
+
 .row
   .span12
     .content-plan-details

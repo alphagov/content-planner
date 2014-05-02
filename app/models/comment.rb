@@ -13,7 +13,11 @@ class Comment < ActiveRecord::Base
 
   scope :roots, -> { where parent_id: nil }
 
-  paginates_per 30
+  paginates_per 20
+
+  # Caching
+  before_save :refresh_cache!
+  before_destroy :refresh_cache!
 
   def notify_users
     CommentNotifier.new(self)
@@ -29,5 +33,15 @@ class Comment < ActiveRecord::Base
 
   def reply_recipients
     children.map(&:user).uniq
+  end
+
+  private
+
+  def refresh_cache!
+    parent.touch if child?
+
+    if root?
+      children.each { |record| record.touch }
+    end
   end
 end
