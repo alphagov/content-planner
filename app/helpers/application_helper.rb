@@ -28,26 +28,6 @@ module ApplicationHelper
     orgs.map(&:abbreviation_or_title).join(", ")
   end
 
-  def collection_links(coll, f_name, f_link, separator = ", ")
-    coll.map do |item|
-      link_to f_name.call(item),
-              f_link.call(item)
-    end.join(separator)
-       .html_safe
-  end
-
-  def content_plan_links(content_plans)
-    collection_links content_plans,
-                     ->(content_plan) { content_plan.name              },
-                     ->(content_plan) { content_plan_path content_plan }
-  end
-
-  def content_user_links(users)
-    collection_links users,
-                     ->(user) { user.name      },
-                     ->(user) { user_path user }
-  end
-
   def breadcrumb(*links)
     content_tag :ul, class: "breadcrumb" do
       raw(links.map { |link|

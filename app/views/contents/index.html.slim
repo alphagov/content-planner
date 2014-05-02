@@ -48,7 +48,7 @@
             td
               = content_organisations content.organisations
             td
-              = content_plan_links content_plans
+              = content.decorate.content_plans_list
             td
               = link_to content, content
             td
@@ -62,6 +62,6 @@
             td
               = user_needs_links content.need_ids
             td
-              = content_tag_filters content.tag_list
+              = content_tag_filters content.decorate.tag_list
             td
-              = content_user_links content.users
+              = content.decorate.users_list
