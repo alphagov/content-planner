@@ -47,8 +47,8 @@ I want to be able to add tasks
 
       created_task = content_plan.reload.tasks.first
       expect(created_task.users.count).to be_eql 2
+      expect(created_task.creator.id).to be_eql gds_editor.id
 
-      assigned_users = created_task.users
       expect(created_task.decorate.assigned_people).to be_eql("Assigned: #{first_user}, #{second_user}")
     end
   end

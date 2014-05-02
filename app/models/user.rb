@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :task_and_users, dependent: :destroy
   has_many :tasks, through: :task_and_users
 
+  has_many :created_tasks, class_name: "Task", foreign_key: :creator_id
+
   module Permissions
     SIGNIN = "signin"
     GDS_EDITOR = "GDS Editor"

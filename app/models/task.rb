@@ -1,4 +1,5 @@
 class Task < ActiveRecord::Base
+  belongs_to :creator, class_name: "User"
   belongs_to :taskable, polymorphic: true
 
   validates :title, presence: true, length: { maximum: 255 }
