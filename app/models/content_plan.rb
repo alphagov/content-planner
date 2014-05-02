@@ -4,6 +4,8 @@ class ContentPlan < ActiveRecord::Base
 
   acts_as_taggable
 
+  paginates_per 15
+
   QUARTERS = 1..4
   YEARS = Time.now.year..(Time.now + 2.years).year
 
