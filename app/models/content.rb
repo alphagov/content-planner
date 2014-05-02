@@ -3,6 +3,8 @@ class Content < ActiveRecord::Base
 
   acts_as_taggable
 
+  paginates_per 15
+
   STATUSES = {
     "Publisher" => [
       "Not started",
