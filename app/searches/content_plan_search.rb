@@ -1,6 +1,6 @@
 class ContentPlanSearch < Searchlight::Search
-  search_on ContentPlan.includes([:content_plan_needs, :contents, :organisationables, :content_plan_users])
-                       .references(:content_plan_needs, :contents, :organisationables, :content_plan_users)
+  search_on ContentPlan.includes([:content_plan_needs, :contents, :organisationables, :content_plan_users, :tags])
+                       .references(:content_plan_needs, :contents, :organisationables, :content_plan_users, :tags)
                        .order(:ref_no)
 
   searches :ref_no, :status, :need_id, :tag, :organisation_ids, :due_date, :user_id

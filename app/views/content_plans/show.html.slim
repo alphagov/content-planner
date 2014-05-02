@@ -29,7 +29,7 @@
       - if content_plan.users.any?
         dt Users:
         dd
-          = content_user_links content_plan.users
+          = content_plan.decorate.users_list
       - if content_plan.tag_list.present?
         dt Tags:
         dd
