@@ -3,6 +3,9 @@ Content Planner
 
 A tool to help with the HMRC Content transition and URL analysis.
 
+The main focus of the tool is the coordination of content writing and
+a dashboard to show the progress of content in various states.
+
 This application requires:
 
 * Ruby version 2.0.0-p353
@@ -18,14 +21,6 @@ Loosely related:
 * https://github.com/alphagov/maslow
 * https://github.com/alphagov/transition
 
-
-Development
------------
-
-* Template Engine: Slim
-* Testing Framework: RSpec and Factory Girl
-* Front-end Framework: Twitter Bootstrap (Sass)
-* Form Builder: SimpleForm
 
 Running the application
 ---------------------
