@@ -15,13 +15,6 @@ module ApplicationHelper
     Govspeak::Document.new(text).to_sanitized_html_without_images.html_safe if text
   end
 
-  def user_needs_links(ids)
-    maslow = Plek.current.find("maslow")
-    Array.wrap(ids).map do |id|
-      link_to(id, maslow + "/needs/#{id}", target: "_blank", :'data-tooltip' => "", title: Need.find(id).try(:story))
-    end.join(", ").html_safe
-  end
-
   def content_organisations(organisations)
     orgs = organisations.compact
     return if orgs.empty?

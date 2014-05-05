@@ -5,6 +5,11 @@ class Organisation < ActiveRecord::Base
 
   has_ancestry
 
+  has_many :organisation_needs, dependent: :destroy
+  has_many :needs, through: :organisation_needs
+
+  validates :api_id, presence: true
+
   # cattr_writer :organisations
 
   # attr_reader :id, :title, :format, :slug, :abbreviation, :govuk_status, :parent_organisations, :logo_formatted_name, :organisation_brand_colour_class_name, :organisation_logo_type_class_name

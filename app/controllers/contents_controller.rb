@@ -75,7 +75,7 @@ class ContentsController < ApplicationController
         :tag_list,
         :publish_by,
         organisation_ids: [],
-        maslow_need_ids: [],
+        need_ids: [],
         user_ids: [],
         content_plan_ids: []
       )
@@ -93,7 +93,7 @@ class ContentsController < ApplicationController
         :tag_list,
         :publish_by,
         organisation_ids: [],
-        maslow_need_ids: [],
+        need_ids: [],
         user_ids: [],
         content_plan_ids: []
       )

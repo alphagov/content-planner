@@ -28,10 +28,11 @@ ActiveRecord::Schema.define(version: 20140516153404) do
 
   create_table "content_needs", force: true do |t|
     t.integer "content_id"
+    t.integer "need_api_id"
     t.integer "need_id"
   end
 
-  add_index "content_needs", ["content_id", "need_id"], name: "index_content_needs_on_content_id_and_need_id", using: :btree
+  add_index "content_needs", ["content_id", "need_api_id"], name: "index_content_needs_on_content_id_and_need_api_id", using: :btree
 
   create_table "content_plan_contents", force: true do |t|
     t.integer  "content_plan_id"
@@ -42,10 +43,11 @@ ActiveRecord::Schema.define(version: 20140516153404) do
 
   create_table "content_plan_needs", force: true do |t|
     t.integer "content_plan_id"
+    t.integer "need_api_id"
     t.integer "need_id"
   end
 
-  add_index "content_plan_needs", ["content_plan_id", "need_id"], name: "index_content_plan_needs_on_content_plan_id_and_need_id", using: :btree
+  add_index "content_plan_needs", ["content_plan_id", "need_api_id"], name: "index_content_plan_needs_on_content_plan_id_and_need_api_id", using: :btree
 
   create_table "content_plan_users", force: true do |t|
     t.integer "content_plan_id", null: false
@@ -86,6 +88,25 @@ ActiveRecord::Schema.define(version: 20140516153404) do
     t.date     "publish_by"
   end
 
+  create_table "needs", force: true do |t|
+    t.integer "api_id"
+    t.string  "role"
+    t.string  "goal"
+    t.string  "benefit"
+    t.boolean "applies_to_all_organisations", default: false
+    t.string  "in_scope"
+  end
+
+  create_table "organisation_needs", force: true do |t|
+    t.integer  "organisation_id"
+    t.integer  "need_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organisation_needs", ["need_id"], name: "index_organisation_needs_on_need_id", using: :btree
+  add_index "organisation_needs", ["organisation_id"], name: "index_organisation_needs_on_organisation_id", using: :btree
+
   create_table "organisationables", force: true do |t|
     t.string   "organisation_id"
     t.integer  "organisationable_id"
@@ -115,6 +136,7 @@ ActiveRecord::Schema.define(version: 20140516153404) do
     t.datetime "api_closed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "api_id"
   end
 
   add_index "organisations", ["ancestry"], name: "index_organisations_on_ancestry", using: :btree

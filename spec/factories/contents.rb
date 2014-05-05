@@ -38,7 +38,7 @@ FactoryGirl.define do
 
     trait :with_need do
       after(:create) do |content|
-        ContentNeed.create(content: content, need_id: Need.all.first.id)
+        ContentNeed.create(content: content, need: create(:need))
       end
     end
 

@@ -8,6 +8,10 @@ every :day, at: '6am' do
   rake "organisations:import"
 end
 
+every :day, at: '7am' do
+  rake "needs:import"
+end
+
 every :day, at: '8am' do
   rake "tasks:overdue_notifications"
 end

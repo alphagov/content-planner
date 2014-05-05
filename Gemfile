@@ -74,4 +74,5 @@ group :test do
   gem "poltergeist"
   gem "fakefs", require: "fakefs/safe"
   gem 'webmock', '1.17.3'
+  gem "shoulda-matchers"
 end

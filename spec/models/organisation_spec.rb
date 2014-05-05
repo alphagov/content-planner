@@ -5,6 +5,10 @@ describe Organisation do
   let(:title) { "HM Revenue & Customs" }
   let(:abbreviation) { "HMRC" }
 
+  describe "validations" do
+    it { should validate_presence_of :api_id }
+  end
+
   describe "#title_with_abbreviation" do
 
     context "when abbreviation is present" do

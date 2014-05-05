@@ -2,7 +2,7 @@ class MockNeedsApi
   attr_reader :need
 
   def initialize(*need)
-    @need = Need.new(need)
+    @need = with_subsequent_pages.first
   end
 
   def needs

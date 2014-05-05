@@ -18,15 +18,19 @@ class ImportOrganisations
 
 private
 
+  def organisations_api
+    @organisations_api ||= GdsApi::Organisations.new( Plek.current.find('whitehall-admin') )
+  end
+
   def organisations
-    base_uri = Plek.current.find('whitehall-admin')
-    GdsApi::Organisations.new(base_uri).organisations.with_subsequent_pages
+    organisations_api.organisations.with_subsequent_pages
   end
 
   def update_or_create_organisation(organisation_data)
     organisation = Organisation.find_or_create_by(slug: organisation_data.details.slug)
 
     update_data = {
+      api_id: organisation_data.id,
       title: organisation_data.title,
       format: organisation_data.format,
       web_url: organisation_data.web_url,

@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :organisation do
+    api_id "hmrc"
     title "HM Revenue & Customs"
     format "Ministerial department"
     slug "hmrc"

@@ -22,10 +22,10 @@
         dt Size:
         dd
           = content_plan.size
-      - if content_plan.need_ids.present?
+      - if content_plan.needs.present?
         dt User Needs:
         dd
-          = user_needs_links content_plan.need_ids
+          = content_plan.decorate.needs_list
       - if content_plan.users.any?
         dt Users:
         dd

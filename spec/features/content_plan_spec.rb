@@ -4,6 +4,8 @@ describe "Content Plan" do
   include ContentPlanSteps
 
   let!(:user) { create :user, :gds_editor }
+  let!(:organisation) { create :organisation }
+  let!(:need) { create :need, organisations: [organisation] }
 
   context "create" do
     before { create_content_plan! }
@@ -15,13 +17,12 @@ describe "Content Plan" do
   end
 
   context "edit" do
-    let!(:organisation) { create :organisation }
     let(:content_plan) { ContentPlan.last }
     let(:attributes) {
       attributes_for(:content_plan).tap do |attributes|
         attributes[:tag_list] = "tag 999"
         attributes[:users] = user.to_s
-        attributes[:needs] = need.id.to_s
+        attributes[:needs] = need.api_id.to_s
         attributes[:organisations] = organisation.title
       end
     }
@@ -43,7 +44,7 @@ describe "Content Plan" do
       select attributes[:due_year], from: "Year"
 
       need_text = find("option", text: Regexp.new(attributes[:needs])).text
-      select need_text, from: "content_plan_maslow_need_ids"
+      select need_text, from: "content_plan_need_ids"
 
       click_on "Update Content plan"
 

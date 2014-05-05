@@ -32,7 +32,9 @@ class Content < ActiveRecord::Base
   has_many :content_plan_contents, dependent: :destroy
   has_many :content_plans, through: :content_plan_contents, source: :content_plan
 
-  has_many :content_needs
+  has_many :content_needs, dependent: :destroy
+  has_many :needs, through: :content_needs
+
   has_many :content_users
   has_many :users, through: :content_users
 
@@ -64,21 +66,6 @@ class Content < ActiveRecord::Base
   # Caching
   before_save do
     content_plans.each { |record| record.touch }
-  end
-
-  def maslow_need_ids
-    content_needs.map(&:need_id)
-  end
-
-  def maslow_need_ids=(ids)
-    content_needs.destroy_all
-    ids.reject(&:blank?).each do |nid|
-      ContentNeed.find_or_create_by!(content: self, need_id: nid)
-    end
-  end
-
-  def need_ids
-    content_needs.any? ? content_needs.map(&:need_id) : nil
   end
 
   def publisher?

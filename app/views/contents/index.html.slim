@@ -60,7 +60,7 @@
             td
               = content.status
             td
-              = user_needs_links content.need_ids
+              = content.decorate.needs_list
             td
               = content_tag_filters content.decorate.tags_list
             td

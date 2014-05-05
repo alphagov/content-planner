@@ -4,6 +4,8 @@ describe "Content" do
   include ContentSteps
 
   let!(:user) { create :user, :gds_editor }
+  let!(:organisation) { create :organisation }
+  let!(:need) { create :need, organisations: [organisation] }
 
   context "create" do
     before { create_content! }
@@ -15,12 +17,11 @@ describe "Content" do
   end
 
   context "edit" do
-    let!(:organisation) { create :organisation }
     let(:content)       { Content.last }
     let!(:content_plan) { create :content_plan }
     let(:attributes) {
       attributes_for(:content).tap do |attributes|
-        attributes[:needs] = need.id.to_s
+        attributes[:needs] = need.api_id.to_s
         attributes[:tag_list] = "tag 999"
         attributes[:users] = user.to_s
         attributes[:organisations] = organisation.title
@@ -57,7 +58,7 @@ describe "Content" do
 
       # select need
       need = find("option", text: Regexp.new(attributes[:needs])).text
-      select need, from: "Maslow need ids"
+      select need, from: "Need ids"
 
       click_on "Update Content"
 
@@ -68,7 +69,6 @@ describe "Content" do
   context "show" do
     let(:content)      { create :content, :with_content_plan, :with_organisation, :with_task, :with_comment }
     let(:content_plan) { content.content_plans.first }
-    let(:organisation) { Organisation.all.first }
     let(:task)         { content.tasks.reload.first }
     let(:comment)      { content.comments.reload.first }
 

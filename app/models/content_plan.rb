@@ -12,7 +12,9 @@ class ContentPlan < ActiveRecord::Base
   has_many :tasks,    -> { order(created_at: :desc) }, dependent: :destroy, as: :taskable
   has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy, as: :commentable
 
-  has_many :content_plan_needs
+  has_many :content_plan_needs, dependent: :destroy
+  has_many :needs, through: :content_plan_needs
+
   has_many :content_plan_users
   has_many :users, through: :content_plan_users
 
@@ -42,21 +44,6 @@ class ContentPlan < ActiveRecord::Base
     "#{ref_no} - #{title}"
   end
   alias_method :to_s, :name
-
-  def maslow_need_ids
-    content_plan_needs.map(&:need_id)
-  end
-
-  def maslow_need_ids=(ids)
-    content_plan_needs.destroy_all
-    ids.reject(&:blank?).each do |nid|
-      ContentPlanNeed.find_or_create_by!(content_plan: self, need_id: nid)
-    end
-  end
-
-  def need_ids
-    content_plan_needs.any? ? content_plan_needs.map(&:need_id) : nil
-  end
 
   def size
     contents.map(&:size).compact.sum
