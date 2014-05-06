@@ -13,7 +13,7 @@ class ContentBaseDecorator < ApplicationDecorator
         need.api_id,
         MASLOW_CURRENT_HOST + "/needs/#{need.api_id}",
         target: "_blank",
-        data: { tooltip: true },
+        :'data-tooltip' => "",
         title: need.story
       )
     end.join(", ").html_safe
