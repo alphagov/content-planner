@@ -1,5 +1,5 @@
 = simple_form_for task,
-                  html: { class: 'form-inline' } do |f|
+                  html: { class: 'form-inline task-form' } do |f|
   = f.input :title, label: false
   = f.input :taskable_id, as: :hidden
   = f.input :taskable_type, as: :hidden

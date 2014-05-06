@@ -48,3 +48,12 @@ form.edit_task{
 .overdue_task {
   color: red;
 }
+
+.task-form {
+  .select2-container {
+    width: 218px;
+    .select2-choices {
+      width: 218px;
+    }
+  }
+}
