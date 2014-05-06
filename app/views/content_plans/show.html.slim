@@ -33,7 +33,7 @@
       - if content_plan.tag_list.present?
         dt Tags:
         dd
-          = content_plan_tag_filters content_plan.decorate.tag_list
+          = content_plan_tag_filters content_plan.decorate.tags_list
       - if content_plan.due_date.present?
         dt Due:
         dd

@@ -1,5 +1,5 @@
 class ContentBaseDecorator < ApplicationDecorator
-  def tag_list
+  def tags_list
     object.tags.map(&:name)
   end
 
