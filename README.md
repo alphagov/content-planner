@@ -33,6 +33,8 @@ Ensure you have replicated the databases from preview (maslow, whitehall and con
 
 Alternatively run whitehall and govuk_need_api then run `./startup.sh`
 
+The database on preview gets replaced with prod, migrations might need to be rerun.
+
 Emails in development
 ---------------------
 
