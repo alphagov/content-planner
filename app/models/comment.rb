@@ -13,7 +13,7 @@ class Comment < ActiveRecord::Base
 
   scope :roots, -> { where parent_id: nil }
 
-  paginates_per 20
+  paginates_per 7
 
   # Caching
   before_save :refresh_cache!
