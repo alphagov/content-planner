@@ -18,7 +18,7 @@ class ContentsController < ApplicationController
   expose(:comments) {
     content.comments
            .roots
-           .includes(:user, :commentable, {children: [:user, :parent, :commentable]})
+           .includes(:user, :commentable,  children: [:user, :parent, :commentable])
            .page(params[:page])
   }
   expose(:task) {
@@ -101,7 +101,7 @@ class ContentsController < ApplicationController
   end
 
   def contents_search_params
-    (params[:search] || {}).merge({content_plan_id: params[:content_plan_id]})
+    (params[:search] || {}).merge(content_plan_id: params[:content_plan_id])
   end
 
   def authorize_user

@@ -11,11 +11,11 @@ class Task < ActiveRecord::Base
   has_many :users, through: :task_and_users
 
   scope :by_deadline, -> {
-    order('-deadline ASC')
+    order("-deadline ASC")
   }
 
   scope :not_completed, -> {
-    where.any_of({done: nil}, {done: false})
+    where.any_of({ done: nil }, { done: false })
   }
   scope :deadline_passed_yesterday, -> {
     where(deadline: (Time.now.midnight - 1.day)..Time.now.midnight)

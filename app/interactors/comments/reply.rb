@@ -34,7 +34,7 @@ module Comments
     end
 
     def errors
-      reply_comment.errors.full_messages.join(', ')
+      reply_comment.errors.full_messages.join(", ")
     end
 
     def notify_parent_comment_owner!

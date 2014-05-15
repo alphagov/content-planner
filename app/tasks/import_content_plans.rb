@@ -1,4 +1,4 @@
-require 'roo'
+require "roo"
 
 class ImportContentPlans
   def initialize(file_path)
@@ -8,7 +8,7 @@ class ImportContentPlans
   def import
     xls = Roo::Spreadsheet.open(@file_path)
     xls.each_with_pagename do |name, sheet|
-      next if name.match('_drop downs_')
+      next if name.match("_drop downs_")
 
       tag = create_tag(name)
       content_plan = create_content_plan(name, tag)
@@ -50,11 +50,11 @@ class ImportContentPlans
     if match
       match[0].to_i
     else
-      if size.match('Big')
+      if size.match("Big")
         5
-      elsif size.match('Small')
+      elsif size.match("Small")
         3
-      elsif size.match('Tweak')      
+      elsif size.match("Tweak")
         2
       else
         nil
@@ -110,7 +110,7 @@ class ImportContentPlans
       description: extract_description(row),
       url: extract_url(row[8]),
       content_type: extract_content_type(row[9]),
-      organisation_ids: ['hm-revenue-customs']
+      organisation_ids: ["hm-revenue-customs"]
     }
 
     content = Content.create!(content_hash)
@@ -125,7 +125,7 @@ class ImportContentPlans
     # name e.g. '1 - PAYE'
     title = name.match(/-(.*)/)[0][2..-1]
     ref_no = name.match(/\d{1,2}/)[0]
-    plan = ContentPlan.create!(title: title, ref_no: ref_no, organisation_ids: ['hm-revenue-customs'])
+    plan = ContentPlan.create!(title: title, ref_no: ref_no, organisation_ids: ["hm-revenue-customs"])
     plan.tag_list = tag.name
     plan.save
     plan

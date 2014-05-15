@@ -9,8 +9,8 @@ So that I can find records quickly
   let!(:user) { create :user, :gds_editor }
   let!(:content_plan) {
     c = create(:content_plan, :with_organisation,
-                              :with_need,
-                              :with_user)
+               :with_need,
+               :with_user)
     c.reload
   }
 

@@ -20,7 +20,7 @@ class TaskDecorator < ApplicationDecorator
   end
 
   def tooltip_content
-    [assigned_people, deadline].join('. ')
+    [assigned_people, deadline].join(". ")
   end
 
   private

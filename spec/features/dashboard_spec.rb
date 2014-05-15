@@ -5,7 +5,7 @@ describe "Dashboard" do
   include ActionView::Helpers::TextHelper
 
   let!(:content) { create :content, :with_content_plan, :with_organisation }
-  let!(:content2) { create :content, :with_content_plan}
+  let!(:content2) { create :content, :with_content_plan }
 
   let(:content_plan) { content.content_plans.reload.first }
   let(:content_plan2) { content2.content_plans.reload.first }

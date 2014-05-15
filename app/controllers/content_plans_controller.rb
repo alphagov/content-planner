@@ -9,7 +9,7 @@ class ContentPlansController < ApplicationController
   expose(:comments) {
     content_plan.comments
                 .roots
-                .includes(:user, :commentable, {children: [:user, :parent, :commentable]})
+                .includes(:user, :commentable,  children: [:user, :parent, :commentable])
                 .page(params[:page])
   }
   expose(:task) {
@@ -38,7 +38,7 @@ class ContentPlansController < ApplicationController
   }
   expose(:all_records_are_live?) {
     content_records_statuses.size == 1 &&
-    content_records_statuses[0] == 'Live'
+    content_records_statuses[0] == "Live"
   }
 
   before_filter :authorize_user
@@ -89,7 +89,7 @@ class ContentPlansController < ApplicationController
     send_data(
       xls_data,
       filename: xls_filename,
-      type: 'application/vnd.ms-excel'
+      type: "application/vnd.ms-excel"
     )
   end
 
@@ -113,7 +113,7 @@ class ContentPlansController < ApplicationController
   end
 
   def contents_search_params
-    {content_plan_id: content_plan.id}
+    { content_plan_id: content_plan.id }
   end
 
   def authorize_user

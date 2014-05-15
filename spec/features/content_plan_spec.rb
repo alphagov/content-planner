@@ -54,7 +54,7 @@ describe "Content Plan" do
     let!(:content_plan) { create :content_plan, :with_content, :with_task, :with_comment }
     let(:content) { content_plan.contents.reload.first }
     let(:task)    { content_plan.tasks.reload.first }
-    let(:comment) { content_plan.comments.reload.first}
+    let(:comment) { content_plan.comments.reload.first }
 
     before { visit content_plan_path(content_plan) }
 

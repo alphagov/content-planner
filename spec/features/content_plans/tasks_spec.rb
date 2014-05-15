@@ -8,8 +8,8 @@ I want to be able to add tasks
   let!(:gds_editor) { create :user, :gds_editor }
   let!(:content_plan) {
     c = create(:content_plan, :with_organisation,
-                              :with_need,
-                              :with_user)
+               :with_need,
+               :with_user)
     c.reload
   }
 

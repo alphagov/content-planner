@@ -8,12 +8,12 @@ So that I can have ability to review content plan in excel file
 
   let!(:content_plan) {
     c = create(:content_plan, :with_organisation,
-                              :with_need,
-                              :with_tag,
-                              :with_user,
-                              :with_content,
-                              :with_task,
-                              :with_comment)
+               :with_need,
+               :with_tag,
+               :with_user,
+               :with_content,
+               :with_task,
+               :with_comment)
     c.reload
   }
 
@@ -47,7 +47,7 @@ So that I can have ability to review content plan in excel file
 
   it "'Excel export' link should not be visible" do
     visit content_plan_path(content_plan)
-    expect_to_see_no 'Excel export'
+    expect_to_see_no "Excel export"
   end
 
   describe "all records have been changed to the 'live' status", type: :controller do
@@ -57,7 +57,7 @@ So that I can have ability to review content plan in excel file
     }
 
     it "should be visible" do
-      expect_to_see 'Excel export'
+      expect_to_see "Excel export"
     end
 
     it "user can make 'Excel export'" do
@@ -139,7 +139,7 @@ So that I can have ability to review content plan in excel file
   private
 
   def fetch_excel_export(page)
-    downloaded_excel_export = page.source.force_encoding('UTF-8')
+    downloaded_excel_export = page.source.force_encoding("UTF-8")
     spreadsheet = StringIO.new(downloaded_excel_export)
     book = Spreadsheet.open spreadsheet
   end
@@ -148,19 +148,19 @@ So that I can have ability to review content plan in excel file
     needs = content_plan.content_plan_needs.map(&:need_id)
 
     [
-      [ "Ref no:", content_plan.ref_no ],
-      [ "Title:", content_plan.title ],
-      [ "Details:", content_plan.details ],
-      [ "Notes:", content_plan.notes ],
-      [ "Due quarter:", content_plan.due_quarter ],
-      [ "Due Year:", content_plan.due_year ],
-      [ "Created at:", content_plan.created_at.to_formatted_s(:long) ],
-      [ "Updated at:", content_plan.updated_at.to_formatted_s(:long) ],
-      [ "Needs (#{needs.count}):", needs.join(', ') ],
-      [ "Number of users:", content_plan.users.count ],
-      [ "Number of contents:", content_plan.contents.count ],
-      [ "Number of tasks:", content_plan.tasks.count ],
-      [ "Number of comments:", content_plan.comments.count ]
+      ["Ref no:", content_plan.ref_no],
+      ["Title:", content_plan.title],
+      ["Details:", content_plan.details],
+      ["Notes:", content_plan.notes],
+      ["Due quarter:", content_plan.due_quarter],
+      ["Due Year:", content_plan.due_year],
+      ["Created at:", content_plan.created_at.to_formatted_s(:long)],
+      ["Updated at:", content_plan.updated_at.to_formatted_s(:long)],
+      ["Needs (#{needs.count}):", needs.join(", ")],
+      ["Number of users:", content_plan.users.count],
+      ["Number of contents:", content_plan.contents.count],
+      ["Number of tasks:", content_plan.tasks.count],
+      ["Number of comments:", content_plan.comments.count]
     ]
   end
 
@@ -170,14 +170,14 @@ So that I can have ability to review content plan in excel file
       user.name,
       user.email,
       user.organisation_slug.to_s,
-      user.permissions.join(', ')
+      user.permissions.join(", ")
     ]
   end
 
   def task_row(task)
     [
       task.title,
-      task.done? ? 'completed' : 'pending'
+      task.done? ? "completed" : "pending"
     ]
   end
 
@@ -191,19 +191,19 @@ So that I can have ability to review content plan in excel file
 
   def content_row(content_record)
     [
-      [content_record.ref_no, content_record.title].join(' '),
+      [content_record.ref_no, content_record.title].join(" "),
       content_record.size,
       content_record.status,
       content_record.platform,
-      (content_record.publish_by.present? ? content_record.publish_by.strftime("%d/%m/%Y") : '')
+      (content_record.publish_by.present? ? content_record.publish_by.strftime("%d/%m/%Y") : "")
     ]
   end
 
   def content_task_row(task)
-    task_row(task).unshift('')
+    task_row(task).unshift("")
   end
 
   def content_comment_row(comment)
-    comment_row(comment).unshift('')
+    comment_row(comment).unshift("")
   end
 end

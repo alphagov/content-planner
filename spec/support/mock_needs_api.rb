@@ -24,7 +24,7 @@ class MockNeedsApi
 
   def with_subsequent_pages
     [
-      OpenStruct.new(id: 100252,
+      OpenStruct.new(id: 100_252,
                      role: "user",
                      goal: "go to the university",
                      benefit: "I can graduate",

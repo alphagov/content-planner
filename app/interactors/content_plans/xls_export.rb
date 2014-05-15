@@ -1,23 +1,22 @@
 module ContentPlans
   class XlsExport
-
     TASKS_HEADERS = [
-      'Title',
-      'Status'
+      "Title",
+      "Status"
     ]
 
     COMMENTS_HEADERS = [
-      'User',
-      'Message',
-      'Added at'
+      "User",
+      "Message",
+      "Added at"
     ]
 
     CONTENTS_HEADERS = [
-      'Title',
-      'Size',
-      'Status',
-      'Platform',
-      'Publish by'
+      "Title",
+      "Size",
+      "Status",
+      "Platform",
+      "Publish by"
     ]
 
     USERS_HEADERS = [
@@ -37,20 +36,20 @@ module ContentPlans
       @book = Spreadsheet::Workbook.new
 
       t = TASKS_HEADERS
-      self.class.const_set('CONTENT_TASK_HEADERS', t.unshift('Tasks:').push('', ''))
+      self.class.const_set("CONTENT_TASK_HEADERS", t.unshift("Tasks:").push("", ""))
 
       c = COMMENTS_HEADERS
-      self.class.const_set('CONTENT_COMMENTS_HEADERS', c.unshift('Comments:').push(''))
+      self.class.const_set("CONTENT_COMMENTS_HEADERS", c.unshift("Comments:").push(""))
     end
 
     def run
       xls_data = generate_xls
 
-      slug = content_plan.title.squish.downcase.tr(" ","_")
+      slug = content_plan.title.squish.downcase.tr(" ", "_")
       timestamp = Time.zone.now.strftime("%d_%m_%Y_%H_%M")
       xls_filename = "#{content_plan.ref_no}_#{slug}_dump_#{timestamp}.xls"
 
-      [ xls_data, xls_filename ]
+      [xls_data, xls_filename]
     end
 
     private
@@ -72,19 +71,19 @@ module ContentPlans
       needs = content_plan.content_plan_needs.map(&:need_id)
 
       details = [
-        [ "Ref no:", content_plan.ref_no ],
-        [ "Title:", content_plan.title ],
-        [ "Details:", content_plan.details ],
-        [ "Notes:", content_plan.notes ],
-        [ "Due quarter:", content_plan.due_quarter ],
-        [ "Due Year:", content_plan.due_year ],
-        [ "Created at:", content_plan.created_at.to_formatted_s(:long) ],
-        [ "Updated at:", content_plan.updated_at.to_formatted_s(:long) ],
-        [ "Needs (#{needs.count}):", needs.join(', ') ],
-        [ "Number of users:", content_plan.users.count ],
-        [ "Number of contents:", content_plan.contents.count ],
-        [ "Number of tasks:", content_plan.tasks.count ],
-        [ "Number of comments:", content_plan.comments.count ]
+        ["Ref no:", content_plan.ref_no],
+        ["Title:", content_plan.title],
+        ["Details:", content_plan.details],
+        ["Notes:", content_plan.notes],
+        ["Due quarter:", content_plan.due_quarter],
+        ["Due Year:", content_plan.due_year],
+        ["Created at:", content_plan.created_at.to_formatted_s(:long)],
+        ["Updated at:", content_plan.updated_at.to_formatted_s(:long)],
+        ["Needs (#{needs.count}):", needs.join(", ")],
+        ["Number of users:", content_plan.users.count],
+        ["Number of contents:", content_plan.contents.count],
+        ["Number of tasks:", content_plan.tasks.count],
+        ["Number of comments:", content_plan.comments.count]
       ]
 
       details.each_with_index do |content, index|
@@ -135,13 +134,13 @@ module ContentPlans
           user.name,
           user.email,
           user.organisation_slug.to_s,
-          user.permissions.join(', ')
+          user.permissions.join(", ")
         ]
       end
     end
 
     def contents
-      content_plan.contents.includes({comments: :user}, :tasks).map do |content_record|
+      content_plan.contents.includes({ comments: :user }, :tasks).map do |content_record|
         fetch_content_record_data(content_record)
       end
     end
@@ -149,27 +148,27 @@ module ContentPlans
     def fetch_content_record_data(content_record)
       content_record_data = [
         [
-          [content_record.ref_no, content_record.title].join(' '),
+          [content_record.ref_no, content_record.title].join(" "),
           content_record.size,
           content_record.status,
           content_record.platform,
-          content_record.publish_by.present? ? content_record.publish_by.strftime("%d/%m/%Y") : ''
+          content_record.publish_by.present? ? content_record.publish_by.strftime("%d/%m/%Y") : ""
         ]
       ]
 
       if content_record.tasks.present?
-        content_record_data += [ CONTENT_TASK_HEADERS ]
+        content_record_data += [CONTENT_TASK_HEADERS]
 
         tasks(content_record).each do |task|
-          content_record_data += [ task.unshift('') ]
+          content_record_data += [task.unshift("")]
         end
       end
 
       if content_record.comments.present?
-        content_record_data += [ CONTENT_COMMENTS_HEADERS ]
+        content_record_data += [CONTENT_COMMENTS_HEADERS]
 
         comments(content_record).each do |comment|
-          content_record_data += [ comment.unshift('') ]
+          content_record_data += [comment.unshift("")]
         end
       end
 
@@ -180,7 +179,7 @@ module ContentPlans
       instance.tasks.map do |task|
         [
           task.title,
-          task.done? ? 'completed' : 'pending'
+          task.done? ? "completed" : "pending"
         ]
       end
     end

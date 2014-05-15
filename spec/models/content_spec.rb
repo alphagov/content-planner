@@ -18,7 +18,7 @@ describe Content do
     let(:percentages) { Content.percentages_for(platform: platform, contents: scope) }
     let(:spec_percentages) {
       hash = Content::STATUSES[platform].inject({}) { |h, s|
-        h.tap { |h| h[s] = {count: 0} }
+        h.tap { |h| h[s] = { count: 0 } }
       }
       scoped = scope.where(platform: platform)
       total = scoped.sum(:size)

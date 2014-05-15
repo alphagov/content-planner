@@ -10,8 +10,8 @@ So that users can see which tasks are completed
   let!(:task_creator) { create :user, :gds_editor }
   let!(:content_plan) {
     c = create(:content_plan, :with_organisation,
-                              :with_need,
-                              :with_user)
+               :with_need,
+               :with_user)
     c.reload
   }
 
@@ -36,7 +36,7 @@ So that users can see which tasks are completed
 
       deliveries = ActionMailer::Base.deliveries
       deliveries.length.should eq(3)
-      deliveries.map(&:to).flatten.should eq([task_creator.email, first_user.email, second_user.email ])
+      deliveries.map(&:to).flatten.should eq([task_creator.email, first_user.email, second_user.email])
     end
   end
 
