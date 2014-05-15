@@ -4,6 +4,6 @@ class Organisationable < ActiveRecord::Base
   scope :for_content, -> { where(organisationable_type: "Content") }
 
   def organisation
-    Organisation.find(organisation_id)
+    Organisation.find_by_slug(organisation_id)
   end
 end

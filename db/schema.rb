@@ -99,6 +99,27 @@ ActiveRecord::Schema.define(version: 20140501114027) do
   add_index "organisationables", ["organisationable_type", "organisation_id"], name: "organisationable_type", using: :btree
   add_index "organisationables", ["organisationable_type"], name: "index_organisationables_on_organisationable_type", using: :btree
 
+  create_table "organisations", force: true do |t|
+    t.string   "title"
+    t.string   "format"
+    t.string   "slug"
+    t.string   "abbreviation"
+    t.string   "govuk_status"
+    t.string   "parent_organisation"
+    t.string   "ancestry"
+    t.string   "web_url"
+    t.string   "logo_formatted_name"
+    t.string   "organisation_brand_colour_class_name"
+    t.string   "organisation_logo_type_class_name"
+    t.datetime "api_updated_at"
+    t.datetime "api_closed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organisations", ["ancestry"], name: "index_organisations_on_ancestry", using: :btree
+  add_index "organisations", ["slug"], name: "index_organisations_on_slug", using: :btree
+
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"

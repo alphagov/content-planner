@@ -20,7 +20,7 @@ FactoryGirl.define do
 
     trait :with_organisation do
       after(:build) do |content|
-        content.organisation_ids = [Organisation.all.first.id]
+        content.organisation_ids = [FactoryGirl.create(:organisation).slug]
       end
     end
 
