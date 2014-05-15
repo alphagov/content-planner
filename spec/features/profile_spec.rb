@@ -9,8 +9,8 @@ So that I can review all related content like content plans, contents, tasks and
   let!(:user) { create :user }
   let!(:content_plan) {
     c = create(:content_plan, :with_organisation,
-                              :with_need,
-                              users: [user])
+               :with_need,
+               users: [user])
     c.reload
   }
   let!(:content) {

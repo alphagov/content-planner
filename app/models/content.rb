@@ -44,7 +44,6 @@ class Content < ActiveRecord::Base
                                                allow_nil: true,
                                                length: { maximum: 255 }
 
-
   scope :platform, ->(platform) { where platform: platform }
   scope :mainstream, -> { platform "Mainstream" }
   scope :specialist,  -> { platform "Specialist" }

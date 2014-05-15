@@ -10,12 +10,12 @@ module ClickOnHelper
   #
   def click_on(locator)
     el = case locator[0]
-         when ':'
+         when ":"
            val = locator[1..-1]
 
            find %(a[href="#{val}"])
 
-         when '.', '#'
+         when ".", "#"
            find locator
 
          else

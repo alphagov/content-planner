@@ -6,7 +6,7 @@ gem "sass-rails", "~> 4.0.0"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.0.0"
 gem "jquery-rails"
-gem 'modernizr-rails'
+gem "modernizr-rails"
 gem "turbolinks"
 gem "jbuilder", "~> 1.2"
 gem "bootstrap-sass", "~> 2.3.2.2"
@@ -27,7 +27,7 @@ gem "govspeak", ">= 1.3.0"
 gem "plek", ">= 1.0.0"
 gem "gds-sso", "9.2.5", github: "alphagov/gds-sso"
 gem "gds-api-adapters", "10.1.0"
-gem 'govuk_frontend_toolkit', :git => "https://github.com/alphagov/govuk_frontend_toolkit_gem.git", :submodules => true
+gem "govuk_frontend_toolkit", git: "https://github.com/alphagov/govuk_frontend_toolkit_gem.git", submodules: true
 gem "pundit"
 gem "logstasher", "0.4.1"
 gem "lrucache", "0.1.4"
@@ -38,9 +38,9 @@ gem "highcharts-rails", "~> 3.0.0"
 gem "dullard"
 gem "roo", github: "Empact/roo"
 gem "google-spreadsheet-ruby"
-gem 'spreadsheet'
-gem 'bootstrap-datepicker-rails'
-gem 'whenever', require: false
+gem "spreadsheet"
+gem "bootstrap-datepicker-rails"
+gem "whenever", require: false
 gem "activerecord_any_of"
 
 group :development do

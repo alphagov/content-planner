@@ -32,7 +32,7 @@ class Organisation
   end
 
   def initialize(org)
-    @id = org.details.slug #to preserve compatibility with old API
+    @id = org.details.slug # to preserve compatibility with old API
     @title = org.title
     @format = org.format
     @updated_at = Time.parse(org.updated_at) if org.updated_at

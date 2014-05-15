@@ -106,7 +106,7 @@ feature "Add comments from content" do
   end
 
   def notice_by_restrict_rule(restrict_rule)
-    if restrict_rule == 'permissions'
+    if restrict_rule == "permissions"
      "You have no permissions to edit this comment"
     else
       "Comment can be updated or deleted only in 5 minutes after posting"
