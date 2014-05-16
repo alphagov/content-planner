@@ -9,10 +9,7 @@ So that users can see which tasks are completed
   let!(:gds_editor) { create :user, :gds_editor }
   let!(:task_creator) { create :user, :gds_editor }
   let!(:content_plan) {
-    c = create(:content_plan, :with_organisation,
-               :with_need,
-               :with_user)
-    c.reload
+    create(:content_plan, :with_organisation, :with_need, :with_user).reload
   }
 
   let!(:first_user) { create :user }
@@ -23,39 +20,54 @@ So that users can see which tasks are completed
                   creator: task_creator
   }
 
-  describe "Mark task as completed" do
+  describe "Mark task as completed", js: true do
     before {
       ActionMailer::Base.deliveries.clear
       visit content_plan_path(content_plan)
+
+      expect(task.done).to be_nil
+      check "task_done"
     }
 
-    it "shoul send email notifications to task creator and task owners", js: true do
-      expect {
-        check "task_done"
-      }.to change { task.reload.done }.from(nil).to(true)
+    it "should send email notifications to task creator and task owners" do
+      expect(task.reload.done).to be_true
 
       deliveries = ActionMailer::Base.deliveries
       deliveries.length.should eq(3)
       deliveries.map(&:to).flatten.should eq([task_creator.email, first_user.email, second_user.email])
     end
+
+    it "should save the user who completes the task" do
+      expect(task.reload.completed_by).to eq(gds_editor)
+    end
+
+    it "should include the user who completes the task on the email" do
+      mail = ActionMailer::Base.deliveries.first
+      expect(mail.encoded).to include("was completed by #{gds_editor}")
+    end
   end
 
-  describe "Unmark task as completed" do
+  describe "Unmark task as completed", js: true do
     before {
       task.done = true
+      task.completed_by = gds_editor
       task.save
 
       ActionMailer::Base.deliveries.clear
       visit content_plan_path(content_plan)
+
+      uncheck "task_done"
     }
 
-    it "shoul not send email notifications on unmarking task as completed", js: true do
-      expect {
-        uncheck "task_done"
-      }.to change { task.reload.done }.from(true).to(false)
+    it "should not send email notifications on unmarking task as completed" do
+      expect(task.reload.done).to be_false
 
       deliveries = ActionMailer::Base.deliveries
       deliveries.length.should eq(0)
+    end
+
+    it "should unset the user who completed the task" do
+      expect(task.reload.completed_by).to be_nil
     end
   end
 end

@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :tasks, through: :task_and_users
 
   has_many :created_tasks, class_name: "Task", foreign_key: :creator_id
+  has_many :completed_tasks, class_name: "Task", foreign_key: :completed_by_id
 
   module Permissions
     SIGNIN = "signin"
