@@ -17,14 +17,13 @@ describe "Dashboard" do
   }
 
   context "list" do
-    pending "needs investigation"
     it { expect(page).to have_text(content_plan) }
     it { expect(page).to have_text(content_plan2) }
   end
 
   context "filter" do
     before { fill_in_filter }
-    pending "needs investigation"
+
     it { expect(page).to have_text(content_plan) }
     it { expect(page).to_not have_text(content_plan2) }
   end
@@ -36,7 +35,7 @@ describe "Dashboard" do
     }
 
     before { visit root_path }
-    pending "needs investigation"
+
     it { expect_to_see_status_bars }
   end
 end
