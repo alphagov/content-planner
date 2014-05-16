@@ -1,5 +1,5 @@
 (function() {
-  var taskCheckBoxSubmit;
+  var taskCheckBoxSubmit, datepicker_init;
 
   taskCheckBoxSubmit = function() {
     return $(".js-task-checkbox").change(function() {
@@ -18,6 +18,6 @@
 
   $(document).ready([taskCheckBoxSubmit, datepicker_init]);
 
-  $(document).on("page:load", [taskCheckBoxSubmit, datepicker_init]);
+  $(document).on("page:load", taskCheckBoxSubmit, datepicker_init);
 
 }).call(this);
