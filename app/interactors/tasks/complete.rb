@@ -20,7 +20,8 @@ module Tasks
     end
 
     def persist!
-      @success = task.update(update_params)
+      assign_attributes!
+      @success = task.save
       @completed = !@completed && task.done
     end
 
@@ -43,6 +44,13 @@ module Tasks
     def notify_task_creator_and_task_owners!
       notified_people.each do |gds_editor|
         TaskMailer.notify(task, gds_editor).deliver!
+      end
+    end
+
+    def assign_attributes!
+      task.assign_attributes(update_params)
+      task.completed_by = if update_params["done"].to_i == 1
+         current_user
       end
     end
   end
