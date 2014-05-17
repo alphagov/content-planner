@@ -17,7 +17,7 @@ class TasksController < ApplicationController
 
     if complete_task.success?
       redirect_to task.taskable,
-                  notice: "Task completed"
+                  notice: "Task updated"
     else
       render :edit
     end

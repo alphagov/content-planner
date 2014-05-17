@@ -1,10 +1,16 @@
 class TaskDecorator < ApplicationDecorator
   def assigned_people
     if object.users.present?
-      "Assigned: #{object.users.map(&:to_s).join(", ")}"
+      "Assigned: #{users_with_links}".html_safe
     else
       "Assigned: none"
     end
+  end
+
+  def users_with_links
+    object.users.map do |user|
+      h.link_to user, user
+    end.join(", ")
   end
 
   def deadline_status
@@ -20,7 +26,7 @@ class TaskDecorator < ApplicationDecorator
   end
 
   def tooltip_content
-    [assigned_people, deadline].join(". ")
+    deadline
   end
 
   private

@@ -12,7 +12,7 @@ module Tasks
     def run
       persist!
 
-      if success? && completed?
+      if success? && completed? && done_changed?
         notify_task_creator_and_task_owners!
       end
 
@@ -21,6 +21,7 @@ module Tasks
 
     def persist!
       assign_attributes!
+      @done_changed = task.done_changed?
       @success = task.save
       @completed = !@completed && task.done
     end
@@ -31,6 +32,10 @@ module Tasks
 
     def completed?
       @completed
+    end
+
+    def done_changed?
+      @done_changed
     end
 
     private

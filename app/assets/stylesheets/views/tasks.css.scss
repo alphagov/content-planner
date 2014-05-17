@@ -8,11 +8,22 @@ ul.tasks{
   li{
     padding-left: 25px;
     line-height: 25px;
+
+    .delete, .edit-task-btn{
+      display: none;
+      float: left;
+      position: relative;
+      margin-left: -40px;
+    }
+
+    .delete {
+      margin-top: 22px;
+    }
   }
 
   li:hover {
     background: #FDFDF0;
-    .delete{
+    .delete, .edit-task-btn {
       display: block;
     }
   }
@@ -38,12 +49,6 @@ form.edit_task{
     display:none;
   }
 }
-.delete{
-  display: none;
-  float: left;
-  margin-left: -40px;
-  position: relative;
-}
 
 .overdue_task {
   color: red;
@@ -56,4 +61,10 @@ form.edit_task{
       width: 218px;
     }
   }
+}
+
+.task-assigned-people {
+  color: #6f777b;
+  font-size: 0.9em;
+  margin-left: 18px;
 }

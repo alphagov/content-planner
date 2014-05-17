@@ -5,8 +5,13 @@
         = button_tag type: 'submit', class: 'btn btn-mini' do
           <i class='icon-trash'></i>
 
+    = link_to "#", class: "edit-task-btn btn btn-mini" do
+      i class="icon-edit"
+
     = form_for task do |f|
       = f.check_box :done, class: 'js-task-checkbox'
       = f.submit
     span[class= "#{task.done? ? 'done' : nil}" title="#{task.decorate.tooltip_content}" data-tooltip=true data-placement="right"]
       = task.title
+      .task-assigned-people = task.decorate.assigned_people
+  .hidden.edit-task-form id="edit-task#{task.id}-form" = render "tasks/form", task: task
