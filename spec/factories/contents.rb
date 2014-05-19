@@ -21,6 +21,7 @@ FactoryGirl.define do
     trait :with_organisation do
       after(:build) do |content|
         content.organisation_ids = [Organisation.all.first.id]
+        content.reload
       end
     end
 
