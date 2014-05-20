@@ -15,12 +15,10 @@
   }
 }
 
-.clear-box{
-  clear: both;
-}
-
 .tag-box{
-  margin: 0 0 40px 20px;
+  padding: 0 0.5em;
+  margin: 0 0 10px 0 !important;
+  min-height: 160px !important;
 
   .platform {
     .status {
@@ -76,4 +74,3 @@
   padding-top: -10px;
   margin-bottom: 10px;
 }
-
