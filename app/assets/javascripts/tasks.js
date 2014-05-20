@@ -1,5 +1,7 @@
 (function() {
-  var taskCheckBoxSubmit, datepicker_init;
+  "use strict";
+
+  var taskCheckBoxSubmit, datepicker_init, editTaskFormListener;
 
   taskCheckBoxSubmit = function() {
     return $(".js-task-checkbox").change(function() {
@@ -15,6 +17,13 @@
       autoclose: true
     });
   };
+
+  editTaskFormListener = function() {
+    $(document).on("click", ".edit-task-btn", function () {
+      $(this).parent().hide().next(".edit-task-form").removeClass("hidden");
+      return false;
+    });
+  }();
 
   $(document).ready([taskCheckBoxSubmit, datepicker_init]);
 
