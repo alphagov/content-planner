@@ -7,6 +7,7 @@ FactoryGirl.define do
 
     trait :completed do
       done true
+      done_at { Time.now }
     end
 
     trait :overdue do

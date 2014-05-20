@@ -54,8 +54,15 @@ module Tasks
 
     def assign_attributes!
       task.assign_attributes(update_params)
-      task.completed_by = if update_params["done"].to_i == 1
-         current_user
+      update_status! if update_params["done"].present? # changing task status
+    end
+
+    def update_status!
+      case update_params["done"].to_i
+      when 0 # marking as undone
+        task.assign_attributes(completed_by: nil, done_at: nil)
+      when 1 # marking as done
+        task.assign_attributes(completed_by: current_user, done_at: Time.now)
       end
     end
   end

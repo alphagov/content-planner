@@ -14,13 +14,14 @@ So that users can see which tasks are completed
 
   let!(:first_user) { create :user }
   let!(:second_user) { create :user }
-  let!(:task) {
-    create :task, taskable: content_plan,
-                  users: [first_user, second_user],
-                  creator: task_creator
-  }
 
   describe "Mark task as completed", js: true do
+    let!(:task) {
+      create :task, taskable: content_plan,
+                    users: [first_user, second_user],
+                    creator: task_creator
+    }
+
     before {
       ActionMailer::Base.deliveries.clear
       visit content_plan_path(content_plan)
@@ -45,14 +46,22 @@ So that users can see which tasks are completed
       mail = ActionMailer::Base.deliveries.first
       expect(mail.encoded).to include("was completed by #{gds_editor}")
     end
+
+    it "should save the date the task was completed" do
+      expect(task.reload.done_at).to be_a(Time)
+    end
   end
 
   describe "Unmark task as completed", js: true do
-    before {
-      task.done = true
-      task.completed_by = gds_editor
-      task.save
+    let!(:task) {
+      create(:task, :completed,
+                    taskable: content_plan,
+                    users: [first_user, second_user],
+                    creator: task_creator,
+                    completed_by: gds_editor)
+    }
 
+    before {
       ActionMailer::Base.deliveries.clear
       visit content_plan_path(content_plan)
 
@@ -68,6 +77,10 @@ So that users can see which tasks are completed
 
     it "should unset the user who completed the task" do
       expect(task.reload.completed_by).to be_nil
+    end
+
+    it "should remove `done_at`" do
+      expect(task.reload.done_at).to be_nil
     end
   end
 end

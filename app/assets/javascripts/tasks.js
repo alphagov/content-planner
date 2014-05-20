@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  var taskCheckBoxSubmit, datepicker_init, editTaskFormListener;
+  var taskCheckBoxSubmit, datepicker_init, editTaskFormListener, showCompletedTasksListener;
 
   taskCheckBoxSubmit = function() {
     return $(".js-task-checkbox").change(function() {
@@ -23,7 +23,18 @@
       $(this).parent().hide().next(".edit-task-form").removeClass("hidden");
       return false;
     });
-  }();
+  };
+
+  showCompletedTasksListener = function() {
+    $(document).on("click", ".show_completed_tasks", function () {
+      $(this).remove();
+      $(".completed-tasks.hidden").removeClass("hidden");
+      return false;
+    })
+  };
+
+  editTaskFormListener();
+  showCompletedTasksListener();
 
   $(document).ready([taskCheckBoxSubmit, datepicker_init]);
 

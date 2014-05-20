@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516153404) do
+ActiveRecord::Schema.define(version: 20140517002643) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -136,10 +136,13 @@ ActiveRecord::Schema.define(version: 20140516153404) do
     t.datetime "deadline"
     t.integer  "creator_id"
     t.integer  "completed_by_id"
+    t.datetime "done_at"
   end
 
   add_index "tasks", ["completed_by_id"], name: "index_tasks_on_completed_by_id", using: :btree
   add_index "tasks", ["creator_id"], name: "index_tasks_on_creator_id", using: :btree
+  add_index "tasks", ["done"], name: "index_tasks_on_done", using: :btree
+  add_index "tasks", ["done_at"], name: "index_tasks_on_done_at", using: :btree
   add_index "tasks", ["taskable_id", "taskable_type"], name: "index_tasks_on_taskable_id_and_taskable_type", using: :btree
 
   create_table "users", force: true do |t|

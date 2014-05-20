@@ -1,0 +1,8 @@
+ul.tasks
+  = render tasks.current
+
+- old_tasks = tasks.old
+- if old_tasks.any?
+  = link_to "Show completed tasks", "#", class: "show_completed_tasks"
+  ul.tasks.completed-tasks.hidden
+    = render old_tasks
