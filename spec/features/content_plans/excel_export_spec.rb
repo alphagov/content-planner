@@ -110,10 +110,10 @@ So that I can have ability to review content plan in excel file
 
       expect(contents_sheet.rows[1]).to eql content_row(content.reload)
 
-      expect(contents_sheet.rows[2].map(&:to_s)).to eql ContentPlans::XlsExport::TASKS_HEADERS
+      expect(contents_sheet.rows[2].map(&:to_s)).to eql ContentPlans::XlsExport::CONTENT_TASK_HEADERS
       expect(contents_sheet.rows[3].map(&:to_s)).to eql content_task_row(content_task)
 
-      expect(contents_sheet.rows[4].map(&:to_s)).to eql ContentPlans::XlsExport::COMMENTS_HEADERS
+      expect(contents_sheet.rows[4].map(&:to_s)).to eql ContentPlans::XlsExport::CONTENT_COMMENTS_HEADERS
       expect(contents_sheet.rows[5].map(&:to_s)).to eql content_comment_row(content_comment)
 
       expect(contents_sheet.rows[6]).to eql content_row(second_content.reload)
