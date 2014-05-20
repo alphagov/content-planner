@@ -49,7 +49,8 @@ I want to be able to add tasks
       expect(created_task.users.count).to be_eql 2
       expect(created_task.creator.id).to be_eql gds_editor.id
 
-      expect(created_task.decorate.assigned_people).to be_eql("Assigned: #{first_user}, #{second_user}")
+      expect(created_task.decorate.assigned_people).to include(first_user.to_s)
+      expect(created_task.decorate.assigned_people).to include(second_user.to_s)
     end
   end
 end
