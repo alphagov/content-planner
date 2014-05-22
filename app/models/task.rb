@@ -15,6 +15,9 @@ class Task < ActiveRecord::Base
     order("-deadline ASC")
   }
 
+  scope :completed, -> {
+    where(done: true)
+  }
   scope :not_completed, -> {
     where.any_of({ done: nil }, { done: false })
   }
@@ -24,5 +27,12 @@ class Task < ActiveRecord::Base
 
   scope :overdue_for_today, -> {
     not_completed.deadline_passed_yesterday
+  }
+
+  scope :current, -> {
+    where.any_of(not_completed, ["done_at > ?", Time.now.yesterday])
+  }
+  scope :old, -> {
+    completed.where("done_at <= ?", Time.now.yesterday)
   }
 end

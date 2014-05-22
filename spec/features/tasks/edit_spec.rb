@@ -22,4 +22,10 @@ describe "edit tasks", js: true do
   }
 
   it { expect(task.reload.title).to eq(title) }
+
+  it "should not change status" do
+    expect(task.reload.done).to be_false
+    expect(task.reload.done_at).to be_nil
+    expect(task.reload.completed_by).to be_nil
+  end
 end
