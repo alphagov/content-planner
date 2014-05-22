@@ -11,11 +11,11 @@
                    options_for_select( organisations_options_for_select, params[:organisation] ),
                    include_blank: true, placeholder: "Organisation", class: "js-organisations"
       = submit_tag "Filter", class: "btn"
-  div
+  .row-fluid
     - content_plans.each_with_index do |content_plan, i|
       - contents = content_plan.contents.organisation(params[:organisation])
       - if contents.count > 0
-        div class=(("tag-box span4") + (i % 3 == 0 ? " clear-box" : ""))
+        div class="tag-box span4"
           h4
             = link_to content_plan, content_plan_path(content_plan)
           - Content::PLATFORMS.each do |platform|
