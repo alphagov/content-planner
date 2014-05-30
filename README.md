@@ -1,7 +1,7 @@
 Content Planner
 ========================
 
-A tool to help with the HMRC Content transition and URL analysis.
+A online tool to help with the HMRC Content transition and URL analysis.
 
 The main focus of the tool is the coordination of content writing and
 a dashboard to show the progress of content in various states.
