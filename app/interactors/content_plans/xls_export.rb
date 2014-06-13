@@ -35,10 +35,10 @@ module ContentPlans
       @spreadsheet = StringIO.new
       @book = Spreadsheet::Workbook.new
 
-      t = TASKS_HEADERS
+      t = TASKS_HEADERS.dup
       self.class.const_set("CONTENT_TASK_HEADERS", t.unshift("Tasks:").push("", ""))
 
-      c = COMMENTS_HEADERS
+      c = COMMENTS_HEADERS.dup
       self.class.const_set("CONTENT_COMMENTS_HEADERS", c.unshift("Comments:").push(""))
     end
 
