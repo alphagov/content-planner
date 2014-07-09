@@ -19,8 +19,6 @@ And depends on or uses the following parts of the GOV.UK stack:
 Loosely related:
 
 * https://github.com/alphagov/maslow
-* https://github.com/alphagov/transition
-
 
 Running the application
 ---------------------
