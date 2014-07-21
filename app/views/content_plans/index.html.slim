@@ -46,7 +46,7 @@
             td
               = link_to content_plan.name, content_plan
             td
-              = user_needs_links content_plan.need_ids
+              = content_plan.decorate.needs_list
             td
               = content_plan_tag_filters content_plan.decorate.tags_list
             td

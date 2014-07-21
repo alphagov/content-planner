@@ -15,14 +15,14 @@
                     collection: User.all,
                     label: 'Users',
                     input_html: { style: "width:300px" }
-    = f.input :maslow_need_ids,
+    = f.input :need_ids,
               as: :select,
-              collection: Need.all,
+              collection: needs_options_for_select,
               input_html: {class: "js-needs", multiple: true}
     = f.input :organisation_ids,
               label: "Organisations",
               as: :select,
-              collection: Organisation.all,
+              collection: organisations_options_for_select,
               input_html: {class: "js-organisations", style: "width:300px", multiple: true}
     legend Due
     = f.input :due_quarter, label: "Quarter", as: :select, collection: ContentPlan::QUARTERS, include_blank: false

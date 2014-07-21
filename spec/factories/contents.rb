@@ -20,8 +20,7 @@ FactoryGirl.define do
 
     trait :with_organisation do
       after(:build) do |content|
-        content.organisation_ids = [Organisation.all.first.id]
-        content.reload
+        content.organisation_ids = [FactoryGirl.create(:organisation).slug]
       end
     end
 
@@ -39,7 +38,7 @@ FactoryGirl.define do
 
     trait :with_need do
       after(:create) do |content|
-        ContentNeed.create(content: content, need_id: Need.all.first.id)
+        ContentNeed.create(content: content, need: create(:need))
       end
     end
 

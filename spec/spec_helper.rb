@@ -10,6 +10,8 @@ SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "rspec/autorun"
+require "fakefs/spec_helpers"
+require "webmock/rspec"
 
 require "capybara/poltergeist"
 Capybara.javascript_driver = :poltergeist
@@ -20,6 +22,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Dir[Rails.root.join("spec/features/steps/*.rb")].each { |f| require f }
 
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
+WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
   config.mock_with :rspec

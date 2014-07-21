@@ -107,7 +107,7 @@ class ContentPlansController < ApplicationController
                                          :due_quarter,
                                          :due_year,
                                          user_ids: [],
-                                         maslow_need_ids: [],
+                                         need_ids: [],
                                          organisation_ids: []
     )
   end

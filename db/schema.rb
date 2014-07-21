@@ -28,10 +28,11 @@ ActiveRecord::Schema.define(version: 20140517002643) do
 
   create_table "content_needs", force: true do |t|
     t.integer "content_id"
+    t.integer "need_api_id"
     t.integer "need_id"
   end
 
-  add_index "content_needs", ["content_id", "need_id"], name: "index_content_needs_on_content_id_and_need_id", using: :btree
+  add_index "content_needs", ["content_id", "need_api_id"], name: "index_content_needs_on_content_id_and_need_api_id", using: :btree
 
   create_table "content_plan_contents", force: true do |t|
     t.integer  "content_plan_id"
@@ -42,10 +43,11 @@ ActiveRecord::Schema.define(version: 20140517002643) do
 
   create_table "content_plan_needs", force: true do |t|
     t.integer "content_plan_id"
+    t.integer "need_api_id"
     t.integer "need_id"
   end
 
-  add_index "content_plan_needs", ["content_plan_id", "need_id"], name: "index_content_plan_needs_on_content_plan_id_and_need_id", using: :btree
+  add_index "content_plan_needs", ["content_plan_id", "need_api_id"], name: "index_content_plan_needs_on_content_plan_id_and_need_api_id", using: :btree
 
   create_table "content_plan_users", force: true do |t|
     t.integer "content_plan_id", null: false
@@ -86,6 +88,25 @@ ActiveRecord::Schema.define(version: 20140517002643) do
     t.date     "publish_by"
   end
 
+  create_table "needs", force: true do |t|
+    t.integer "api_id"
+    t.string  "role"
+    t.string  "goal"
+    t.string  "benefit"
+    t.boolean "applies_to_all_organisations", default: false
+    t.string  "in_scope"
+  end
+
+  create_table "organisation_needs", force: true do |t|
+    t.integer  "organisation_id"
+    t.integer  "need_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organisation_needs", ["need_id"], name: "index_organisation_needs_on_need_id", using: :btree
+  add_index "organisation_needs", ["organisation_id"], name: "index_organisation_needs_on_organisation_id", using: :btree
+
   create_table "organisationables", force: true do |t|
     t.string   "organisation_id"
     t.integer  "organisationable_id"
@@ -98,6 +119,28 @@ ActiveRecord::Schema.define(version: 20140517002643) do
   add_index "organisationables", ["organisationable_id", "organisationable_type"], name: "organisationables", using: :btree
   add_index "organisationables", ["organisationable_type", "organisation_id"], name: "organisationable_type", using: :btree
   add_index "organisationables", ["organisationable_type"], name: "index_organisationables_on_organisationable_type", using: :btree
+
+  create_table "organisations", force: true do |t|
+    t.string   "title"
+    t.string   "format"
+    t.string   "slug"
+    t.string   "abbreviation"
+    t.string   "govuk_status"
+    t.string   "parent_organisation"
+    t.string   "ancestry"
+    t.string   "web_url"
+    t.string   "logo_formatted_name"
+    t.string   "organisation_brand_colour_class_name"
+    t.string   "organisation_logo_type_class_name"
+    t.datetime "api_updated_at"
+    t.datetime "api_closed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "api_id"
+  end
+
+  add_index "organisations", ["ancestry"], name: "index_organisations_on_ancestry", using: :btree
+  add_index "organisations", ["slug"], name: "index_organisations_on_slug", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

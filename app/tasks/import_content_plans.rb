@@ -115,7 +115,7 @@ class ImportContentPlans
 
     content = Content.create!(content_hash)
 
-    content.maslow_need_ids = extract_need_id(row[11])
+    content.need_ids = fetch_needs(extract_need_id(row[11]))
     content.tag_list = tag
     content.content_plans << content_plan
     content.save
@@ -139,5 +139,9 @@ class ImportContentPlans
 
   def sheet_name_for_tag(name)
     name.match(/-(.*)/)[0][2..-1].strip.mb_chars.downcase.to_s
+  end
+
+  def fetch_needs(maslow_need_ids)
+    Need.where(api_id: maslow_need_ids).pluck(:id)
   end
 end

@@ -43,6 +43,9 @@ gem "bootstrap-datepicker-rails"
 gem "whenever", require: false
 gem "activerecord_any_of"
 
+gem 'ancestry'
+gem "friendly_id", "5.0.2"
+
 group :development do
   gem "rubocop"
   gem "better_errors"
@@ -69,4 +72,7 @@ group :test do
   gem "simplecov-rcov"
   gem "launchy"
   gem "poltergeist"
+  gem "fakefs", require: "fakefs/safe"
+  gem 'webmock', '1.17.3'
+  gem "shoulda-matchers"
 end

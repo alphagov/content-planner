@@ -47,10 +47,10 @@
             dt Content plans:
             dd
               = content.decorate.content_plans_list
-          - if content.maslow_need_ids.present?
+          - if content.needs.present?
             dt Maslow need ids:
             dd
-              = user_needs_links content.maslow_need_ids
+              = content.decorate.needs_list
           - if content.tag_list.present?
             dt Tags:
             dd
