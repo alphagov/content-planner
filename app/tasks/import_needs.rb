@@ -1,7 +1,13 @@
+require 'gds_api/need_api'
+
 class ImportNeeds
   class << self
+    def api
+      @api ||= GdsApi::NeedApi.new( Plek.current.find('need-api'), API_CLIENT_CREDENTIALS )
+    end
+
     def needs
-      ContentPlanner.needs_api.needs.with_subsequent_pages
+      api.needs.with_subsequent_pages
     end
 
     def run
