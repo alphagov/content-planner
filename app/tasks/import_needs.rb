@@ -3,7 +3,7 @@ require 'gds_api/need_api'
 class ImportNeeds
   class << self
     def api
-      @api ||= GdsApi::NeedApi.new( Plek.current.find('need-api'), API_CLIENT_CREDENTIALS )
+      @api ||= GdsApi::NeedApi.new( Plek.current.find('need-api'), API_CLIENT_CREDENTIALS.merge(logger: Rails.logger) )
     end
 
     def needs
