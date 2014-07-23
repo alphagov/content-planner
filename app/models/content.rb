@@ -3,7 +3,7 @@ class Content < ActiveRecord::Base
 
   acts_as_taggable
 
-  paginates_per 15
+  paginates_per 7
 
   STATUSES = {
     "Publisher" => [
