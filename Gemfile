@@ -19,17 +19,17 @@ gem "decent_exposure"
 gem "decent_decoration"
 gem "active_hash"
 gem "kaminari"
-gem "acts-as-taggable-on"
+gem "acts-as-taggable-on", "2.4.1"
 gem "select2-rails", github: "bitzesty/select2-rails", branch: "2.1.0", ref: "a3447b2"
-gem "searchlight"
+gem "searchlight", "1.3.1"
 gem "paper_trail", ">= 3.0.0.rc1"
 gem "govspeak", ">= 1.3.0"
-gem "plek", ">= 1.0.0"
-gem "gds-sso", "9.2.5", github: "alphagov/gds-sso"
+gem "plek", "~> 1.8"
+gem "gds-sso", "9.3.0"
 gem "gds-api-adapters", "12.2.0"
 gem "govuk_frontend_toolkit", git: "https://github.com/alphagov/govuk_frontend_toolkit_gem.git", submodules: true
 gem "pundit"
-gem "logstasher", "0.4.1"
+gem "logstasher", '0.4.8'
 gem "lrucache", "0.1.4"
 
 gem "aws-ses", require: "aws/ses"
@@ -59,7 +59,7 @@ end
 
 group :development, :test do
   gem "factory_girl_rails"
-  gem "rspec-rails"
+  gem "rspec-rails", "2.14.0"
   gem "pry-rails"
   gem "pry"
 end
