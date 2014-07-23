@@ -47,11 +47,6 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  config.before(:suite) do
-    ContentPlanner.needs_api = MockNeedsApi.new
-    ContentPlanner.organisations_api = MockOrganisationsApi.new
-  end
-
   config.before :each do
     if Capybara.current_driver == :rack_test
       DatabaseCleaner.strategy = :transaction

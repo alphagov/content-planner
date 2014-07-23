@@ -1,7 +1,4 @@
 ContentPlanner::Application.configure do
-  require 'gds_api/need_api'
-  require 'gds_api/organisations'
-
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -86,9 +83,4 @@ ContentPlanner::Application.configure do
   config.logstasher.enabled = true
   config.logstasher.logger = Logger.new("#{Rails.root}/log/#{Rails.env}.json.log")
   config.logstasher.suppress_app_log = true
-
-  config.after_initialize do
-    ContentPlanner.needs_api = GdsApi::NeedApi.new( Plek.current.find('need-api'), API_CLIENT_CREDENTIALS )
-    ContentPlanner.organisations_api = GdsApi::Organisations.new( Plek.current.find('whitehall-admin') )
-  end
 end

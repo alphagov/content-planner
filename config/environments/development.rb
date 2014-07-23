@@ -1,9 +1,4 @@
 ContentPlanner::Application.configure do
-  require "#{config.root}/spec/support/mock_needs_api"
-  require "#{config.root}/spec/support/mock_organisations_api"
-  require 'gds_api/need_api'
-  require 'gds_api/organisations'
-
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -42,14 +37,4 @@ ContentPlanner::Application.configure do
 
   # mailer default url options
   config.action_mailer.default_url_options = { host: "http://10.1.1.254:3058/" }
-
-  config.after_initialize do
-    if ENV["USE_API"]
-      ContentPlanner.needs_api = GdsApi::NeedApi.new( Plek.current.find('need-api'), API_CLIENT_CREDENTIALS )
-      ContentPlanner.organisations_api = GdsApi::Organisations.new( Plek.current.find('whitehall-admin') )
-    else
-      ContentPlanner.needs_api = MockNeedsApi.new
-      ContentPlanner.organisations_api = MockOrganisationsApi.new
-    end
-  end
 end
