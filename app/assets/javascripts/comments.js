@@ -8,7 +8,12 @@
     });
   };
 
-  $(document).ready(CommentsReplyInit);
+  $(document).ready(function() {
+    CommentsReplyInit();
+
+    $("#comment_message, #reply_message").autosize();
+  });
+
   $(document).on("page:load", CommentsReplyInit);
 
 }).call(this);
