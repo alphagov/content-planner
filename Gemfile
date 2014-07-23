@@ -19,9 +19,9 @@ gem "decent_exposure"
 gem "decent_decoration"
 gem "active_hash"
 gem "kaminari"
-gem "acts-as-taggable-on"
+gem "acts-as-taggable-on", "2.4.1"
 gem "select2-rails", github: "bitzesty/select2-rails", branch: "2.1.0", ref: "a3447b2"
-gem "searchlight"
+gem "searchlight", "1.3.1"
 gem "paper_trail", ">= 3.0.0.rc1"
 gem "govspeak", ">= 1.3.0"
 gem "plek", "~> 1.8"
@@ -59,7 +59,7 @@ end
 
 group :development, :test do
   gem "factory_girl_rails"
-  gem "rspec-rails"
+  gem "rspec-rails", "2.14.0"
   gem "pry-rails"
   gem "pry"
 end
