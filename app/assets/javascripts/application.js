@@ -17,4 +17,5 @@
 //= require turbolinks
 //= require select2
 //= require google-diff-match-patch
+//= require jquery.tablesorter.min
 //= require_tree .
