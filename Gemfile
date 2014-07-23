@@ -25,7 +25,7 @@ gem "searchlight", "1.3.1"
 gem "paper_trail", ">= 3.0.0.rc1"
 gem "govspeak", ">= 1.3.0"
 gem "plek", "~> 1.8"
-gem "gds-sso", "9.3.0"
+gem "gds-sso", "9.2.5"
 gem "gds-api-adapters", "12.2.0"
 gem "govuk_frontend_toolkit", git: "https://github.com/alphagov/govuk_frontend_toolkit_gem.git", submodules: true
 gem "pundit"
