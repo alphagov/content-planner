@@ -24,12 +24,12 @@ gem "select2-rails", github: "bitzesty/select2-rails", branch: "2.1.0", ref: "a3
 gem "searchlight"
 gem "paper_trail", ">= 3.0.0.rc1"
 gem "govspeak", ">= 1.3.0"
-gem "plek", ">= 1.0.0"
-gem "gds-sso", "9.2.5", github: "alphagov/gds-sso"
+gem "plek", "~> 1.8"
+gem "gds-sso", "9.3.0"
 gem "gds-api-adapters", "12.2.0"
 gem "govuk_frontend_toolkit", git: "https://github.com/alphagov/govuk_frontend_toolkit_gem.git", submodules: true
 gem "pundit"
-gem "logstasher", "0.4.1"
+gem "logstasher", '0.4.8'
 gem "lrucache", "0.1.4"
 
 gem "aws-ses", require: "aws/ses"
