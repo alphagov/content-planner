@@ -74,7 +74,7 @@ module ApplicationHelper
   end
 
   def needs_options_for_select
-    Need.all.map do |need|
+    Need.all.includes(:organisations).map do |need|
       [need.to_s, need.id]
     end
   end
