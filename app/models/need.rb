@@ -8,7 +8,7 @@ class Need < ActiveRecord::Base
   has_many :content_needs, dependent: :destroy
   has_many :contents, through: :content_needs
 
-  validates :api_id, presence: true
+  validates :api_id, presence: true, uniqueness: true
 
   def org_names
     organisations.map(&:abbreviation)

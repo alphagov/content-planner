@@ -32,6 +32,13 @@ Ensure you have replicated the databases from preview (maslow, whitehall and con
 Alternatively run whitehall and govuk_need_api then run `./startup.sh`
 
 
+Local Setup:
+
+  ```
+  bundle
+  rake db:create db:migrate db:dummy
+  ```
+
 Emails in development
 ---------------------
 
