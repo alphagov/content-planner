@@ -80,15 +80,14 @@ class Content < ActiveRecord::Base
     platform = options.fetch(:platform) { raise ArgumentError.new("#percentages_for expects platform: as part of options hash") }
     scope = options.fetch(:contents) { raise ArgumentError.new("#percentages_for expects contents: as part of options hash") }
 
-    total = scope.map(&:size).compact.sum
+    total = scope.count
 
     STATUSES[platform].inject({}) do |hash, status|
       hash.tap do |hash|
         if total > 0
           status_scope = scope.select { |w| w.status == status }
-          sum = status_scope.map(&:size).compact.sum
 
-          hash[status] = [status_scope.count, ((sum / total.to_f) * 100.0).round(3)]
+          hash[status] = [status_scope.count, ((status_scope.count * 100.0) / scope.count).round(3)]
         else
           hash[status] = [0, 0]
         end
