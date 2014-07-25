@@ -8,7 +8,7 @@ class Organisation < ActiveRecord::Base
   has_many :organisation_needs, dependent: :destroy
   has_many :needs, through: :organisation_needs
 
-  validates :api_id, presence: true
+  validates :api_id, presence: true, uniqueness: true
 
   def self.param_key
     "org"
