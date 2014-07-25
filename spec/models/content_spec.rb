@@ -21,14 +21,12 @@ describe Content do
         h.tap { |h| h[s] = { count: 0 } }
       }
       scoped = scope.where(platform: platform)
-      total = scoped.sum(:size)
       scoped.each do |content|
         hash[content.status][:count] += 1
       end
       hash.each do |k, v|
         count = hash[k][:count]
-        sum = scoped.where(status: k).sum(:size)
-        percentage = ((sum / total.to_f) * 100.0).round(3)
+        percentage = ((count * 100.0) / scoped.count).round(3)
         hash[k] = [count, percentage]
       end
     }
