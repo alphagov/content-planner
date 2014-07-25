@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :organisation do
-    api_id "hmrc"
+    sequence(:api_id) { |n| "hmrc#{n}" }
     title "HM Revenue & Customs"
     format "Ministerial department"
     slug "hmrc"

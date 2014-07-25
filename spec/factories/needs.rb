@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :need do
-    api_id 100252
+    sequence(:api_id) { |n| "123#{n}" }
     role "user"
     goal "go to the university"
     benefit "I can graduate"
