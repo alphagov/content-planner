@@ -1,4 +1,6 @@
 class ContentsController < ApplicationController
+  helper_method :sort_column, :sort_direction, :content_plan_filter
+
   expose(:content, attributes: :content_params)
   expose(:content_plan) { ContentPlan.find(params[:content_plan_id]) }
   expose(:search) {
@@ -9,7 +11,7 @@ class ContentsController < ApplicationController
     end
   }
   expose(:contents) {
-    search.results.page(params[:page])
+    search.results.order("contents.#{sort_column} #{sort_direction}").page(params[:page])
   }
   expose(:content_plans) { content.content_plans.order(:ref_no) }
   expose(:comment) {
@@ -106,5 +108,17 @@ class ContentsController < ApplicationController
 
   def authorize_user
     authorize content
+  end
+
+  def sort_column
+    Content.column_names.include?(params[:sort]) ? params[:sort] : "title"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def content_plan_filter
+    params[:content_plan_id] || nil
   end
 end

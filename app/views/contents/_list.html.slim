@@ -2,11 +2,11 @@
   = paginate contents, params: { controller: 'contents', action: 'index', content_plan_id: content_plan.id }, remote: true
   table.table
     thead
-      th.title Title
-      th.size Size
-      th.status Status
-      th.platform Platform
-      th.publish_by Publish by
+      th.title = sortable_column "title"
+      th.size = sortable_column "size"
+      th.status = sortable_column "status"
+      th.platform = sortable_column "platform"
+      th.publish_by = sortable_column "publish_by", "Publish by"
     tbody
       = render contents
 - else

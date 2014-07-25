@@ -1,4 +1,6 @@
 class ContentPlansController < ApplicationController
+  helper_method :sort_column, :sort_direction, :content_plan_filter
+
   expose_decorated(:content_plan, attributes: :content_plan_params)
   expose_decorated(:content_plans) {
     ContentPlanSearch.new(params[:search]).results.page(params[:page])
@@ -22,7 +24,7 @@ class ContentPlansController < ApplicationController
     PlanContentsSearch.new(contents_search_params)
   }
   expose(:contents) {
-    contents_search.results.page(params[:page])
+    contents_search.results.order("contents.#{sort_column} #{sort_direction}").page(params[:page])
   }
   expose(:all_contents) {
     content_plan.contents
@@ -125,5 +127,17 @@ class ContentPlansController < ApplicationController
       redirect_to content_plan,
                   alert: "Excel export available only if all records have been changed to the 'live' status"
     end
+  end
+
+  def sort_column
+    Content.column_names.include?(params[:sort]) ? params[:sort] : "title"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def content_plan_filter
+    params[:id] || nil
   end
 end

@@ -1,5 +1,5 @@
 class PlanContentsSearch < Searchlight::Search
-  search_on Content.order(:ref_no)
+  search_on Content
 
   searches :content_plan_id, :title, :platform, :status
 
