@@ -32,6 +32,8 @@ gem "pundit"
 gem "logstasher", '0.4.8'
 gem "lrucache", "0.1.4"
 
+gem 'jquery-datatables-rails', '~> 2.1.10.0.3'
+
 gem "aws-ses", require: "aws/ses"
 gem "airbrake", "3.1.15"
 gem "highcharts-rails", "~> 3.0.0"

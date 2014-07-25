@@ -1,6 +1,5 @@
 - if contents.present?
-  = paginate contents, params: { controller: 'contents', action: 'index', content_plan_id: content_plan.id }, remote: true
-  table.table
+  table.table.datatable data-source=contents_url(content_plan_id: content_plan.id)
     thead
       th.title Title
       th.size Size
@@ -8,6 +7,5 @@
       th.platform Platform
       th.publish_by Publish by
     tbody
-      = render contents
 - else
   p No entries for you search results

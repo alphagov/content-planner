@@ -17,5 +17,6 @@
 //= require turbolinks
 //= require select2
 //= require google-diff-match-patch
-//= require jquery.tablesorter.min
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
 //= require_tree .

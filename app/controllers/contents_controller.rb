@@ -31,6 +31,10 @@ class ContentsController < ApplicationController
   before_filter :authorize_user, except: [:index]
 
   def index
+    respond_to do |format|
+      format.html
+      format.json { render json: ContentDatatable.new(view_context, search) }
+    end
   end
 
   def new
