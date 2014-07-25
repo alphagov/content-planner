@@ -6,5 +6,6 @@
   };
 
   $(document).ready(applyDiff);
+
   $(document).on("page:load", applyDiff);
 })();
