@@ -5,10 +5,10 @@
     padding: 8px 15px 8px 0;
 
     &.title {
-      width: 50%;
+      width: 40%;
     }
     &.size {
-      width: 5%;
+      width: 10%;
     }
     &.status {
       width: 20%;
@@ -71,4 +71,46 @@ ul.comments {
 .breadcrumb {
   background-color: transparent;
   padding-left: 0;
+}
+
+.contents_container table {
+  th {
+    padding: 0;
+
+    a {
+      color: #444;
+      display: block;
+      padding: 12px 15px 12px 5px;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      &.current {
+        background: #eaeaea;
+      }
+
+      &.asc:after {
+        content: ' ';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background: image-url("sort-ascending.png") no-repeat center center;
+        background-size: 12px 12px;
+        float: right;
+        margin-top: 5px;
+      }
+
+      &.desc:after {
+        content: ' ';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background: image-url("sort-descending.png") no-repeat center center;
+        background-size: 12px 12px;
+        float: right;
+        margin-top: 5px;
+      }
+    }
+  }
 }
