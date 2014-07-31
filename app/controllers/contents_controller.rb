@@ -5,13 +5,13 @@ class ContentsController < ApplicationController
   expose(:content_plan) { ContentPlan.find(params[:content_plan_id]) }
   expose(:search) {
     if params[:content_plan_id].present?
-      PlanContentsSearch.new(contents_search_params)
+      PlanContentsSearch.new(contents_search_params, sort_column, sort_direction)
     else
-      ContentSearch.new(params[:search])
+      ContentSearch.new(params[:search], sort_column, sort_direction)
     end
   }
   expose(:contents) {
-    search.results.order("contents.#{sort_column} #{sort_direction}").page(params[:page])
+    search.results.page(params[:page])
   }
   expose(:content_plans) { content.content_plans.order(:ref_no) }
   expose(:comment) {

@@ -21,10 +21,10 @@ class ContentPlansController < ApplicationController
     content_plan.tasks.includes(:users).by_deadline
   }
   expose(:contents_search) {
-    PlanContentsSearch.new(contents_search_params)
+    PlanContentsSearch.new(contents_search_params, sort_column, sort_direction)
   }
   expose(:contents) {
-    contents_search.results.order("contents.#{sort_column} #{sort_direction}").page(params[:page])
+    contents_search.results.page(params[:page])
   }
   expose(:all_contents) {
     content_plan.contents
