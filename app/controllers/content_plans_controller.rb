@@ -29,11 +29,11 @@ class ContentPlansController < ApplicationController
   expose(:all_contents) {
     content_plan.contents
   }
-  expose(:whitehall_contents) {
-    all_contents.whitehall
+  expose(:specialist_contents) {
+    all_contents.specialist
   }
-  expose(:publisher_contents) {
-    all_contents.publisher
+  expose(:mainstream_contents) {
+    all_contents.mainstream
   }
   expose(:content_records_statuses) {
     contents.pluck(:status).uniq

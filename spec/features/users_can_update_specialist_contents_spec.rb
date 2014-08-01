@@ -1,15 +1,15 @@
 require "spec_helper"
 
-feature "Users can update Publisher contents" do
+feature "Users can update Specialist contents" do
   before do
     user = build :user
     user.permissions = [User::Permissions::SIGNIN]
     user.save
   end
 
-  describe "Can update content if it belongs to Publisher" do
+  describe "Can update content if it belongs to Specialist" do
     before do
-      content = create :content, platform: "Publisher"
+      content = create :content, platform: "Specialist"
       visit content_path(content)
       click_on "edit"
     end
@@ -23,14 +23,14 @@ feature "Users can update Publisher contents" do
 
     # select is not showing if user doesn't have permissions
     # scenario "should not update platform" do
-    #   select "Whitehall", from: "content_platform"
+    #   select "Mainstream", from: "content_platform"
     #   click_on "Update Content"
-    #   page.should_not have_content("Whitehall")
+    #   page.should_not have_content("Mainstream")
     # end
   end
-  describe "Can't update content if it doesn't belong to Publisher" do
+  describe "Can't update content if it doesn't belong to Specialist" do
     before do
-      @content = create :content, platform: "Whitehall"
+      @content = create :content, platform: "Mainstream"
     end
 
     scenario "should not have edit button" do
