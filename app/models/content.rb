@@ -6,18 +6,18 @@ class Content < ActiveRecord::Base
   paginates_per 15
 
   STATUSES = {
-    "Mainstream" => [
+    "Specialist" => [
       "Not started",
-      "Drafting - agency",
+      "Drafting",
       "Specialist 2i",
       "Specialist amends",
       "Ready for publish",
       "Live",
       "Blocked"
     ],
-    "Specialist" => [
+    "Mainstream" => [
       "Not started",
-      "Drafting - GDS",
+      "Drafting",
       "Mainstream 2i",
       "Mainstream factcheck",
       "Mainstream amends",

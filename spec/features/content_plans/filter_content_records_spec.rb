@@ -28,7 +28,7 @@ So that I can find records quickly
     create :content, title: another_content_title,
                      content_plans: [content_plan],
                      platform: "Specialist",
-                     status: "Drafting - agency"
+                     status: "Drafting"
   }
 
   before {
@@ -81,7 +81,7 @@ So that I can find records quickly
 
     it "should allow to filter by status", js: true do
       within(".contents-search-form") do
-        page.execute_script("$('#search_status').val('Live')")
+        page.execute_script("$('#search_status').val('#{content.status}')")
         click_on "Search"
       end
 
@@ -89,7 +89,7 @@ So that I can find records quickly
       expect_to_see_no another_content_title
 
       within(".contents-search-form") do
-        page.execute_script("$('#search_status').val('Drafting - agency')")
+        page.execute_script("$('#search_status').val('#{another_content.status}')")
         click_on "Search"
       end
 
