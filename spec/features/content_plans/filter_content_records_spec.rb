@@ -19,7 +19,7 @@ So that I can find records quickly
   let!(:content) {
     create :content, title: content_title,
                      content_plans: [content_plan],
-                     platform: "Whitehall",
+                     platform: "Mainstream",
                      status: "Live"
   }
 
@@ -27,8 +27,8 @@ So that I can find records quickly
   let!(:another_content) {
     create :content, title: another_content_title,
                      content_plans: [content_plan],
-                     platform: "Publisher",
-                     status: "Drafting - agency"
+                     platform: "Specialist",
+                     status: "Drafting"
   }
 
   before {
@@ -61,7 +61,8 @@ So that I can find records quickly
 
     it "should allow to filter by platform", js: true do
       within(".contents-search-form") do
-        page.execute_script("$('#search_platform').val('Whitehall')")
+        platform = content.platform
+        page.execute_script("$('#search_platform').val('#{platform}')")
         click_on "Search"
       end
 
@@ -69,7 +70,8 @@ So that I can find records quickly
       expect_to_see_no another_content_title
 
       within(".contents-search-form") do
-        page.execute_script("$('#search_platform').val('Publisher')")
+        platform = another_content.platform
+        page.execute_script("$('#search_platform').val('#{platform}')")
         click_on "Search"
       end
 
@@ -79,7 +81,7 @@ So that I can find records quickly
 
     it "should allow to filter by status", js: true do
       within(".contents-search-form") do
-        page.execute_script("$('#search_status').val('Live')")
+        page.execute_script("$('#search_status').val('#{content.status}')")
         click_on "Search"
       end
 
@@ -87,7 +89,7 @@ So that I can find records quickly
       expect_to_see_no another_content_title
 
       within(".contents-search-form") do
-        page.execute_script("$('#search_status').val('Drafting - agency')")
+        page.execute_script("$('#search_status').val('#{another_content.status}')")
         click_on "Search"
       end
 

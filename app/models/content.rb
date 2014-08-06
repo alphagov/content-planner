@@ -6,21 +6,21 @@ class Content < ActiveRecord::Base
   paginates_per 15
 
   STATUSES = {
-    "Publisher" => [
+    "Specialist" => [
       "Not started",
-      "Drafting - agency",
-      "Publisher 2i",
-      "Publisher amends",
+      "Drafting",
+      "Specialist 2i",
+      "Specialist amends",
       "Ready for publish",
       "Live",
       "Blocked"
     ],
-    "Whitehall" => [
+    "Mainstream" => [
       "Not started",
-      "Drafting - GDS",
-      "Whitehall 2i",
-      "Whitehall factcheck",
-      "Whitehall amends",
+      "Drafting",
+      "Mainstream 2i",
+      "Mainstream factcheck",
+      "Mainstream amends",
       "Ready for publish",
       "Live",
       "Blocked"
@@ -68,8 +68,8 @@ class Content < ActiveRecord::Base
     content_plans.each { |record| record.touch }
   end
 
-  def publisher?
-    platform == "Publisher"
+  def specialist?
+    platform == "Specialist"
   end
 
   def to_s
