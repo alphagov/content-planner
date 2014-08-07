@@ -3,7 +3,10 @@ class ContentPlansController < ApplicationController
 
   expose_decorated(:content_plan, attributes: :content_plan_params)
   expose_decorated(:content_plans) {
-    ContentPlanSearch.new(params[:search]).results.page(params[:page])
+    search.results.page(params[:page])
+  }
+  expose(:search) {
+    ContentPlanSearch.new(params[:search])
   }
   expose(:comment) {
     current_user.comments.build(commentable: content_plan)
@@ -47,7 +50,6 @@ class ContentPlansController < ApplicationController
   before_action :require_all_records_to_be_live!, only: :xls_export
 
   def index
-    @search = ContentPlanSearch.new(params[:search])
     respond_to do |format|
       format.html
       format.json {

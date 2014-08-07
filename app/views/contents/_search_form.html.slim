@@ -1,5 +1,6 @@
 = simple_form_for contents_search,
                   url: contents_path,
+                  as: :search,
                   html: { class: 'form-inline contents-search-form' },
                   method: :get,
                   remote: true do |f|

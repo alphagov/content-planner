@@ -5,7 +5,7 @@
 .row
   .span12
 
-    = form_for(search, url: contents_path, method: :get, html: { class: 'form-inline search-form' }) do |f|
+    = form_for(search, url: contents_path, method: :get, as: :search, html: { class: 'form-inline search-form' }) do |f|
       = f.select :organisation_ids,
                  options_for_select( organisations_options_for_select, search.organisation_ids ),
                  { include_blank: true },
@@ -13,7 +13,7 @@
       = f.select :content_plan_ids,
                  options_for_select( ContentPlan.all.map{|c| [c.to_s, c.id]}, search.content_plan_ids ),
                  { include_blank: true },
-                 { placeholder: "Content Plan", style: "width:200px",multiple: true }
+                 { placeholder: "Content Plan", style: "width:200px", multiple: true, id: "search_content_plan_ids" }
       = f.select :need_id,
                  options_for_select( needs_options_for_select, search.need_id ),
                  { include_blank: true },
