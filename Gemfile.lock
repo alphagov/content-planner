@@ -111,6 +111,7 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     daemons (1.1.9)
+    dalli (2.7.2)
     database_cleaner (1.0.1)
     debug_inspector (0.0.2)
     decent_decoration (0.0.6)
@@ -421,6 +422,7 @@ DEPENDENCIES
   capybara
   ci_reporter
   coffee-rails (~> 4.0.0)
+  dalli (~> 2.7.2)
   database_cleaner (= 1.0.1)
   decent_decoration
   decent_exposure
@@ -440,7 +442,6 @@ DEPENDENCIES
   kaminari
   launchy
   logstasher (= 0.4.8)
-  lrucache (= 0.1.4)
   modernizr-rails
   mysql2
   paper_trail (>= 3.0.0.rc1)

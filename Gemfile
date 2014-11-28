@@ -30,7 +30,7 @@ gem "gds-api-adapters", "12.2.0"
 gem "govuk_frontend_toolkit", git: "https://github.com/alphagov/govuk_frontend_toolkit_gem.git", submodules: true
 gem "pundit"
 gem "logstasher", '0.4.8'
-gem "lrucache", "0.1.4"
+gem "dalli", "~> 2.7.2"
 
 gem "aws-ses", require: "aws/ses"
 gem "airbrake", "3.1.15"
