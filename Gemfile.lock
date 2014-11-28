@@ -440,7 +440,6 @@ DEPENDENCIES
   kaminari
   launchy
   logstasher (= 0.4.8)
-  lrucache (= 0.1.4)
   modernizr-rails
   mysql2
   paper_trail (>= 3.0.0.rc1)
