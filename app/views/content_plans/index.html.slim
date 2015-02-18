@@ -6,23 +6,23 @@
 .row
   .span12
 
-    = form_for(@search, url: content_plans_path, method: :get, html: { class: 'form-inline search-form' }) do |f|
+    = form_for(search, url: content_plans_path, method: :get, as: :search, html: { class: 'form-inline search-form' }) do |f|
       = f.text_field :ref_no, placeholder: "Ref No.", class: "input-small"
       = f.select :organisation_ids,
-                 options_for_select( organisations_options_for_select, @search.organisation_ids ),
+                 options_for_select( organisations_options_for_select, search.organisation_ids ),
                  { include_blank: true },
                  { class: "js-organisations", style: "width:140px" }
       = f.select :need_id,
-                 options_for_select( needs_options_for_select, @search.need_id ),
+                 options_for_select( needs_options_for_select, search.need_id ),
                  { include_blank: true },
                  { class: "js-needs", style: "width:230px"}
       = f.select :user_id,
-                 options_for_select( users_options_for_select, @search.user_id ),
+                 options_for_select( users_options_for_select, search.user_id ),
                  { include_blank: true },
                  { class: "js-users", style: "width:150px"}
       = f.text_field :tag, placeholder: "Tag", class: "js-tags", style: "width:220px"
       = f.select :due_date,
-                 options_for_select(due_date_options_for_select, @search.due_date),
+                 options_for_select(due_date_options_for_select, search.due_date),
                  { include_blank: true },
                  { class: "select2", placeholder: "Due Date", style: "width:100px" }
       = f.submit "Search", class: 'btn'

@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 ruby "2.1.2"
 
-gem "rails", "4.0.2"
+gem "rails", "4.1.4"
 gem "sass-rails", "~> 4.0.0"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.0.0"
@@ -19,9 +19,9 @@ gem "decent_exposure"
 gem "decent_decoration"
 gem "active_hash"
 gem "kaminari"
-gem "acts-as-taggable-on", "2.4.1"
+gem "acts-as-taggable-on", "3.3.0"
 gem "select2-rails", github: "bitzesty/select2-rails", branch: "2.1.0", ref: "a3447b2"
-gem "searchlight", "1.3.1"
+gem "searchlight", "3.0.0"
 gem "paper_trail", ">= 3.0.0.rc1"
 gem "govspeak", ">= 1.3.0"
 gem "plek", "~> 1.8"
@@ -44,7 +44,7 @@ gem "whenever", require: false
 gem "activerecord_any_of"
 
 gem 'ancestry'
-gem "friendly_id", "5.0.2"
+gem "friendly_id", "5.0.4"
 
 group :development do
   gem "rubocop"
@@ -67,7 +67,7 @@ end
 group :test do
   gem "capybara"
   gem "database_cleaner", "1.0.1"
-  gem "ci_reporter"
+  gem "ci_reporter_rspec"
   gem "simplecov"
   gem "simplecov-rcov"
   gem "launchy"
