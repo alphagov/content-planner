@@ -1,8 +1,7 @@
 - if policy(content_plan).edit?
   = link_to "edit", [:edit, content_plan], class: 'btn pull-right'
 = link_to "history", [:versions, content_plan], class: 'btn pull-right history-btn'
-- if all_records_are_live?
-  = link_to "Excel export", xls_export_content_plan_path(content_plan.id), class: 'btn pull-right'
+= link_to "Excel export", xls_export_content_plan_path(content_plan.id), class: 'btn pull-right'
 
 = breadcrumb ["Content Plans", content_plans_path], content_plan.name
 .row

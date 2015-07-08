@@ -44,7 +44,6 @@ class ContentPlansController < ApplicationController
   }
 
   before_filter :authorize_user
-  before_action :require_all_records_to_be_live!, only: :xls_export
 
   def index
     @search = ContentPlanSearch.new(params[:search])
