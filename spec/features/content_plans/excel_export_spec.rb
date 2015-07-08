@@ -45,11 +45,6 @@ So that I can have ability to review content plan in excel file
     create(:comment, commentable: content, user: user)
   }
 
-  it "'Excel export' link should not be visible" do
-    visit content_plan_path(content_plan)
-    expect_to_see_no "Excel export"
-  end
-
   describe "all records have been changed to the 'live' status", type: :controller do
     before {
       content_plan.contents.update_all(status: "Live")
